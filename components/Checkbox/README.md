@@ -6,4 +6,4 @@ Lets people pick any number of options, or confirm a single statement, with chan
 - `indeterminate` marks a parent whose children are partly selected (table "select all").
 - Label is clickable and says what checking means. Add `hint` for consequences.
 - Matches the Figma Checkbox: 16px box, `radius-xs`, 8px gap, 14/20 medium label. Checked uses `brand` (Crimson Deep). The border is `line-strong` (3:1) rather than Figma's `#EBEBEB`, which is only 1.2:1 against white. Keep a 44px tap row on mobile.
-- The visible box is drawn by areeba; a visually hidden checkbox input underneath keeps forms and assistive tech working.
+- No native input: it is a button with `role="checkbox"` and `aria-checked` (`mixed` when indeterminate), following the WAI-ARIA checkbox pattern. Space toggles it. `onChange(checked)` receives the new state; pass `name` (and optionally `value`) to submit it in a form.

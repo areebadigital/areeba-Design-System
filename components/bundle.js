@@ -43,11 +43,24 @@
       (p.error || p.hint) && h("span", { className: "ar-field-hint", id: hintId }, p.error || p.hint));
   }
 
+  /* Shared on/off state for Checkbox and Switch: controlled (`checked`) or uncontrolled (`defaultChecked`). */
+  function useToggle(p) {
+    var st = React.useState(!!p.defaultChecked), on = p.checked !== undefined ? !!p.checked : st[0];
+    function toggle() { if (p.disabled) return; var next = p.indeterminate ? true : !on; st[1](next); if (p.onChange) p.onChange(next); }
+    return [on, toggle];
+  }
+  var TOGGLE_KEYS = ["label", "hint", "className", "id", "checked", "defaultChecked", "onChange", "indeterminate", "name", "value", "required", "disabled"];
+  function formValue(p, on) { return p.name && on ? h("input", { type: "hidden", name: p.name, value: p.value !== undefined ? p.value : "on" }) : null; }
+
   function Switch(p) {
-    return h("label", { className: cx("ar-switch", p.className) },
-      h("input", Object.assign({ type: "checkbox", role: "switch" }, rest(p, ["label", "className"]))),
-      h("span", { className: "ar-switch-track", "aria-hidden": "true" }),
-      p.label && h("span", null, p.label));
+    /* No native input: a button with role="switch" (WAI-ARIA switch pattern). Space and Enter toggle. */
+    var id = useId(p.id), labelId = id + "-label", t = useToggle(p), on = t[0];
+    return h(React.Fragment, null,
+      h("button", Object.assign({}, rest(p, TOGGLE_KEYS), { type: "button", role: "switch", id: id, className: cx("ar-switch", p.className),
+        "aria-checked": on ? "true" : "false", "aria-labelledby": p.label ? labelId : undefined, disabled: p.disabled, onClick: t[1] }),
+        h("span", { className: "ar-switch-track", "aria-hidden": "true" }),
+        p.label && h("span", { id: labelId, className: "ar-switch-label" }, p.label)),
+      formValue(p, on));
   }
 
   function Badge(p) {
@@ -166,14 +179,18 @@
   }
 
   function Checkbox(p) {
-    var ref = React.useRef(null);
-    React.useEffect(function () { if (ref.current) ref.current.indeterminate = !!p.indeterminate; }, [p.indeterminate]);
-    return h("label", { className: cx("ar-check", p.className) },
-      h("input", Object.assign({ type: "checkbox", ref: ref }, rest(p, ["label", "hint", "className", "indeterminate"]))),
-      h("span", { className: "ar-check-box", "aria-hidden": "true" },
-        h("svg", { viewBox: "0 0 16 16", className: "ar-check-tick" }, h("path", { d: "M3.5 8.5l3 3 6-7" })),
-        h("svg", { viewBox: "0 0 16 16", className: "ar-check-dash" }, h("path", { d: "M4 8h8" }))),
-      h("span", { className: "ar-check-text" }, h("span", null, p.label), p.hint && h("span", { className: "ar-check-hint" }, p.hint)));
+    /* No native input: a button with role="checkbox" (WAI-ARIA checkbox pattern). Space toggles; indeterminate is aria-checked="mixed". */
+    var id = useId(p.id), labelId = id + "-label", hintId = id + "-hint", t = useToggle(p), on = t[0];
+    return h(React.Fragment, null,
+      h("button", Object.assign({}, rest(p, TOGGLE_KEYS), { type: "button", role: "checkbox", id: id, className: cx("ar-check", p.className),
+        "aria-checked": p.indeterminate ? "mixed" : (on ? "true" : "false"), "aria-labelledby": labelId, "aria-describedby": p.hint ? hintId : undefined,
+        "aria-required": p.required ? "true" : undefined, disabled: p.disabled, onClick: t[1],
+        onKeyDown: function (e) { if (e.key === "Enter") e.preventDefault(); if (p.onKeyDown) p.onKeyDown(e); } }),
+        h("span", { className: "ar-check-box", "aria-hidden": "true" },
+          h("svg", { viewBox: "0 0 16 16", className: "ar-check-tick" }, h("path", { d: "M3.5 8.5l3 3 6-7" })),
+          h("svg", { viewBox: "0 0 16 16", className: "ar-check-dash" }, h("path", { d: "M4 8h8" }))),
+        h("span", { className: "ar-check-text" }, h("span", { id: labelId }, p.label), p.hint && h("span", { className: "ar-check-hint", id: hintId }, p.hint))),
+      formValue(p, on));
   }
 
   function Select(p) {

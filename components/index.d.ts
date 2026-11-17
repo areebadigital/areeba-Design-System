@@ -20,7 +20,15 @@ export interface TextFieldProps extends Omit<React.InputHTMLAttributes<HTMLInput
 }
 export declare function TextField(props: TextFieldProps): React.ReactElement;
 
-export interface SwitchProps extends React.InputHTMLAttributes<HTMLInputElement> { label?: React.ReactNode }
+/** A button with role="switch" (no native input). */
+export interface SwitchProps extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'onChange' | 'value'> {
+  label?: React.ReactNode;
+  checked?: boolean; defaultChecked?: boolean;
+  /** Receives the new state, not a DOM event. */
+  onChange?: (checked: boolean) => void;
+  /** Submits `value` (default "on") in a form while on, through a hidden input. */
+  name?: string; value?: string;
+}
 export declare function Switch(props: SwitchProps): React.ReactElement;
 
 export interface BadgeProps { tone?: 'neutral' | 'brand' | 'success' | 'warning' | 'danger' | 'info'; dot?: boolean; className?: string; children?: React.ReactNode }
@@ -68,7 +76,17 @@ export declare function PaymentCard(props: PaymentCardProps): React.ReactElement
 export interface EmptyStateProps { title: React.ReactNode; action?: React.ReactNode; className?: string; children?: React.ReactNode }
 export declare function EmptyState(props: EmptyStateProps): React.ReactElement;
 
-export interface CheckboxProps extends React.InputHTMLAttributes<HTMLInputElement> { label: React.ReactNode; hint?: React.ReactNode; indeterminate?: boolean }
+/** A button with role="checkbox" (no native input). */
+export interface CheckboxProps extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'onChange' | 'value'> {
+  label: React.ReactNode; hint?: React.ReactNode;
+  /** Shown as a dash and announced as "mixed". Clicking it checks the box. */
+  indeterminate?: boolean;
+  checked?: boolean; defaultChecked?: boolean;
+  /** Receives the new state, not a DOM event. */
+  onChange?: (checked: boolean) => void;
+  /** Submits `value` (default "on") in a form while checked, through a hidden input. */
+  name?: string; value?: string; required?: boolean;
+}
 export declare function Checkbox(props: CheckboxProps): React.ReactElement;
 
 /** Custom listbox (select-only combobox pattern). No native <select>. */
