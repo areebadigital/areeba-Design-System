@@ -24,6 +24,15 @@
     alert: Icon(["M12 3 2 20h20z", "M12 10v4", "M12 17h.01"])
   };
 
+  /* Built-in words, in the page's language (<html lang>). Every one can be overridden by a prop. */
+  var UI_TEXT = {
+    en: { nav: "Main", empty: "No results", select: "Select", frozen: "Frozen", card: function (n, l4, fz) { return (n || "Card") + " ending " + l4 + (fz ? ", frozen" : ""); },
+      prev: "Previous month", next: "Next month", pick: "Select date" },
+    ar: { nav: "التنقل الرئيسي", empty: "لا توجد نتائج", select: "اختر", frozen: "مجمّدة", card: function (n, l4, fz) { return "بطاقة " + (n || "") + " تنتهي بـ " + l4 + (fz ? "، مجمّدة" : ""); },
+      prev: "الشهر السابق", next: "الشهر التالي", pick: "اختر تاريخًا" },
+  };
+  function ui(lang) { var l = String(lang || (typeof document !== "undefined" && document.documentElement.lang) || "en").slice(0, 2).toLowerCase(); return UI_TEXT[l] || UI_TEXT.en; }
+
   function Button(p) {
     var variant = p.variant || "primary", size = p.size || "md";
     return h("button", Object.assign({ type: "button" }, rest(p, ["variant", "size", "block", "className", "children"]), {
@@ -93,14 +102,14 @@
       p.leading !== undefined && h("div", { className: "ar-item-lead", "aria-hidden": "true" }, p.leading),
       h("div", { className: "ar-item-main" }, h("p", { className: "ar-item-title" }, p.title), p.subtitle && h("p", { className: "ar-item-sub" }, p.subtitle)),
       (amount || p.trailing) && h("div", { className: "ar-item-trail" },
-        amount && h("span", { className: cx("ar-item-amount", incoming && "ar-item-amount-in") }, amount),
+        amount && h("span", { className: cx("ar-item-amount", incoming && "ar-item-amount-in"), dir: "ltr" }, amount),
         p.trailing));
   }
   function List(p) { return h("div", { className: cx("ar-list", p.className), role: "list" }, p.children); }
 
   function TabBar(p) {
     var items = p.items || [];
-    return h("nav", { className: cx("ar-tabbar", p.className), "aria-label": p.label || "Main" }, items.map(function (it) {
+    return h("nav", { className: cx("ar-tabbar", p.className), "aria-label": p.label || ui().nav }, items.map(function (it) {
       var I = icons[it.icon] || icons.home;
       return h("button", { key: it.value, type: "button", className: "ar-tabbar-item", "aria-current": p.value === it.value ? "page" : undefined,
         onClick: function () { p.onChange && p.onChange(it.value); } }, h(I, null), it.label);
@@ -111,11 +120,11 @@
     var items = p.items || [];
     return h("aside", { className: cx("ar-sidebar", p.className) },
       h("div", { className: "ar-sidebar-brand" }, p.brand || "areeba"),
-      h("nav", { "aria-label": p.label || "Main" }, items.map(function (it) {
+      h("nav", { "aria-label": p.label || ui().nav }, items.map(function (it) {
         var I = icons[it.icon] || icons.home;
         return h("a", { key: it.value, href: it.href || "#", className: "ar-sidebar-item", "aria-current": p.value === it.value ? "page" : undefined,
           onClick: function (e) { if (p.onChange) { e.preventDefault(); p.onChange(it.value); } } }, h(I, null), h("span", null, it.label),
-          it.count !== undefined && h("span", { className: "ar-sidebar-count" }, it.count));
+          it.count !== undefined && h("span", { className: "ar-sidebar-count", dir: "ltr" }, it.count));
       })),
       p.footer && h("div", { className: "ar-sidebar-footer" }, p.footer));
   }
@@ -129,9 +138,9 @@
         h("tbody", null, rows.length ? rows.map(function (r, i) {
           return h("tr", { key: r.id || i }, cols.map(function (c) {
             var v = c.render ? c.render(r) : r[c.key];
-            return h("td", { key: c.key, className: cx(c.align === "right" && "ar-right", c.numeric && "ar-num", c.mono && "ar-mono") }, v);
+            return h("td", { key: c.key, className: cx(c.align === "right" && "ar-right", c.numeric && "ar-num", c.mono && "ar-mono") }, c.numeric || c.mono ? h("span", { dir: "ltr" }, v) : v);
           }));
-        }) : h("tr", null, h("td", { colSpan: cols.length, className: "ar-table-empty" }, p.empty || "No results")))));
+        }) : h("tr", null, h("td", { colSpan: cols.length, className: "ar-table-empty" }, p.empty || ui().empty)))));
   }
 
   function Dialog(p) {
@@ -158,8 +167,8 @@
   }
 
   function PaymentCard(p) {
-    return h("div", { className: cx("ar-pcard", "ar-pcard-" + (p.variant || "night"), p.className), role: "img", "aria-label": (p.network || "Card") + " ending " + p.last4 + (p.frozen ? ", frozen" : "") },
-      h("div", { className: "ar-pcard-top" }, h("span", { className: "ar-pcard-logo" }, "areeba"), p.frozen && h("span", { className: "ar-pcard-frozen" }, "Frozen")),
+    return h("div", { className: cx("ar-pcard", "ar-pcard-" + (p.variant || "night"), p.className), dir: "ltr", role: "img", "aria-label": ui().card(p.network, p.last4, p.frozen) },
+      h("div", { className: "ar-pcard-top" }, h("span", { className: "ar-pcard-logo" }, "areeba"), p.frozen && h("span", { className: "ar-pcard-frozen", dir: "auto" }, ui().frozen)),
       h("svg", { className: "ar-pcard-chip", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 2, strokeLinecap: "round", "aria-hidden": "true" },
         h("path", { d: "M8 8a6 6 0 0 1 0 8" }), h("path", { d: "M12 5a10 10 0 0 1 0 14" }), h("path", { d: "M16 2a14 14 0 0 1 0 20" })),
       h("div", { className: "ar-pcard-num ar-num" }, "•••• •••• •••• " + p.last4),
@@ -254,7 +263,7 @@
         "aria-invalid": p.error ? "true" : undefined, "aria-required": p.required ? "true" : undefined,
         "aria-describedby": (p.error || p.hint) ? hintId : undefined,
         onClick: function () { open ? close() : openAt(-1); }, onKeyDown: onKey, onBlur: function (e) { if (wrap.current && !wrap.current.contains(e.relatedTarget)) close(); } },
-        h("span", { className: cx("ar-select-value", !selected && "ar-select-ph") }, selected ? selected.label : (p.placeholder || "Select")),
+        h("span", { className: cx("ar-select-value", !selected && "ar-select-ph") }, selected ? selected.label : (p.placeholder || ui().select)),
         h("svg", { className: "ar-select-chev", viewBox: "0 0 24 24", "aria-hidden": "true" }, h("path", { d: "M6 9l6 6 6-6" }))),
       p.name && h("input", { type: "hidden", name: p.name, value: val == null ? "" : val }),
       h("div", { className: "ar-pop", hidden: !open },
@@ -269,14 +278,28 @@
   }
 
   var MONTHS = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-  var DOW = ["Mo","Tu","We","Th","Fr","Sa","Su"];
+  var DOW = ["Mo","Tu","We","Th","Fr","Sa","Su"], DOW_LONG = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
   function sameDay(a, b) { return a && b && a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate(); }
-  function fmtDate(d) { return d ? d.getDate() + " " + MONTHS[d.getMonth()].slice(0, 3) + " " + d.getFullYear() : ""; }
+  /* Locale for dates: the `locale` prop, else the page's <html lang>. English keeps the house format
+     ("20 Nov 2026", "Mo Tu …"); other languages use Intl with Latin digits, matching how amounts are written. */
+  function dateLocale(p) { return p.locale || (typeof document !== "undefined" && document.documentElement.lang) || "en"; }
+  function isEn(loc) { return /^en\b/i.test(loc); }
+  function latn(loc) { return /-u-.*nu-/.test(loc) ? loc : loc + (loc.indexOf("-u-") > 0 ? "-nu-latn" : "-u-nu-latn"); }
+  function intl(loc, o) { try { return new Intl.DateTimeFormat(latn(loc), o); } catch (e) { return new Intl.DateTimeFormat("en-GB", o); } }
+  function fmtDate(d, loc) { if (!d) return ""; if (!loc || isEn(loc)) return d.getDate() + " " + MONTHS[d.getMonth()].slice(0, 3) + " " + d.getFullYear(); return intl(loc, { day: "numeric", month: "short", year: "numeric" }).format(d); }
+  function fmtMonth(d, loc) { return isEn(loc) ? MONTHS[d.getMonth()] + " " + d.getFullYear() : intl(loc, { month: "long", year: "numeric" }).format(d); }
+  function weekdays(loc) {
+    if (isEn(loc)) return DOW.map(function (s, i) { return [s, DOW_LONG[i]]; });
+    var n = intl(loc, { weekday: "narrow" }), l = intl(loc, { weekday: "long" }); /* 1 Jan 2024 is a Monday */
+    return DOW.map(function (_, i) { var d = new Date(2024, 0, 1 + i); return [n.format(d), l.format(d)]; });
+  }
+  function dateText(loc) { return ui(loc); }
+  function isRtl(el) { return !!el && typeof getComputedStyle === "function" && getComputedStyle(el).direction === "rtl"; }
 
   function Calendar(p) {
     /* WAI-ARIA date grid: rows of gridcells, one roving tab stop. Arrows move by day/week,
        Home/End to the week's edges, PageUp/PageDown by month, Enter/Space chooses. */
-    var sel = p.value, today = p.today || new Date();
+    var sel = p.value, today = p.today || new Date(), loc = dateLocale(p), txt = dateText(loc);
     var fs = React.useState(function () { return sel || today; }), focus = fs[0];
     var view = new Date(focus.getFullYear(), focus.getMonth(), 1);
     var grid = React.useRef(null), moved = React.useRef(false);
@@ -289,6 +312,7 @@
     function shift(n) { var t = new Date(focus.getFullYear(), focus.getMonth() + n, 1); var last = new Date(t.getFullYear(), t.getMonth() + 1, 0).getDate(); go(new Date(t.getFullYear(), t.getMonth(), Math.min(focus.getDate(), last))); }
     function onKey(e) {
       var k = e.key, y = focus.getFullYear(), m = focus.getMonth(), dd = focus.getDate(), dow = (focus.getDay() + 6) % 7, t = null;
+      if (isRtl(grid.current)) { if (k === "ArrowLeft") k = "ArrowRight"; else if (k === "ArrowRight") k = "ArrowLeft"; } /* arrows follow the mirrored grid */
       if (k === "ArrowLeft") t = new Date(y, m, dd - 1); else if (k === "ArrowRight") t = new Date(y, m, dd + 1);
       else if (k === "ArrowUp") t = new Date(y, m, dd - 7); else if (k === "ArrowDown") t = new Date(y, m, dd + 7);
       else if (k === "Home") t = new Date(y, m, dd - dow); else if (k === "End") t = new Date(y, m, dd + 6 - dow);
@@ -300,20 +324,20 @@
       var el = grid.current.querySelector('[data-focus="true"]'); if (el) el.focus();
     });
     var Chev = function (dir) { return h("svg", { viewBox: "0 0 24 24", "aria-hidden": "true" }, h("path", { d: dir < 0 ? "M15 6l-6 6 6 6" : "M9 6l6 6-6 6" })); };
-    var title = MONTHS[view.getMonth()] + " " + view.getFullYear(), titleId = useId() + "-t";
+    var title = fmtMonth(view, loc), titleId = useId() + "-t";
     return h("div", { className: "ar-cal", role: "group", "aria-labelledby": titleId },
       h("div", { className: "ar-cal-head" },
-        h("button", { type: "button", className: "ar-cal-nav", "aria-label": "Previous month", onClick: function () { fs[1](new Date(view.getFullYear(), view.getMonth() - 1, 1)); } }, Chev(-1)),
+        h("button", { type: "button", className: "ar-cal-nav", "aria-label": txt.prev, onClick: function () { fs[1](new Date(view.getFullYear(), view.getMonth() - 1, 1)); } }, Chev(-1)),
         h("span", { className: "ar-cal-title", id: titleId, "aria-live": "polite" }, title),
-        h("button", { type: "button", className: "ar-cal-nav", "aria-label": "Next month", onClick: function () { fs[1](new Date(view.getFullYear(), view.getMonth() + 1, 1)); } }, Chev(1))),
+        h("button", { type: "button", className: "ar-cal-nav", "aria-label": txt.next, onClick: function () { fs[1](new Date(view.getFullYear(), view.getMonth() + 1, 1)); } }, Chev(1))),
       h("div", { className: "ar-cal-grid", role: "grid", "aria-labelledby": titleId, ref: grid, onKeyDown: onKey },
-        h("div", { className: "ar-cal-row", role: "row" }, DOW.map(function (wd, i) { return h("span", { key: wd, className: "ar-cal-dow", role: "columnheader", "aria-label": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"][i] }, wd); })),
+        h("div", { className: "ar-cal-row", role: "row" }, weekdays(loc).map(function (wd, i) { return h("span", { key: i, className: "ar-cal-dow", role: "columnheader", "aria-label": wd[1] }, wd[0]); })),
         weeks.map(function (wk, wi) {
           return h("div", { key: wi, className: "ar-cal-row", role: "row" }, wk.map(function (c, ci) {
             if (!c) return h("span", { key: ci, role: "gridcell", className: "ar-cal-cell" });
             var isSel = sameDay(c, sel), isFocus = sameDay(c, focus);
             return h("span", { key: ci, role: "gridcell", className: "ar-cal-cell", "aria-selected": isSel ? "true" : "false" },
-              h("button", { type: "button", disabled: off(c), tabIndex: isFocus ? 0 : -1, "data-focus": isFocus ? "true" : undefined, "aria-label": fmtDate(c),
+              h("button", { type: "button", disabled: off(c), tabIndex: isFocus ? 0 : -1, "data-focus": isFocus ? "true" : undefined, "aria-label": fmtDate(c, loc),
                 "aria-current": sameDay(c, today) ? "date" : undefined, "aria-pressed": isSel ? "true" : "false",
                 className: cx("ar-cal-day", sameDay(c, today) && "ar-cal-today"), onFocus: function () { if (!isFocus) fs[1](c); },
                 onClick: function () { if (!off(c) && p.onChange) p.onChange(c); } }, c.getDate()));
@@ -322,7 +346,7 @@
   }
 
   function DatePicker(p) {
-    var id = useId(p.id);
+    var id = useId(p.id), loc = dateLocale(p);
     var vs = React.useState(p.defaultValue || null), val = p.value !== undefined ? p.value : vs[0];
     var os = React.useState(!!p.defaultOpen), open = os[0];
     var wrap = React.useRef(null), touched = React.useRef(false), trig = React.useRef(null);
@@ -338,21 +362,29 @@
     return h("div", { className: cx("ar-field ar-date", p.error && "ar-field-invalid", p.className), ref: wrap },
       p.label && h("label", { className: "ar-field-label", htmlFor: id }, p.label),
       h("button", { type: "button", id: id, ref: trig, className: "ar-field-box ar-date-trigger", "aria-haspopup": "dialog", "aria-expanded": open ? "true" : "false", onClick: function () { touched.current = true; os[1](!open); } },
-        h("span", { className: val ? "" : "ar-date-ph" }, val ? fmtDate(val) : (p.placeholder || "Select date")),
+        h("span", { className: val ? "" : "ar-date-ph", dir: "auto" }, val ? fmtDate(val, loc) : (p.placeholder || dateText(loc).pick)),
         h("svg", { viewBox: "0 0 24 24", "aria-hidden": "true" }, h("path", { d: "M4 6.5A1.5 1.5 0 0 1 5.5 5h13A1.5 1.5 0 0 1 20 6.5v12a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 18.5z" }), h("path", { d: "M4 10h16M8 3v4M16 3v4" }))),
       (p.error || p.hint) && h("span", { className: "ar-field-hint" }, p.error || p.hint),
-      open && h("div", { className: "ar-date-pop" }, h(Calendar, { value: val, today: p.today, min: p.min, max: p.max, onChange: function (d) { vs[1](d); p.onChange && p.onChange(d); close(true); } })));
+      open && h("div", { className: "ar-date-pop" }, h(Calendar, { value: val, today: p.today, min: p.min, max: p.max, locale: p.locale, onChange: function (d) { vs[1](d); p.onChange && p.onChange(d); close(true); } })));
   }
 
   /* ---- charts ---- */
+  /* Width of the chart's container, and whether it sits in right-to-left text (charts mirror in RTL:
+     y-axis on the right, categories and time running right to left, as Arabic reads). */
   function useWidth(initial) {
-    var ref = React.useRef(null), ws = React.useState(initial);
+    var ref = React.useRef(null), ws = React.useState(initial), ds = React.useState(false);
     React.useEffect(function () {
       if (!ref.current || !window.ResizeObserver) return;
       var ro = new ResizeObserver(function (en) { ws[1](Math.max(240, Math.round(en[0].contentRect.width))); });
       ro.observe(ref.current); return function () { ro.disconnect(); };
     }, []);
-    return [ref, ws[0]];
+    React.useEffect(function () { var r = isRtl(ref.current); if (r !== ds[0]) ds[1](r); });
+    return [ref, ws[0], ds[0]];
+  }
+  /* Mirroring helpers: X flips an x position, XR flips a box that starts at x0 and is w wide, A swaps text anchors. */
+  function mirror(rtl, W) {
+    return { X: function (v) { return rtl ? W - v : v; }, XR: function (x0, w) { return rtl ? W - x0 - w : x0; },
+      A: function (a) { return !rtl ? a : a === "start" ? "end" : a === "end" ? "start" : a; } };
   }
   function niceMax(v) { if (v <= 0) return 1; var e = Math.pow(10, Math.floor(Math.log10(v))), f = v / e; return (f <= 1 ? 1 : f <= 2 ? 2 : f <= 2.5 ? 2.5 : f <= 5 ? 5 : 10) * e; }
   function compact(n) { var a = Math.abs(n); return a >= 1e6 ? (n / 1e6).toFixed(a % 1e6 ? 1 : 0) + "M" : a >= 1e3 ? (n / 1e3).toFixed(a % 1e3 ? 1 : 0) + "k" : String(n); }
@@ -362,44 +394,45 @@
       return h("span", { key: s.key, className: "ar-chart-key" }, h("i", { style: { background: "var(--chart-" + (i + 1) + ")" } }), s.label);
     }));
   }
-  function Tip(x, y, w, title, rows, fmt) {
-    var left = x + 12 + 180 > w ? Math.max(0, x - 192) : x + 12;
+  function Tip(x, y, w, title, rows, fmt, rtl) {
+    /* Opens on the reading side of the point (right in LTR, left in RTL) and flips when it would overflow. */
+    var left = rtl ? (x - 192 >= 0 ? x - 192 : Math.min(x + 12, w - 180)) : (x + 12 + 180 > w ? Math.max(0, x - 192) : x + 12);
     return h("div", { className: "ar-chart-tip", style: { left: left + "px", top: Math.max(0, y) + "px" } },
       h("div", { className: "ar-chart-tip-title" }, title),
-      rows.map(function (r) { return h("div", { key: r.key, className: "ar-chart-tip-row" }, h("i", { style: { background: r.color } }), h("span", null, r.label), h("b", { className: "ar-num" }, fmt(r.value))); }));
+      rows.map(function (r) { return h("div", { key: r.key, className: "ar-chart-tip-row" }, h("i", { style: { background: r.color } }), h("span", null, r.label), h("b", { className: "ar-num", dir: "ltr" }, fmt(r.value))); }));
   }
 
   function LineChart(p) {
     var data = p.data || [], series = (p.series || []).slice(0, 4), fmt = p.format || compact, H = p.height || 240;
-    var r = useWidth(p.width || 640), ref = r[0], W = r[1];
+    var r = useWidth(p.width || 640), ref = r[0], W = r[1], rtl = r[2], M = mirror(rtl, W);
     var hs = React.useState(null), hov = hs[0];
     var m = { t: 12, r: series.length > 1 ? 72 : 16, b: 28, l: 48 }, iw = W - m.l - m.r, ih = H - m.t - m.b;
     var max = niceMax(Math.max.apply(null, data.reduce(function (a, d) { return a.concat(series.map(function (s) { return d[s.key] || 0; })); }, [0])));
     var x = function (i) { return m.l + (data.length < 2 ? iw / 2 : i * iw / (data.length - 1)); }, y = function (v) { return m.t + ih - v / max * ih; };
     var ticks = [0, .25, .5, .75, 1].map(function (f) { return f * max; });
     var every = Math.ceil(data.length / Math.max(1, Math.floor(iw / 64)));
-    function move(e) { var bx = e.currentTarget.getBoundingClientRect(); var i = Math.round((e.clientX - bx.left - m.l) / iw * (data.length - 1)); hs[1](Math.max(0, Math.min(data.length - 1, i))); }
+    function move(e) { var bx = e.currentTarget.getBoundingClientRect(), px = e.clientX - bx.left; if (rtl) px = W - px; var i = Math.round((px - m.l) / iw * (data.length - 1)); hs[1](Math.max(0, Math.min(data.length - 1, i))); }
     return h("figure", { className: cx("ar-chart", p.className), ref: ref },
       p.title && h("figcaption", { className: "ar-chart-title" }, p.title),
       Legend(series),
       h("div", { className: "ar-chart-plot" },
-        h("svg", { width: W, height: H, role: "img", "aria-label": p.ariaLabel || p.title, onMouseMove: move, onMouseLeave: function () { hs[1](null); } },
-          ticks.map(function (t, i) { return h("g", { key: i }, h("line", { className: i ? "ar-chart-grid" : "ar-chart-base", x1: m.l, x2: W - m.r, y1: y(t), y2: y(t) }), h("text", { className: "ar-chart-axis", x: m.l - 8, y: y(t) + 4, textAnchor: "end" }, fmt(t))); }),
-          data.map(function (d, i) { return i % every ? null : h("text", { key: i, className: "ar-chart-axis", x: x(i), y: H - 8, textAnchor: "middle" }, d.label); }),
-          hov !== null && h("line", { className: "ar-chart-cross", x1: x(hov), x2: x(hov), y1: m.t, y2: m.t + ih }),
+        h("svg", { width: W, height: H, role: "img", "aria-label": p.ariaLabel || p.title, style: { direction: "ltr" }, onMouseMove: move, onMouseLeave: function () { hs[1](null); } },
+          ticks.map(function (t, i) { return h("g", { key: i }, h("line", { className: i ? "ar-chart-grid" : "ar-chart-base", x1: M.X(m.l), x2: M.X(W - m.r), y1: y(t), y2: y(t) }), h("text", { className: "ar-chart-axis", x: M.X(m.l - 8), y: y(t) + 4, textAnchor: M.A("end") }, fmt(t))); }),
+          data.map(function (d, i) { return i % every ? null : h("text", { key: i, className: "ar-chart-axis", x: M.X(x(i)), y: H - 8, textAnchor: "middle" }, d.label); }),
+          hov !== null && h("line", { className: "ar-chart-cross", x1: M.X(x(hov)), x2: M.X(x(hov)), y1: m.t, y2: m.t + ih }),
           series.map(function (s, si) {
-            var pts = data.map(function (d, i) { return x(i) + "," + y(d[s.key] || 0); }).join(" "), last = data[data.length - 1];
+            var pts = data.map(function (d, i) { return M.X(x(i)) + "," + y(d[s.key] || 0); }).join(" "), last = data[data.length - 1];
             return h("g", { key: s.key },
               h("polyline", { className: "ar-chart-line", points: pts, style: { stroke: "var(--chart-" + (si + 1) + ")" } }),
-              series.length > 1 && last && h("text", { className: "ar-chart-direct", x: W - m.r + 8, y: y(last[s.key] || 0) + 4 }, s.label),
-              hov !== null && h("circle", { className: "ar-chart-dot", cx: x(hov), cy: y(data[hov][s.key] || 0), r: 4, style: { fill: "var(--chart-" + (si + 1) + ")" } }));
+              series.length > 1 && last && h("text", { className: "ar-chart-direct", x: M.X(W - m.r + 8), y: y(last[s.key] || 0) + 4, textAnchor: M.A("start") }, s.label),
+              hov !== null && h("circle", { className: "ar-chart-dot", cx: M.X(x(hov)), cy: y(data[hov][s.key] || 0), r: 4, style: { fill: "var(--chart-" + (si + 1) + ")" } }));
           })),
-        hov !== null && Tip(x(hov), m.t, W, data[hov].label, series.map(function (s, si) { return { key: s.key, label: s.label, value: data[hov][s.key] || 0, color: "var(--chart-" + (si + 1) + ")" }; }), p.format || function (v) { return v.toLocaleString("en-US"); })));
+        hov !== null && Tip(M.X(x(hov)), m.t, W, data[hov].label, series.map(function (s, si) { return { key: s.key, label: s.label, value: data[hov][s.key] || 0, color: "var(--chart-" + (si + 1) + ")" }; }), p.format || function (v) { return v.toLocaleString("en-US"); }, rtl)));
   }
 
   function BarChart(p) {
     var data = p.data || [], series = (p.series || []).slice(0, 4), fmt = p.format || compact, H = p.height || 240;
-    var r = useWidth(p.width || 640), ref = r[0], W = r[1];
+    var r = useWidth(p.width || 640), ref = r[0], W = r[1], rtl = r[2], M = mirror(rtl, W);
     var hs = React.useState(null), hov = hs[0];
     var m = { t: 12, r: 16, b: 28, l: 48 }, iw = W - m.l - m.r, ih = H - m.t - m.b;
     var max = niceMax(Math.max.apply(null, data.reduce(function (a, d) { return a.concat(series.map(function (s) { return d[s.key] || 0; })); }, [0])));
@@ -411,18 +444,23 @@
       p.title && h("figcaption", { className: "ar-chart-title" }, p.title),
       Legend(series),
       h("div", { className: "ar-chart-plot" },
-        h("svg", { width: W, height: H, role: "img", "aria-label": p.ariaLabel || p.title, onMouseLeave: function () { hs[1](null); } },
-          ticks.map(function (t, i) { return h("g", { key: i }, h("line", { className: i ? "ar-chart-grid" : "ar-chart-base", x1: m.l, x2: W - m.r, y1: y(t), y2: y(t) }), h("text", { className: "ar-chart-axis", x: m.l - 8, y: y(t) + 4, textAnchor: "end" }, fmt(t))); }),
+        h("svg", { width: W, height: H, role: "img", "aria-label": p.ariaLabel || p.title, style: { direction: "ltr" }, onMouseLeave: function () { hs[1](null); } },
+          ticks.map(function (t, i) { return h("g", { key: i }, h("line", { className: i ? "ar-chart-grid" : "ar-chart-base", x1: M.X(m.l), x2: M.X(W - m.r), y1: y(t), y2: y(t) }), h("text", { className: "ar-chart-axis", x: M.X(m.l - 8), y: y(t) + 4, textAnchor: M.A("end") }, fmt(t))); }),
           data.map(function (d, i) {
             var cx0 = m.l + band * i + band / 2, x0 = cx0 - gw / 2;
             return h("g", { key: i, onMouseEnter: function () { hs[1](i); } },
-              h("rect", { x: m.l + band * i, y: m.t, width: band, height: ih, className: cx("ar-chart-hit", hov === i && "ar-chart-hit-on") }),
-              series.map(function (s, si) { var v = d[s.key] || 0, top = y(v), hgt = m.t + ih - top; return hgt > 0 ? h("path", { key: s.key, d: barPath(x0 + si * (bw + 2), top, bw, hgt), style: { fill: "var(--chart-" + (si + 1) + ")" } }) : null; }),
-              h("text", { className: "ar-chart-axis", x: cx0, y: H - 8, textAnchor: "middle" }, d.label));
+              h("rect", { x: M.XR(m.l + band * i, band), y: m.t, width: band, height: ih, className: cx("ar-chart-hit", hov === i && "ar-chart-hit-on") }),
+              series.map(function (s, si) { var v = d[s.key] || 0, top = y(v), hgt = m.t + ih - top; return hgt > 0 ? h("path", { key: s.key, d: barPath(M.XR(x0 + si * (bw + 2), bw), top, bw, hgt), style: { fill: "var(--chart-" + (si + 1) + ")" } }) : null; }),
+              h("text", { className: "ar-chart-axis", x: M.X(cx0), y: H - 8, textAnchor: "middle" }, d.label));
           })),
-        hov !== null && Tip(m.l + band * hov + band / 2 + gw / 2, m.t, W, data[hov].label, series.map(function (s, si) { return { key: s.key, label: s.label, value: data[hov][s.key] || 0, color: "var(--chart-" + (si + 1) + ")" }; }), p.format || function (v) { return v.toLocaleString("en-US"); })));
+        hov !== null && Tip(M.X(m.l + band * hov + band / 2 + gw / 2), m.t, W, data[hov].label, series.map(function (s, si) { return { key: s.key, label: s.label, value: data[hov][s.key] || 0, color: "var(--chart-" + (si + 1) + ")" }; }), p.format || function (v) { return v.toLocaleString("en-US"); }, rtl)));
   }
 
 
-  window.Areeba = Object.assign(window.Areeba || {}, { Button: Button, TextField: TextField, Switch: Switch, Badge: Badge, Alert: Alert, Tabs: Tabs, ListItem: ListItem, List: List, TabBar: TabBar, Sidebar: Sidebar, DataTable: DataTable, Dialog: Dialog, Toast: Toast, PaymentCard: PaymentCard, EmptyState: EmptyState, Checkbox: Checkbox, Select: Select, DatePicker: DatePicker, Calendar: Calendar, LineChart: LineChart, BarChart: BarChart, icons: icons });
+  /* Wraps a left-to-right run (an amount, IBAN, card or reference number) in Unicode isolates (LRI…PDI),
+     so inside Arabic text "$12,480.50" keeps its symbol and sign where they belong. Use it on amounts you
+     place inside translated sentences; components that show amounts already isolate them. */
+  function ltr(text) { return "\u2066" + text + "\u2069"; }
+
+  window.Areeba = Object.assign(window.Areeba || {}, { Button: Button, TextField: TextField, Switch: Switch, Badge: Badge, Alert: Alert, Tabs: Tabs, ListItem: ListItem, List: List, TabBar: TabBar, Sidebar: Sidebar, DataTable: DataTable, Dialog: Dialog, Toast: Toast, PaymentCard: PaymentCard, EmptyState: EmptyState, Checkbox: Checkbox, Select: Select, DatePicker: DatePicker, Calendar: Calendar, LineChart: LineChart, BarChart: BarChart, icons: icons, ltr: ltr });
 })();

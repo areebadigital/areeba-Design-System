@@ -7,3 +7,4 @@ A visual of a payment card for wallets, card lists and card detail screens.
 - Only show the last four digits. Full numbers appear only behind a reveal action with re-authentication, never in this component.
 - `frozen` adds an outlined label; the parent should also dim actions that don't apply.
 - Replace the wordmark with the official logo file once uploaded.
+- Right-to-left: the card does not mirror. It reads like the physical card in every language (`dir="ltr"`); only the "Frozen" tag follows the page language.

@@ -5,7 +5,15 @@ import { TypeScale } from './blocks.js';
 
 # Typography
 
-**Plus Jakarta Sans** for everything, Arial as the system fallback; **IBM Plex Mono** for IDs and API keys. Both ship as `woff2` files in `fonts/` (SIL Open Font License), declared with `@font-face` in `tokens.css`.
+**Plus Jakarta Sans** for everything, Arial as the system fallback; **IBM Plex Sans Arabic** for Arabic; **IBM Plex Mono** for IDs and API keys. All ship as `woff2` files in `fonts/` (SIL Open Font License), declared with `@font-face` in `tokens.css`.
+
+Plus Jakarta Sans has no Arabic letters, so the Arabic face only covers Arabic code points (`unicode-range`). One stack, `--font-sans`, sets Latin in Jakarta and Arabic in Plex, even within a line. Arabic is never letter-spaced: tracking breaks the joins between letters.
+
+<div className="sb-unstyled" lang="ar" dir="rtl" style={{ border: '1px solid var(--line)', borderRadius: 8, padding: 24, margin: '16px 0', color: 'var(--ink)' }}>
+  <div className="display">البنية التحتية لحركة الأموال</div>
+  <div className="h2" style={{ marginTop: 8 }}>تم إرسال <bdi dir="ltr">$250.00</bdi> إلى رامي خوري</div>
+  <div className="body" style={{ marginTop: 8, color: 'var(--ink-muted)' }}>لغة تصميم واحدة لكل منتجات areeba: تطبيقات الهاتف ولوحات التحكم والموقع الإلكتروني.</div>
+</div>
 
 The scale is the Figma brand guidelines' scale: headings are Regular (400) with negative tracking on the large sizes, and weight comes from size, not boldness. Each style is a class in `tokens.css` (`<h2 class="h1">`), shown below with its real class.
 

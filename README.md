@@ -22,7 +22,7 @@ One design language for every areeba product: consumer and merchant **mobile app
 - Amounts: currency symbol + tabular digits, minus sign `−` (U+2212) for debits, two decimals. `−$42.00`, `+$1,250.00`.
 - Dates: "Today, 14:32", "12 Nov", "12 Nov 2025" when not this year. 24-hour time.
 - Errors: what happened, then the fix. "Card declined. Check your balance or try another card."
-- Arabic and French are first-class: design every layout to mirror for RTL and to absorb 30% longer strings.
+- Arabic and French are first-class: design every layout to mirror for RTL and to absorb 30% longer strings. See [Right-to-left](#right-to-left).
 
 ## Colour
 
@@ -41,12 +41,13 @@ Dark theme is a full theme, not an inversion: surfaces are Obsidian, text is Cha
 
 ## Typography
 
-**Plus Jakarta Sans** for everything, with Arial as the system fallback (Figma brand guidelines); **IBM Plex Mono** for IDs and API keys. Both ship as files in `fonts/` (SIL Open Font License) and `tokens.css` declares them with `@font-face`.
+**Plus Jakarta Sans** for everything, with Arial as the system fallback (Figma brand guidelines); **IBM Plex Sans Arabic** for Arabic; **IBM Plex Mono** for IDs and API keys. All ship as files in `fonts/` (SIL Open Font License) and `tokens.css` declares them with `@font-face`. Plus Jakarta Sans has no Arabic letters, so the Arabic face is declared for Arabic code points only (`unicode-range`): the same `--font-sans` stack sets Latin in Jakarta and Arabic in Plex, even within one line.
 
 - The scale is Figma's: `display-xl`/`display-lg`/`display` = H1/H2/H3 (64, 48, 36px), `h1`/`h2`/`h3` = H4/H5/Text xl (30, 24, 20px), `body-lg`/`body`/`body-sm`/`caption` = Text lg/md/sm/xs (18, 16, 14, 12px).
 - Mobile body is `body-lg` (18px); SaaS body is `body` (16px).
 - Headings are Regular (400) with negative tracking on the large sizes, as in Figma. Weight comes from size, not boldness. Never more than three heading levels on a screen.
 - Amounts: `amount-xl` for the balance hero, `amount` in lists. Always `font-variant-numeric: tabular-nums`.
+- Arabic is never letter-spaced (tracking breaks the joins between letters); `tokens.css` resets the tracked styles under `:lang(ar)`.
 
 ## Layout and spacing
 
@@ -101,6 +102,18 @@ Fast and functional: 150ms for hover and press, 250ms ease-out for sheets and pa
 | BarChart | Comparing amounts across categories. |
 
 Every control is drawn by areeba, never the browser's native widgets (no native dropdowns, date inputs or pickers); each follows the matching WAI-ARIA pattern so keyboard and screen readers still work. React components ship in `components/bundle.js` under `window.Areeba`; all styling is in `components/bundle.css` and reads only tokens, so it works in any web stack. For native iOS/Android, map the same tokens to your platform theme.
+
+## Right-to-left
+
+Set `dir="rtl"` and `lang="ar"` on `<html>` and every component mirrors: layout uses logical properties (start/end), never left/right.
+
+- **Mirrors:** reading order, alignment, the sidebar, tab bar and list rows, the switch (on is the left end), dialog actions, the calendar grid (week starts on the right) and its previous/next arrows and arrow keys, and charts (y-axis on the right; days and months run right to left).
+- **Does not mirror:** icons that show an object (card, send, chart), the logo, phone numbers, and the payment card, which reads like the physical card in every language.
+- **Amounts and codes stay left to right.** `−$42.00`, `+$1,250.00`, IBANs, card and reference numbers keep their order inside Arabic text. Components that display amounts isolate them already (ListItem, DataTable numeric and mono columns, Sidebar counts, chart tooltips). For an amount you put inside a translated sentence, use `Areeba.ltr()`: `` `المتاح: ${ltr('$12,480.50')}` ``. Without it the browser shows "12,480.50$".
+- **Digits are 0–9** in every language, matching how amounts are written; Arabic month and weekday names come from `Intl` (`DatePicker` and `Calendar` follow `<html lang>`, or a `locale` prop).
+- **Built-in words follow `<html lang>`** in English and Arabic: navigation labels, "No results", the Select placeholder, the card's "Frozen" tag and the calendar's labels. Every one can be overridden by a prop.
+
+Storybook's **Direction** toolbar switch mirrors every story and shows Arabic copy (from `stories/i18n.js`); **Guides / Right-to-left** shows full Arabic mobile and SaaS screens. Add new story strings to `stories/i18n.js`.
 
 ## Storybook
 
