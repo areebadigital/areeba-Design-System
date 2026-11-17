@@ -99,3 +99,17 @@ Fast and functional: 150ms for hover and press, 250ms ease-out for sheets and pa
 | BarChart | Comparing amounts across categories. |
 
 Every control is drawn by areeba, never the browser's native widgets (no native dropdowns, date inputs or pickers); each follows the matching WAI-ARIA pattern so keyboard and screen readers still work. React components ship in `components/bundle.js` under `window.Areeba`; all styling is in `components/bundle.css` and reads only tokens, so it works in any web stack. For native iOS/Android, map the same tokens to your platform theme.
+
+## Storybook
+
+Every component, token and asset is documented in Storybook: each component's README is its docs page, every prop has a live control, and a toolbar switch flips light and dark. The accessibility addon runs axe on every story.
+
+```bash
+npm install
+```
+
+```bash
+npm run storybook
+```
+
+`npm run build-storybook` writes a static site to `storybook-static/`. Stories live in `stories/`; they load the real `components/bundle.js`, so Storybook always shows what ships.

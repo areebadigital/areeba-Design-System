@@ -1,0 +1,4 @@
+/* Storybook canvas follows the active theme's tokens. */
+html, body { background: var(--surface); color: var(--ink); font-family: var(--font-sans); }
+.sb-show-main.sb-main-padded { padding: var(--space-6); }
+.docs-story { background: var(--surface); }
