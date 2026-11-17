@@ -4,6 +4,8 @@ One design language for every areeba product: consumer and merchant **mobile app
 
 > Status: v2. Aligned with the official brand guidelines and page designs in Figma (Areeba x magier client file, Nov 2026): palette, type scale, logos, Checkbox, Input field and Button. Dark theme values are derived; Figma defines light only.
 
+**Where it lives:** [Figma library: areeba Design System 4.0](https://www.figma.com/design/HUoG7rGPlAR8cQAaV4fswZ) · [Storybook](https://areebadigital.github.io/areeba-Design-System/) · `tokens.json` in this repo (the source of truth for both).
+
 ## Principles
 
 1. **Clarity over decoration.** People act on money. Every screen answers "how much, to whom, what's next" before anything else.
@@ -113,3 +115,33 @@ npm run storybook
 ```
 
 `npm run build-storybook` writes a static site to `storybook-static/`. The `Storybook` GitHub Actions workflow builds it on every pull request and publishes it from `main` to https://areebadigital.github.io/areeba-Design-System/ (GitHub Pages). Stories live in `stories/`; they load the real `components/bundle.js`, so Storybook always shows what ships.
+
+## Figma
+
+The design library is [areeba Design System 4.0](https://www.figma.com/design/HUoG7rGPlAR8cQAaV4fswZ). It mirrors this repo: every token is a Figma variable with light and dark modes (code syntax `var(--token)`), the type scale and shadows are styles, and every component is built from those variables, with its README as the description and a link to its Storybook page.
+
+| Figma page | Components |
+|---|---|
+| Foundations | Colour, type, spacing, radius, size, elevation |
+| Logos & Icons | The four logo files and the icon set |
+| Actions | Button |
+| Inputs | TextField, Select, Checkbox, Switch, DatePicker (Calendar) |
+| Status | Badge, Alert, Toast, EmptyState |
+| Data display | ListItem and List, DataTable, PaymentCard |
+| Charts | LineChart, BarChart |
+| Navigation | Tabs, TabBar, Sidebar |
+| Overlays | Dialog (dialog and bottom sheet) |
+
+When a token or component changes here, change the Figma library to match and publish it.
+
+### Code Connect
+
+`figma/` holds a Figma Code Connect template for every component and exported icon, so Dev Mode shows the real `window.Areeba` code for whatever is selected (for example `<Button variant="danger">Freeze card</Button>`) instead of generated CSS. `figma.config.json` points the Code Connect CLI at them.
+
+Code Connect needs the library to be on a Figma Organization or Enterprise plan; the current team plan refuses it. Once upgraded, publish the templates with a Figma access token that has Code Connect write scope:
+
+```bash
+FIGMA_ACCESS_TOKEN=<token> npx @figma/code-connect connect publish
+```
+
+When you add or change a component's Figma properties or code props, update its template in `figma/` too.

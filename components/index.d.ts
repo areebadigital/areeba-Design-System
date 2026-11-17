@@ -3,7 +3,7 @@ import type * as React from 'react';
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   /** primary: the one main action per screen. secondary: alternatives. ghost: low-emphasis, toolbars. danger: destructive confirmations. */
   variant?: 'primary' | 'secondary' | 'ghost' | 'danger';
-  /** sm 32px (SaaS dense only) · md 40px (SaaS default) · lg 48px (mobile default) */
+  /** sm 32px (SaaS dense only) · md 44px (default) · lg 48px (mobile primary actions) */
   size?: 'sm' | 'md' | 'lg';
   /** Full width; use for mobile primary actions. */
   block?: boolean;
