@@ -2,6 +2,7 @@ import '../tokens.css';
 import '../components/bundle.css';
 import './preview.css';
 import '../stories/areeba.js';
+import theme from './theme.js';
 
 /** Light / dark switch in the toolbar. Sets data-theme on <html>, exactly as an app would. */
 export const globalTypes = {
@@ -21,6 +22,7 @@ export default {
   decorators: [withTheme],
   parameters: {
     layout: 'padded',
+    docs: { theme },
     backgrounds: { disable: true },
     controls: { expanded: true, sort: 'requiredFirst' },
     a11y: { test: 'error' },
