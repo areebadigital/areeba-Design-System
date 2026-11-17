@@ -1,0 +1,12 @@
+<!-- @dsCard group="Navigation" height=460 -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>Sidebar — preview</title></head>
+<body>
+<div id="root"></div>
+<script>
+  var A = window.Areeba, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h('div',{style:{display:'flex',height:"460px"}}, h(A.Sidebar,{value:'tx',footer:'Spinneys Merchant · Beirut',items:[{value:'home',label:'Overview',icon:'home'},{value:'tx',label:'Transactions',icon:'list',count:'1,284'},{value:'cards',label:'Cards',icon:'card'},{value:'payouts',label:'Payouts',icon:'send'},{value:'stores',label:'Stores',icon:'store'},{value:'reports',label:'Reports',icon:'chart'},{value:'settings',label:'Settings',icon:'settings'}]}), h('div',{style:{flex:1,background:'var(--surface-sunken)'}})));
+</script>
+</body>
+</html>

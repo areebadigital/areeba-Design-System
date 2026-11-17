@@ -1,0 +1,59 @@
+<!-- @dsCard height=288 -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>areeba</title>
+<style>
+  html, body { margin:0; height:100%; }
+  body { background:var(--surface); color:var(--ink); font-family:var(--font-sans); overflow:hidden; }
+  .cover { position:relative; width:960px; height:288px; overflow:hidden; }
+  .art { position:absolute; top:0; left:480px; width:480px; height:288px; overflow:hidden; }
+  .art svg { display:block; width:480px; height:288px; }
+  .brand { fill:var(--brand); }
+  .night { fill:var(--night); }
+  .tint { fill:var(--brand-soft); }
+  .mint { fill:var(--mint); }
+  .card { rx:var(--radius-lg); }
+  .pill { rx:4px; }
+  .pill-brand { fill:var(--brand); }
+  .pill-ground { fill:var(--surface); }
+  .wave { fill:none; stroke:var(--on-brand); stroke-width:6; stroke-linecap:round; }
+  .words { position:absolute; left:var(--space-6); bottom:var(--space-6); max-width:440px; }
+  .name { margin:0; font-size:120px; line-height:.92; font-weight:700; letter-spacing:-.04em; color:var(--ink); }
+  .tag { margin:var(--space-2) 0 0 6px; font-size:14px; line-height:20px; color:var(--ink-muted); }
+</style>
+</head>
+<body>
+<div class="cover">
+<div class="art" aria-hidden="true">
+<svg viewBox="0 0 480 288" width="480" height="288">
+<!--
+  blocks      brand 232×240 slab bleeding off top and right (the red people know areeba by) · night 192×120 card bleeding off the top · brand-soft 192×136 card · mint 96×32 pill once — ≈40% of 960×288
+  arrangement one tall red slab with two payment-card satellites stacked on its left, bottoms on one line space-6 above the edge, space-4 gutters
+  pattern     a literal motif, from "built for money" and payment cards at radius-lg: contactless waves (three arcs at a space-4 pitch) cut into the red slab in on-brand, and card-number groups as 8px-tall pills (space-2) on the tint and night cards
+  scales      sides in space-2 multiples; gutters space-4; arc pitch space-4; card corners radius-lg; pills rx half of space-2; mint pill radius-full (rx 16)
+-->
+<rect class="night card" x="16" y="-16" width="192" height="120" rx="16"/>
+<rect class="pill pill-ground" x="40" y="72" width="40" height="8" rx="4"/>
+<rect class="pill pill-ground" x="88" y="72" width="40" height="8" rx="4"/>
+<rect class="pill pill-ground" x="136" y="72" width="24" height="8" rx="4"/>
+<rect class="tint card" x="16" y="120" width="192" height="144" rx="16"/>
+<rect class="pill pill-brand" x="40" y="216" width="40" height="8" rx="4"/>
+<rect class="pill pill-brand" x="88" y="216" width="40" height="8" rx="4"/>
+<rect class="pill pill-brand" x="136" y="216" width="40" height="8" rx="4"/>
+<rect class="pill pill-brand" x="40" y="144" width="32" height="24" rx="4"/>
+<rect class="brand card" x="224" y="-16" width="272" height="280" rx="16"/>
+<path class="wave" d="M320 104 a24 24 0 0 1 0 48"/>
+<path class="wave" d="M336 88 a40 40 0 0 1 0 80"/>
+<path class="wave" d="M352 72 a56 56 0 0 1 0 112"/>
+<rect class="mint" x="256" y="216" width="96" height="32" rx="16"/>
+</svg>
+</div>
+<div class="words">
+<h1 class="name">areeba</h1>
+<p class="tag">Clear money, everywhere you tap.</p>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,12 @@
+<!-- @dsCard group="Inputs" height=120 -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>Select — preview</title></head>
+<body>
+<div id="root"></div>
+<script>
+  var A = window.Areeba, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h('div',{className:'ar-row',style:{alignItems:'flex-start'}}, h(A.Select,{label:'Currency',defaultValue:'usd',options:[{value:'usd',label:'USD · US dollar'},{value:'lbp',label:'LBP · Lebanese pound'},{value:'eur',label:'EUR · Euro'}]}), h(A.Select,{label:'Store',placeholder:'Choose a store',hint:'Payouts go to this store\u2019s account',options:[{value:'1',label:'Hamra'},{value:'2',label:'Achrafieh'}]})));
+</script>
+</body>
+</html>

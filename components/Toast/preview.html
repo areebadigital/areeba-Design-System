@@ -1,0 +1,12 @@
+<!-- @dsCard group="Status" height=160 -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>Toast — preview</title></head>
+<body>
+<div id="root"></div>
+<script>
+  var A = window.Areeba, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h('div',{className:'ar-stack'}, h(A.Toast,{tone:'success'},'Transfer sent to Rami Khoury'), h(A.Toast,{tone:'neutral',action:'Undo'},'Card frozen')));
+</script>
+</body>
+</html>

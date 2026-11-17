@@ -1,0 +1,14 @@
+<!-- @dsCard group="Inputs" height=200 -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>TextField — preview</title></head>
+<body>
+<div id="root"></div>
+<script>
+  var A = window.Areeba, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h('div',{className:'ar-row',style:{alignItems:'flex-start'}},
+  h(A.TextField,{label:'Amount',prefix:'$',placeholder:'0.00',inputMode:'decimal',hint:'Available: $12,480.50'}),
+  h(A.TextField,{label:'IBAN',defaultValue:'LB62 0999',error:'IBAN is too short. Check the number and try again.'})));
+</script>
+</body>
+</html>

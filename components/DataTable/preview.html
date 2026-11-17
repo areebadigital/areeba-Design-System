@@ -1,0 +1,18 @@
+<!-- @dsCard group="Data display" height=300 -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>DataTable — preview</title></head>
+<body>
+<div id="root"></div>
+<script>
+  var A = window.Areeba, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h('div',{style:{padding:'16px'}}, h(A.DataTable,{caption:'Recent transactions',columns:[
+  {key:'id',label:'Reference',mono:true},{key:'date',label:'Date'},{key:'customer',label:'Customer'},
+  {key:'status',label:'Status',render:function(r){return h(A.Badge,{tone:r.tone,dot:true},r.status)}},
+  {key:'amount',label:'Amount',align:'right',numeric:true}],
+  rows:[{id:'txn_7Hq2LmA9',date:'16 Nov, 14:32',customer:'Rami Khoury',status:'Completed',tone:'success',amount:'$1,250.00'},
+        {id:'txn_3Kd8PwQ1',date:'16 Nov, 11:05',customer:'Lina Haddad',status:'Pending',tone:'warning',amount:'$89.90'},
+        {id:'txn_9Zr4TbE6',date:'15 Nov, 19:47',customer:'Omar Saad',status:'Declined',tone:'danger',amount:'$420.00'}]})));
+</script>
+</body>
+</html>

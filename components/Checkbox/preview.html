@@ -1,0 +1,12 @@
+<!-- @dsCard group="Inputs" height=150 -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>Checkbox — preview</title></head>
+<body>
+<div id="root"></div>
+<script>
+  var A = window.Areeba, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h('div',{className:'ar-stack'}, h(A.Checkbox,{label:'Select all transactions',indeterminate:true}), h(A.Checkbox,{label:'Email me a monthly statement',hint:'Sent on the 1st of each month',defaultChecked:true}), h(A.Checkbox,{label:'Accept international payments'})));
+</script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+<!-- @dsCard group="Status" height=72 -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>Badge — preview</title></head>
+<body>
+<div id="root"></div>
+<script>
+  var A = window.Areeba, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h('div',{className:'ar-row'}, h(A.Badge,{tone:'success',dot:true},'Completed'), h(A.Badge,{tone:'warning',dot:true},'Pending'), h(A.Badge,{tone:'danger',dot:true},'Declined'), h(A.Badge,{tone:'info'},'Refund'), h(A.Badge,{tone:'brand'},'New'), h(A.Badge,null,'Draft')));
+</script>
+</body>
+</html>

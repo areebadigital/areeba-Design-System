@@ -1,0 +1,12 @@
+<!-- @dsCard group="Status" height=300 -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>EmptyState — preview</title></head>
+<body>
+<div id="root"></div>
+<script>
+  var A = window.Areeba, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h(A.EmptyState,{title:'No transactions yet',action:h(A.Button,null,'Accept your first payment')},'When customers pay with areeba, their payments show up here in real time.'));
+</script>
+</body>
+</html>

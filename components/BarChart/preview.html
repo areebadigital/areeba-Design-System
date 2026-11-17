@@ -1,0 +1,14 @@
+<!-- @dsCard group="Charts" height=340 -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>BarChart — preview</title></head>
+<body>
+<div id="root"></div>
+<script>
+  var A = window.Areeba, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h('div',{style:{padding:'16px'}}, h(A.BarChart,{title:'Transactions by weekday',series:[{key:'thisWeek',label:'This week'},{key:'lastWeek',label:'Last week'}],data:[
+ {label:'Mon',thisWeek:820,lastWeek:760},{label:'Tue',thisWeek:910,lastWeek:880},{label:'Wed',thisWeek:870,lastWeek:900},{label:'Thu',thisWeek:1040,lastWeek:950},
+ {label:'Fri',thisWeek:1260,lastWeek:1180},{label:'Sat',thisWeek:1420,lastWeek:1310},{label:'Sun',thisWeek:690,lastWeek:720}]})));
+</script>
+</body>
+</html>

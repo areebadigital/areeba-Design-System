@@ -1,0 +1,14 @@
+<!-- @dsCard group="Charts" height=340 -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>LineChart — preview</title></head>
+<body>
+<div id="root"></div>
+<script>
+  var A = window.Areeba, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h('div',{style:{padding:'16px'}}, h(A.LineChart,{title:'Payment volume',format:function(v){return '$'+(v>=1000?(v/1000)+'k':v)},series:[{key:'card',label:'Card'},{key:'qr',label:'QR'},{key:'link',label:'Pay link'}],data:[
+ {label:'Jun',card:42000,qr:12000,link:6000},{label:'Jul',card:46000,qr:15000,link:7500},{label:'Aug',card:44000,qr:19000,link:9000},
+ {label:'Sep',card:51000,qr:23000,link:9500},{label:'Oct',card:56000,qr:27500,link:12000},{label:'Nov',card:61000,qr:33000,link:14500}]})));
+</script>
+</body>
+</html>

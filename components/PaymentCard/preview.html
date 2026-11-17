@@ -1,0 +1,12 @@
+<!-- @dsCard group="Data display" height=240 -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>PaymentCard — preview</title></head>
+<body>
+<div id="root"></div>
+<script>
+  var A = window.Areeba, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h('div',{className:'ar-row'}, h(A.PaymentCard,{last4:'4021',holder:'Lina Haddad',expiry:'09/29',network:'VISA'}), h(A.PaymentCard,{variant:'brand',last4:'7710',holder:'Lina Haddad',expiry:'03/28',network:'MC',frozen:true})));
+</script>
+</body>
+</html>

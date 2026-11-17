@@ -1,0 +1,12 @@
+<!-- @dsCard group="Navigation" height=80 -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>Tabs — preview</title></head>
+<body>
+<div id="root"></div>
+<script>
+  var A = window.Areeba, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h('div',{className:'ar-row'}, h(A.Tabs,{label:'Period',items:[{value:'d',label:'Day'},{value:'w',label:'Week'},{value:'m',label:'Month'},{value:'y',label:'Year'}],defaultValue:'w'})));
+</script>
+</body>
+</html>

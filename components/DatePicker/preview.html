@@ -1,0 +1,12 @@
+<!-- @dsCard group="Inputs" height=470 -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>DatePicker — preview</title></head>
+<body>
+<div id="root"></div>
+<script>
+  var A = window.Areeba, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h('div',{style:{padding:'16px'}}, h(A.DatePicker,{label:'Settlement date',defaultValue:new Date(2026,10,20),today:new Date(2026,10,17),defaultOpen:true,min:new Date(2026,10,3)})));
+</script>
+</body>
+</html>
