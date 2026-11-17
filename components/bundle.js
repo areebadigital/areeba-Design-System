@@ -89,7 +89,7 @@
   function ListItem(p) {
     var amount = p.amount;
     var incoming = typeof amount === "string" && amount.charAt(0) === "+";
-    return h("div", { className: cx("ar-item", p.className) },
+    return h("div", { className: cx("ar-item", p.className), role: "listitem" },
       p.leading !== undefined && h("div", { className: "ar-item-lead", "aria-hidden": "true" }, p.leading),
       h("div", { className: "ar-item-main" }, h("p", { className: "ar-item-title" }, p.title), p.subtitle && h("p", { className: "ar-item-sub" }, p.subtitle)),
       (amount || p.trailing) && h("div", { className: "ar-item-trail" },
@@ -274,24 +274,50 @@
   function fmtDate(d) { return d ? d.getDate() + " " + MONTHS[d.getMonth()].slice(0, 3) + " " + d.getFullYear() : ""; }
 
   function Calendar(p) {
+    /* WAI-ARIA date grid: rows of gridcells, one roving tab stop. Arrows move by day/week,
+       Home/End to the week's edges, PageUp/PageDown by month, Enter/Space chooses. */
     var sel = p.value, today = p.today || new Date();
-    var vs = React.useState(function () { var b = sel || today; return new Date(b.getFullYear(), b.getMonth(), 1); }), view = vs[0];
+    var fs = React.useState(function () { return sel || today; }), focus = fs[0];
+    var view = new Date(focus.getFullYear(), focus.getMonth(), 1);
+    var grid = React.useRef(null), moved = React.useRef(false);
     var first = (view.getDay() + 6) % 7, days = new Date(view.getFullYear(), view.getMonth() + 1, 0).getDate();
     var cells = []; for (var i = 0; i < first; i++) cells.push(null); for (var d = 1; d <= days; d++) cells.push(new Date(view.getFullYear(), view.getMonth(), d));
-    function shift(n) { vs[1](new Date(view.getFullYear(), view.getMonth() + n, 1)); }
+    while (cells.length % 7) cells.push(null);
+    var weeks = []; for (var w = 0; w < cells.length; w += 7) weeks.push(cells.slice(w, w + 7));
+    function off(c) { return (p.min && c < p.min) || (p.max && c > p.max); }
+    function go(dt) { moved.current = true; fs[1](dt); }
+    function shift(n) { var t = new Date(focus.getFullYear(), focus.getMonth() + n, 1); var last = new Date(t.getFullYear(), t.getMonth() + 1, 0).getDate(); go(new Date(t.getFullYear(), t.getMonth(), Math.min(focus.getDate(), last))); }
+    function onKey(e) {
+      var k = e.key, y = focus.getFullYear(), m = focus.getMonth(), dd = focus.getDate(), dow = (focus.getDay() + 6) % 7, t = null;
+      if (k === "ArrowLeft") t = new Date(y, m, dd - 1); else if (k === "ArrowRight") t = new Date(y, m, dd + 1);
+      else if (k === "ArrowUp") t = new Date(y, m, dd - 7); else if (k === "ArrowDown") t = new Date(y, m, dd + 7);
+      else if (k === "Home") t = new Date(y, m, dd - dow); else if (k === "End") t = new Date(y, m, dd + 6 - dow);
+      else if (k === "PageUp") { e.preventDefault(); shift(-1); return; } else if (k === "PageDown") { e.preventDefault(); shift(1); return; }
+      if (t) { e.preventDefault(); go(t); }
+    }
+    React.useEffect(function () {
+      if (!moved.current || !grid.current) return; moved.current = false;
+      var el = grid.current.querySelector('[data-focus="true"]'); if (el) el.focus();
+    });
     var Chev = function (dir) { return h("svg", { viewBox: "0 0 24 24", "aria-hidden": "true" }, h("path", { d: dir < 0 ? "M15 6l-6 6 6 6" : "M9 6l6 6-6 6" })); };
-    return h("div", { className: "ar-cal", role: "group", "aria-label": "Choose date" },
+    var title = MONTHS[view.getMonth()] + " " + view.getFullYear(), titleId = useId() + "-t";
+    return h("div", { className: "ar-cal", role: "group", "aria-labelledby": titleId },
       h("div", { className: "ar-cal-head" },
-        h("button", { type: "button", className: "ar-cal-nav", "aria-label": "Previous month", onClick: function () { shift(-1); } }, Chev(-1)),
-        h("span", { className: "ar-cal-title", "aria-live": "polite" }, MONTHS[view.getMonth()] + " " + view.getFullYear()),
-        h("button", { type: "button", className: "ar-cal-nav", "aria-label": "Next month", onClick: function () { shift(1); } }, Chev(1))),
-      h("div", { className: "ar-cal-grid", role: "grid" },
-        DOW.map(function (w) { return h("span", { key: w, className: "ar-cal-dow", role: "columnheader" }, w); }),
-        cells.map(function (c, i) {
-          if (!c) return h("span", { key: "e" + i });
-          var off = (p.min && c < p.min) || (p.max && c > p.max);
-          return h("button", { key: i, type: "button", role: "gridcell", disabled: off, "aria-selected": sameDay(c, sel) ? "true" : "false", "aria-label": fmtDate(c),
-            className: cx("ar-cal-day", sameDay(c, today) && "ar-cal-today"), onClick: function () { p.onChange && p.onChange(c); } }, c.getDate());
+        h("button", { type: "button", className: "ar-cal-nav", "aria-label": "Previous month", onClick: function () { fs[1](new Date(view.getFullYear(), view.getMonth() - 1, 1)); } }, Chev(-1)),
+        h("span", { className: "ar-cal-title", id: titleId, "aria-live": "polite" }, title),
+        h("button", { type: "button", className: "ar-cal-nav", "aria-label": "Next month", onClick: function () { fs[1](new Date(view.getFullYear(), view.getMonth() + 1, 1)); } }, Chev(1))),
+      h("div", { className: "ar-cal-grid", role: "grid", "aria-labelledby": titleId, ref: grid, onKeyDown: onKey },
+        h("div", { className: "ar-cal-row", role: "row" }, DOW.map(function (wd, i) { return h("span", { key: wd, className: "ar-cal-dow", role: "columnheader", "aria-label": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"][i] }, wd); })),
+        weeks.map(function (wk, wi) {
+          return h("div", { key: wi, className: "ar-cal-row", role: "row" }, wk.map(function (c, ci) {
+            if (!c) return h("span", { key: ci, role: "gridcell", className: "ar-cal-cell" });
+            var isSel = sameDay(c, sel), isFocus = sameDay(c, focus);
+            return h("span", { key: ci, role: "gridcell", className: "ar-cal-cell", "aria-selected": isSel ? "true" : "false" },
+              h("button", { type: "button", disabled: off(c), tabIndex: isFocus ? 0 : -1, "data-focus": isFocus ? "true" : undefined, "aria-label": fmtDate(c),
+                "aria-current": sameDay(c, today) ? "date" : undefined, "aria-pressed": isSel ? "true" : "false",
+                className: cx("ar-cal-day", sameDay(c, today) && "ar-cal-today"), onFocus: function () { if (!isFocus) fs[1](c); },
+                onClick: function () { if (!off(c) && p.onChange) p.onChange(c); } }, c.getDate()));
+          }));
         })));
   }
 
@@ -299,22 +325,23 @@
     var id = useId(p.id);
     var vs = React.useState(p.defaultValue || null), val = p.value !== undefined ? p.value : vs[0];
     var os = React.useState(!!p.defaultOpen), open = os[0];
-    var wrap = React.useRef(null), touched = React.useRef(false);
+    var wrap = React.useRef(null), touched = React.useRef(false), trig = React.useRef(null);
+    function close(refocus) { os[1](false); if (refocus && trig.current) trig.current.focus(); }
     React.useEffect(function () {
       if (!open) return;
-      if (!p.defaultOpen || touched.current) { var f = wrap.current && (wrap.current.querySelector('.ar-cal-day[aria-selected="true"]') || wrap.current.querySelector(".ar-cal-today") || wrap.current.querySelector(".ar-cal-day:not(:disabled)")); if (f) f.focus(); }
+      if (!p.defaultOpen || touched.current) { var f = wrap.current && (wrap.current.querySelector('.ar-cal-day[aria-pressed="true"]') || wrap.current.querySelector(".ar-cal-today") || wrap.current.querySelector(".ar-cal-day:not(:disabled)")); if (f) f.focus(); }
       function out(e) { if (wrap.current && !wrap.current.contains(e.target)) os[1](false); }
-      function key(e) { if (e.key === "Escape") os[1](false); }
+      function key(e) { if (e.key === "Escape") close(true); }
       document.addEventListener("mousedown", out); document.addEventListener("keydown", key);
       return function () { document.removeEventListener("mousedown", out); document.removeEventListener("keydown", key); };
     }, [open]);
     return h("div", { className: cx("ar-field ar-date", p.error && "ar-field-invalid", p.className), ref: wrap },
       p.label && h("label", { className: "ar-field-label", htmlFor: id }, p.label),
-      h("button", { type: "button", id: id, className: "ar-field-box ar-date-trigger", "aria-haspopup": "dialog", "aria-expanded": open ? "true" : "false", onClick: function () { touched.current = true; os[1](!open); } },
+      h("button", { type: "button", id: id, ref: trig, className: "ar-field-box ar-date-trigger", "aria-haspopup": "dialog", "aria-expanded": open ? "true" : "false", onClick: function () { touched.current = true; os[1](!open); } },
         h("span", { className: val ? "" : "ar-date-ph" }, val ? fmtDate(val) : (p.placeholder || "Select date")),
         h("svg", { viewBox: "0 0 24 24", "aria-hidden": "true" }, h("path", { d: "M4 6.5A1.5 1.5 0 0 1 5.5 5h13A1.5 1.5 0 0 1 20 6.5v12a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 18.5z" }), h("path", { d: "M4 10h16M8 3v4M16 3v4" }))),
       (p.error || p.hint) && h("span", { className: "ar-field-hint" }, p.error || p.hint),
-      open && h("div", { className: "ar-date-pop" }, h(Calendar, { value: val, today: p.today, min: p.min, max: p.max, onChange: function (d) { vs[1](d); p.onChange && p.onChange(d); os[1](false); } })));
+      open && h("div", { className: "ar-date-pop" }, h(Calendar, { value: val, today: p.today, min: p.min, max: p.max, onChange: function (d) { vs[1](d); p.onChange && p.onChange(d); close(true); } })));
   }
 
   /* ---- charts ---- */
