@@ -129,6 +129,10 @@ npm run storybook
 
 `npm run build-storybook` writes a static site to `storybook-static/`. The `Storybook` GitHub Actions workflow builds it on every pull request and publishes it from `main` to https://areebadigital.github.io/areeba-Design-System/ (GitHub Pages). Stories live in `stories/`; they load the real `components/bundle.js`, so Storybook always shows what ships.
 
+### Screenshot tests
+
+The `Screenshot tests` workflow renders every story in light, dark and right-to-left (Arabic) on each pull request. It compares them with the reference screenshots in `tests/visual/__screenshots__`, and checks for errors, accessibility violations (axe), horizontal overflow and English left on Arabic screens. When a change is intended, add the `update-screenshots` label to the pull request to regenerate them on its branch. Details: [`tests/visual/README.md`](tests/visual/README.md).
+
 ## Figma
 
 The design library is [areeba Design System 4.0](https://www.figma.com/design/HUoG7rGPlAR8cQAaV4fswZ). It mirrors this repo: every token is a Figma variable with light and dark modes (code syntax `var(--token)`), the type scale and shadows are styles, and every component is built from those variables, with its README as the description and a link to its Storybook page.

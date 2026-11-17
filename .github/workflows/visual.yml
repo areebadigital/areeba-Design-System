@@ -1,0 +1,87 @@
+# Screenshot tests: every Storybook story in light, dark and right-to-left (Arabic), compared with the
+# reference screenshots in tests/visual/__screenshots__, plus error, accessibility (axe), overflow and
+# "English left in RTL" checks. See tests/visual/README.md.
+#
+# A change that moves pixels on purpose: add the label "update-screenshots" to the pull request (or run
+# this workflow by hand with "Update the reference screenshots"). The references are regenerated in the
+# same container and committed to the branch; review the new images in the PR diff.
+name: Screenshot tests
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, labeled]
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      update:
+        description: Update the reference screenshots and commit them to this branch
+        type: boolean
+        default: false
+
+concurrency:
+  group: visual-${{ github.ref }}-${{ github.event.action == 'labeled' && 'update' || 'compare' }}
+  cancel-in-progress: true
+
+jobs:
+  compare:
+    if: >-
+      (github.event_name == 'pull_request' && github.event.action != 'labeled') ||
+      github.event_name == 'push' ||
+      (github.event_name == 'workflow_dispatch' && !inputs.update)
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    # Same image (and Playwright version) everywhere, so fonts and anti-aliasing match the references.
+    container:
+      image: mcr.microsoft.com/playwright:v1.63.0-noble
+      options: --user 1001
+    steps:
+      - uses: actions/checkout@v4
+      - run: npm ci
+      - run: npm run build-storybook
+      - run: npm run test:visual
+      - name: Upload the report and the before/after/diff images
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: screenshot-report
+          path: |
+            playwright-report
+            test-results
+          retention-days: 14
+
+  update:
+    if: >-
+      (github.event_name == 'pull_request' && github.event.action == 'labeled' && github.event.label.name == 'update-screenshots' &&
+       github.event.pull_request.head.repo.full_name == github.repository) ||
+      (github.event_name == 'workflow_dispatch' && inputs.update)
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    container:
+      image: mcr.microsoft.com/playwright:v1.63.0-noble
+      options: --user 1001
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event_name == 'pull_request' && github.head_ref || github.ref_name }}
+      - run: npm ci
+      - run: npm run build-storybook
+      - run: npm run test:visual:update
+      - name: Commit the new reference screenshots
+        run: |
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add tests/visual/__screenshots__
+          if git diff --cached --quiet; then echo "Screenshots unchanged."; exit 0; fi
+          git commit -m "Update reference screenshots"
+          git push
+      - name: Remove the label so it can be added again next time
+        if: always() && github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.removeLabel({ ...context.repo, issue_number: context.issue.number, name: 'update-screenshots' }).catch(() => {});
