@@ -103,7 +103,11 @@ export interface SelectProps {
 }
 export declare function Select(props: SelectProps): React.ReactElement;
 
-export interface CalendarProps { value?: Date | null; onChange?: (d: Date) => void; today?: Date; min?: Date; max?: Date }
+export interface CalendarProps {
+  value?: Date | null; onChange?: (d: Date) => void; today?: Date; min?: Date; max?: Date;
+  /** BCP 47 locale for month and weekday names, e.g. "ar-LB". Defaults to <html lang>. Digits stay 0–9. */
+  locale?: string;
+}
 export declare function Calendar(props: CalendarProps): React.ReactElement;
 export interface DatePickerProps extends CalendarProps { label?: string; hint?: string; error?: string; placeholder?: string; defaultValue?: Date; defaultOpen?: boolean; id?: string; className?: string }
 export declare function DatePicker(props: DatePickerProps): React.ReactElement;
@@ -118,7 +122,10 @@ export interface ChartProps<R = Record<string, any>> {
   format?: (v: number) => string;
   className?: string;
 }
+/** Wraps a left-to-right run (amount, IBAN, card or reference number) in Unicode isolates so it reads correctly inside Arabic text: `\`المتاح: ${ltr('$12,480.50')}\``. */
+export declare function ltr(text: string): string;
+
 export declare function LineChart(props: ChartProps): React.ReactElement;
 export declare function BarChart(props: ChartProps): React.ReactElement;
 
-declare global { interface Window { Areeba: { Button: typeof Button; TextField: typeof TextField; Switch: typeof Switch; Badge: typeof Badge; Alert: typeof Alert; Tabs: typeof Tabs; ListItem: typeof ListItem; List: typeof List; TabBar: typeof TabBar; Sidebar: typeof Sidebar; DataTable: typeof DataTable; Dialog: typeof Dialog; Toast: typeof Toast; PaymentCard: typeof PaymentCard; EmptyState: typeof EmptyState; Checkbox: typeof Checkbox; Select: typeof Select; Calendar: typeof Calendar; DatePicker: typeof DatePicker; LineChart: typeof LineChart; BarChart: typeof BarChart } } }
+declare global { interface Window { Areeba: { Button: typeof Button; TextField: typeof TextField; Switch: typeof Switch; Badge: typeof Badge; Alert: typeof Alert; Tabs: typeof Tabs; ListItem: typeof ListItem; List: typeof List; TabBar: typeof TabBar; Sidebar: typeof Sidebar; DataTable: typeof DataTable; Dialog: typeof Dialog; Toast: typeof Toast; PaymentCard: typeof PaymentCard; EmptyState: typeof EmptyState; Checkbox: typeof Checkbox; Select: typeof Select; Calendar: typeof Calendar; DatePicker: typeof DatePicker; LineChart: typeof LineChart; BarChart: typeof BarChart; ltr: typeof ltr } } }

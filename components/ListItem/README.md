@@ -7,3 +7,4 @@ A row for transactions, accounts, contacts and settings, grouped inside `List`.
 - `trailing` holds a Badge for non-final states.
 - Titles truncate with an ellipsis; amounts never truncate.
 - Rows are separated by `line`; the group is a `radius-lg` card on `surface-raised`.
+- Right-to-left: the row mirrors, but the amount stays left-to-right (`dir="ltr"`), so `−$42.00` never becomes `$42.00−`.
