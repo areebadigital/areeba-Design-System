@@ -71,7 +71,18 @@ export declare function EmptyState(props: EmptyStateProps): React.ReactElement;
 export interface CheckboxProps extends React.InputHTMLAttributes<HTMLInputElement> { label: React.ReactNode; hint?: React.ReactNode; indeterminate?: boolean }
 export declare function Checkbox(props: CheckboxProps): React.ReactElement;
 
-export interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> { label?: string; hint?: string; error?: string; placeholder?: string; options: { value: string; label: string; disabled?: boolean }[] }
+/** Custom listbox (select-only combobox pattern). No native <select>. */
+export interface SelectOption { value: string; label: string; disabled?: boolean }
+export interface SelectProps {
+  label?: string; hint?: string; error?: string; placeholder?: string;
+  options: SelectOption[];
+  value?: string | null; defaultValue?: string | null;
+  /** Receives the chosen value, not a DOM event. */
+  onChange?: (value: string, option: SelectOption) => void;
+  /** Submits the value in a form through a hidden input. */
+  name?: string; id?: string; disabled?: boolean; required?: boolean; defaultOpen?: boolean;
+  'aria-label'?: string; className?: string;
+}
 export declare function Select(props: SelectProps): React.ReactElement;
 
 export interface CalendarProps { value?: Date | null; onChange?: (d: Date) => void; today?: Date; min?: Date; max?: Date }
