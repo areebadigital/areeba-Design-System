@@ -5,6 +5,8 @@ R = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 t = json.load(open(os.path.join(R, 'tokens.json')))
 def val(x, th): return x if isinstance(x, str) else x.get(th, x.get('light'))
 out = ['/* areeba — generated from tokens.json by scripts/build-tokens.py. Do not edit by hand. */']
+for f in t['type'].get('fonts', []):
+    out.append(f"@font-face {{ font-family: \"{f['family']}\"; src: url(\"{f['file']}\") format(\"woff2\"); font-weight: {f['weight']}; font-style: normal; font-display: swap; }}")
 themed = t['color']['tokens'] + t['shadow']['tokens']
 for th, sel in [('light', ':root, [data-theme="light"]'), ('dark', '[data-theme="dark"]')]:
     out += [sel + ' {'] + [f"  --{c['name']}: {val(c['value'], th)};" for c in themed] + ['}']

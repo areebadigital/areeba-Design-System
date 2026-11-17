@@ -1,0 +1,26 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { ColorTable } from './blocks.js';
+
+<Meta title="Foundations/Colour" />
+
+# Colour
+
+Every colour lives in `tokens.json` and reaches code as a CSS variable from `tokens.css` (`var(--brand)`). Light is the default theme; dark is set with `data-theme="dark"` on `<html>` or follows the system setting.
+
+**Crimson acts, Signal Red signs.** `brand` (Crimson Deep) is the action colour: buttons, selection, checked controls. `accent` (Signal Red) is only the logo and highlighted words in headlines 24px and larger. In a money product bright red reads as an error, so it never marks an action or a status.
+
+Each row shows the token in both themes and checks it against the surface it is used on: 4.5:1 for text, 3:1 for control borders, focus rings, chart marks and large text. Status colours always come with an icon or a word.
+
+## Identity
+<ColorTable only={['brand', 'on-brand', 'accent', 'night', 'on-night', 'mint']} />
+
+## Surfaces and text
+<ColorTable only={['surface', 'ink', 'line', 'focus']} />
+
+## Status
+<ColorTable only={['success', 'warning', 'danger', 'info']} />
+
+## Charts
+`chart-1` → `chart-4` are always assigned in this order and are checked for colour-blind separation in both themes. `chart-1` is the main subject.
+
+<ColorTable only={['chart']} />

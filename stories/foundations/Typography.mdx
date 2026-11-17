@@ -1,0 +1,12 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { TypeScale } from './blocks.js';
+
+<Meta title="Foundations/Typography" />
+
+# Typography
+
+**Plus Jakarta Sans** for everything, Arial as the system fallback; **IBM Plex Mono** for IDs and API keys. Both ship as `woff2` files in `fonts/` (SIL Open Font License), declared with `@font-face` in `tokens.css`.
+
+The scale is the Figma brand guidelines' scale: headings are Regular (400) with negative tracking on the large sizes, and weight comes from size, not boldness. Each style is a class in `tokens.css` (`<h2 class="h1">`), shown below with its real class.
+
+<TypeScale />
