@@ -107,7 +107,7 @@ export function Logos() {
   ];
   return h('div', { style: { display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 16 } }, items.map(([f, name, use, bg]) =>
     h('figure', { key: f, style: { margin: 0, border: '1px solid #e0dfdd', borderRadius: 8, overflow: 'hidden' } },
-      h('div', { style: { background: bg, height: 140, display: 'grid', placeItems: 'center', padding: 24 } }, h('img', { src: `/assets/Logos/${f}`, alt: `areeba ${name.toLowerCase()} logo`, style: { maxWidth: '80%', maxHeight: 72 } })),
+      h('div', { style: { background: bg, height: 140, display: 'grid', placeItems: 'center', padding: 24 } }, h('img', { src: `assets/Logos/${f}`, alt: `areeba ${name.toLowerCase()} logo`, style: { maxWidth: '80%', maxHeight: 72 } })),
       h('figcaption', { style: { padding: 12, fontSize: 14 } }, h('b', null, name), h('div', { style: { color: '#131210cc' } }, use), h('code', { style: { fontSize: 12 } }, `assets/Logos/${f}`)))));
 }
 

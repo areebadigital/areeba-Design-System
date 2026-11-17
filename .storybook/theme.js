@@ -4,7 +4,7 @@ import { create } from 'storybook/theming';
 export default create({
   base: 'light',
   brandTitle: 'areeba design system',
-  brandImage: '/assets/Logos/areeba-logo.svg',
+  brandImage: 'assets/Logos/areeba-logo.svg',
   brandTarget: '_self',
   colorPrimary: '#630c0c',
   colorSecondary: '#630c0c',
