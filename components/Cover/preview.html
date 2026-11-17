@@ -17,12 +17,9 @@
   .pill-ground { fill:var(--on-night); }
   .pill-brand { fill:var(--brand); }
   .wave { fill:none; stroke:var(--on-brand); stroke-width:6; stroke-linecap:round; }
-  .words { position:absolute; left:var(--space-6); bottom:var(--space-6); max-width:448px; display:flex; flex-direction:column; gap:var(--space-4); }
-  .logo { display:block; width:320px; height:auto; }
-  .logo path { fill:var(--accent); }
-  [data-theme="dark"] .logo path { fill:var(--on-night); }
-  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .logo path { fill:var(--on-night); } }
-  .tag { margin:0; font-size:22px; line-height:30px; font-weight:400; letter-spacing:-0.01em; color:var(--ink); text-wrap:balance; }
+  .words { position:absolute; left:var(--space-6); bottom:var(--space-6); max-width:440px; }
+  .name { margin:0; font-size:120px; line-height:.92; font-weight:500; letter-spacing:-.04em; color:var(--ink); }
+  .tag { margin:var(--space-2) 0 0 6px; font-size:14px; line-height:20px; color:var(--ink-muted); }
 </style>
 </head>
 <body>
@@ -30,9 +27,10 @@
 <div class="art" aria-hidden="true">
 <svg viewBox="0 0 480 288" width="480" height="288">
 <!--
-  blocks      brand (Crimson Deep) 272×280 slab bleeding off top and right · night (Obsidian) 192×120 card bleeding off the top · raised (White) 192×144 card · accent (Signal Red) 16×16 dot once, the only bright red
-  arrangement one tall Crimson slab with two payment-card satellites stacked on its left, as the Figma pages pair Crimson and Chalk sections
-  pattern     contactless waves (three arcs at a space-4 pitch) cut into the slab in on-brand; card-number groups as 8px pills; corners radius-xs on pills, radius-lg on cards
+  blocks      brand (Crimson Deep) 272×280 slab bleeding off top and right · night (Obsidian) 192×120 card bleeding off the top · surface-raised (White) 192×144 card · accent (Signal Red) 16px dot once, small because it only signs · ground surface-sunken (Chalk), ≈40% of 960×288
+  arrangement one tall Crimson slab with two payment-card satellites stacked on its left, as the Figma pages pair Crimson sections with Chalk and White cards
+  pattern     a literal motif, from "built for money" and payment cards: contactless waves (three arcs at a space-4 pitch) cut into the slab in on-brand, card-number groups as 8px pills (space-2) in on-night and brand
+  scales      sides in space-2 multiples; gutters space-4; arc pitch space-4; pills rx 4 (radius-xs); card corners 16 (radius-lg)
 -->
 <rect class="night" x="16" y="-16" width="192" height="120" rx="16"/>
 <rect class="pill-ground" x="40" y="72" width="40" height="8" rx="4"/>
@@ -51,7 +49,7 @@
 </svg>
 </div>
 <div class="words">
-<svg class="logo" viewBox="0 0 647 167" role="img" aria-label="areeba"><path fill-rule="evenodd" clip-rule="evenodd" d="M71.8441 119.328C71.8441 136.003 61.4657 145.858 45.2269 145.858C33.3274 145.858 26.8409 141.032 26.8409 131.154C26.8409 122.387 33.1261 116.904 49.5662 115.363L71.8441 113.619V119.328ZM0 132.264C0 152.655 13.8454 166.044 36.5707 166.044C53.2345 166.044 67.7285 158.364 72.2691 147.172L74.2151 163.19H97.3654V97.3972C97.3654 67.3556 79.628 51.5646 50.8411 51.5646C22.0543 51.5646 2.81829 66.9025 2.81829 90.3739H25.3199C25.3199 78.9781 33.9761 72.3852 49.5438 72.3852C62.9643 72.3852 71.6205 78.2984 71.6205 93.002V95.4035L39.5903 97.805C14.2704 99.7761 0 112.282 0 132.242L0 132.264ZM183.167 54.3965V79.182H173.437C154.402 79.182 142.503 89.4903 142.503 110.538V163.19H116.109V55.0536H140.982L142.503 70.8446C147.043 60.1058 157.221 52.8559 171.491 52.8559C175.159 52.8559 178.85 53.2864 183.167 54.3965ZM214.168 98.2808C216.763 82.0592 226.291 73.4954 241.859 73.4954C257.427 73.4954 267.827 83.3733 267.827 98.2808H214.168ZM188.423 109.02C188.423 142.573 210.701 166.044 242.508 166.044C270.422 166.044 289.882 151.794 294.445 128.096H269.997C266.978 138.404 257.449 144.113 242.955 144.113C225.419 144.113 215.465 134.462 213.519 115.386L293.997 115.159V107.049C293.997 73.2688 273.665 51.5646 241.635 51.5646C209.605 51.5646 188.401 75.036 188.401 109.042L188.423 109.02ZM357.319 73.4954C341.752 73.4954 332.223 82.0592 329.629 98.2808H383.288C383.288 83.3733 373.111 73.4954 357.319 73.4954ZM357.968 166.044C326.162 166.044 303.884 142.573 303.884 109.02C303.884 75.4664 325.737 51.5419 357.118 51.5419C388.5 51.5419 409.48 73.2461 409.48 107.026V115.137L329.002 115.363C330.948 134.439 340.902 144.091 358.438 144.091C372.932 144.091 382.46 138.382 385.48 128.073H409.928C405.387 151.771 385.905 166.022 357.991 166.022L357.968 166.044ZM621.68 119.328C621.68 136.003 611.302 145.858 595.063 145.858C583.163 145.858 576.677 141.032 576.677 131.154C576.677 122.387 582.962 116.904 599.402 115.363L621.68 113.619V119.328ZM549.635 132.264C549.635 152.655 563.48 166.044 586.205 166.044C602.869 166.044 617.363 158.364 621.904 147.172L623.85 163.19H647V97.3972C647 67.3556 629.263 51.5646 600.476 51.5646C571.689 51.5646 552.453 66.9252 552.453 90.3966H574.954C574.954 79.0007 583.611 72.4079 599.178 72.4079C612.599 72.4079 621.255 78.321 621.255 93.0247V95.4262L589.225 97.8277C563.905 99.7987 549.635 112.305 549.635 132.264ZM482.309 141.485C464.124 141.485 452.224 128.096 452.224 108.589C452.224 89.0825 464.124 75.4664 482.309 75.4664C500.493 75.4664 511.945 89.2864 511.945 108.589C511.945 127.892 500.918 141.485 482.309 141.485ZM425.607 163.19H450.055L451.777 146.311C458.062 158.817 471.684 166.044 487.699 166.044C518.432 166.044 538.54 143.003 538.54 109.677C538.54 76.35 519.931 51.338 489.421 51.338C473.205 51.338 458.912 58.5652 452.001 70.6407V0H425.607V163.19Z"/></svg>
+<h1 class="name">areeba</h1>
 <p class="tag">The infrastructure behind how money moves.</p>
 </div>
 </div>
