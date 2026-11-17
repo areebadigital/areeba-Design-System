@@ -112,4 +112,4 @@ npm install
 npm run storybook
 ```
 
-`npm run build-storybook` writes a static site to `storybook-static/`. Stories live in `stories/`; they load the real `components/bundle.js`, so Storybook always shows what ships.
+`npm run build-storybook` writes a static site to `storybook-static/`. The `Storybook` GitHub Actions workflow builds it on every pull request and publishes it from `main` to https://areebadigital.github.io/areeba-Design-System/ (GitHub Pages). Stories live in `stories/`; they load the real `components/bundle.js`, so Storybook always shows what ships.
