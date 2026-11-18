@@ -1,4 +1,4 @@
-/* @ds-bundle: {"format":4,"namespace":"Areeba","components":[{"name":"Button"},{"name":"TextField"},{"name":"Switch"},{"name":"Badge"},{"name":"Alert"},{"name":"Tabs"},{"name":"ListItem"},{"name":"TabBar"},{"name":"Sidebar"},{"name":"DataTable"},{"name":"Dialog"},{"name":"Toast"},{"name":"PaymentCard"},{"name":"EmptyState"},{"name":"Checkbox"},{"name":"Select"},{"name":"DatePicker"},{"name":"LineChart"},{"name":"BarChart"},{"name":"AppHeader"},{"name":"IconButton"},{"name":"QuickAction"},{"name":"Balance"},{"name":"ActionMenu"},{"name":"SettingsList"},{"name":"DetailList"},{"name":"FilterChip"},{"name":"SearchField"},{"name":"NumberPad"},{"name":"AmountInput"},{"name":"CardPicker"},{"name":"ActionBar"},{"name":"PageDots"},{"name":"Result"},{"name":"Avatar"},{"name":"CodeInput"},{"name":"PasscodeDots"},{"name":"NotificationItem"},{"name":"ServiceTile"},{"name":"StatCard"},{"name":"CopyCode"}]} */
+/* @ds-bundle: {"format":4,"namespace":"Areeba","components":[{"name":"Button"},{"name":"TextField"},{"name":"Switch"},{"name":"Badge"},{"name":"Alert"},{"name":"Tabs"},{"name":"ListItem"},{"name":"TabBar"},{"name":"Sidebar"},{"name":"DataTable"},{"name":"Dialog"},{"name":"Toast"},{"name":"PaymentCard"},{"name":"EmptyState"},{"name":"Checkbox"},{"name":"Select"},{"name":"DatePicker"},{"name":"LineChart"},{"name":"BarChart"},{"name":"AppHeader"},{"name":"IconButton"},{"name":"QuickAction"},{"name":"Balance"},{"name":"ActionMenu"},{"name":"SettingsList"},{"name":"DetailList"},{"name":"FilterChip"},{"name":"SearchField"},{"name":"NumberPad"},{"name":"AmountInput"},{"name":"CardPicker"},{"name":"ActionBar"},{"name":"PageDots"},{"name":"Result"},{"name":"Avatar"},{"name":"CodeInput"},{"name":"PasscodeDots"},{"name":"NotificationItem"},{"name":"ServiceTile"},{"name":"StatCard"},{"name":"CopyCode"},{"name":"Panel"},{"name":"Pagination"},{"name":"Meter"}]} */
 (function () {
   var React = window.React, h = React.createElement;
   function cx() { return Array.prototype.filter.call(arguments, Boolean).join(" "); }
@@ -35,6 +35,7 @@
     close: Icon(["M6 6l12 12", "M18 6 6 18"]),
     back: Icon(["M19 12H5", "M11 6l-6 6 6 6"], true),
     forward: Icon(["M5 12h14", "M13 6l6 6-6 6"], true),
+    chevronLeft: Icon(["M15 6l-6 6 6 6"], true),
     chevronRight: Icon(["M9 6l6 6-6 6"], true),
     chevronDown: Icon(["M6 9l6 6 6-6"]),
     search: Icon(["M11 18a7 7 0 1 0 0-14 7 7 0 0 0 0 14z", "M20 20l-4-4"]),
@@ -57,12 +58,14 @@
       prev: "Previous month", next: "Next month", pick: "Select date",
       balance: "Available balance", showBalance: "Show balance", hideBalance: "Hide balance", balanceHidden: "Balance hidden", more: "More actions",
       search: "Search", clear: "Clear search", keypad: "Number pad", del: "Delete", fee: "Transaction fee", free: "Free", position: function (c, n) { return c + " of " + n; },
-      digits: function (c, n) { return c + " of " + n + " digits entered"; }, unread: "Unread", copy: "Copy", copied: "Copied" },
+      digits: function (c, n) { return c + " of " + n + " digits entered"; }, unread: "Unread", copy: "Copy", copied: "Copied",
+      pages: "Pages", prevPage: "Previous page", nextPage: "Next page", page: function (n) { return "Page " + n; }, range: function (a, b, n) { return a + "–" + b + " of " + n; } },
     ar: { nav: "التنقل الرئيسي", empty: "لا توجد نتائج", select: "اختر", frozen: "مجمّدة", card: function (n, l4, fz) { return "بطاقة " + (n || "") + " تنتهي بـ " + l4 + (fz ? "، مجمّدة" : ""); },
       prev: "الشهر السابق", next: "الشهر التالي", pick: "اختر تاريخًا",
       balance: "الرصيد المتاح", showBalance: "إظهار الرصيد", hideBalance: "إخفاء الرصيد", balanceHidden: "الرصيد مخفي", more: "إجراءات إضافية",
       search: "بحث", clear: "مسح البحث", keypad: "لوحة الأرقام", del: "حذف", fee: "رسوم المعاملة", free: "مجاني", position: function (c, n) { return c + " من " + n; },
-      digits: function (c, n) { return "أُدخل " + c + " من " + n + " أرقام"; }, unread: "غير مقروء", copy: "نسخ", copied: "تم النسخ" },
+      digits: function (c, n) { return "أُدخل " + c + " من " + n + " أرقام"; }, unread: "غير مقروء", copy: "نسخ", copied: "تم النسخ",
+      pages: "الصفحات", prevPage: "الصفحة السابقة", nextPage: "الصفحة التالية", page: function (n) { return "الصفحة " + n; }, range: function (a, b, n) { return a + "–" + b + " من " + n; } },
   };
   function ui(lang) { var l = String(lang || (typeof document !== "undefined" && document.documentElement.lang) || "en").slice(0, 2).toLowerCase(); return UI_TEXT[l] || UI_TEXT.en; }
 
@@ -77,7 +80,7 @@
     var id = useId(p.id), hintId = id + "-hint";
     return h("div", { className: cx("ar-field", p.error && "ar-field-invalid", p.className) },
       p.label && h("label", { className: "ar-field-label", htmlFor: id }, p.label),
-      h("div", { className: "ar-field-box" },
+      h("div", { className: "ar-field-box", dir: p.dir === "ltr" ? "ltr" : undefined },
         p.prefix && h("span", { className: "ar-field-prefix" }, p.prefix),
         h("input", Object.assign({}, rest(p, ["label", "hint", "error", "prefix", "className", "id"]), {
           id: id, "aria-invalid": p.error ? "true" : undefined, "aria-describedby": (p.error || p.hint) ? hintId : undefined
@@ -119,13 +122,27 @@
       h("div", null, p.title && h("p", { className: "ar-alert-title" }, p.title), h("p", { className: "ar-alert-body" }, p.children)));
   }
 
+  /* WAI-ARIA tabs: one tab stop, arrows move and select (they follow reading direction), Home/End jump.
+     Pass `id` to link tabs to panels: tab `${id}-${value}` controls the panel `${id}-${value}-panel` (see TabPanel). */
   function Tabs(p) {
-    var items = p.items || [];
+    var items = p.items || [], refs = React.useRef({});
     var st = React.useState(p.defaultValue || (items[0] && items[0].value)), cur = p.value !== undefined ? p.value : st[0];
-    return h("div", { role: "tablist", "aria-label": p.label, className: cx("ar-tabs", p.className) }, items.map(function (it) {
-      return h("button", { key: it.value, role: "tab", type: "button", className: "ar-tab", "aria-selected": cur === it.value ? "true" : "false",
-        onClick: function () { st[1](it.value); p.onChange && p.onChange(it.value); } }, it.label);
+    function choose(v) { st[1](v); if (p.onChange) p.onChange(v); var el = refs.current[v]; if (el) el.focus(); }
+    function onKey(e, i) {
+      var rtl = getComputedStyle(e.currentTarget).direction === "rtl", n = items.length, k = e.key, j = -1;
+      if (k === "ArrowRight") j = rtl ? i - 1 : i + 1; else if (k === "ArrowLeft") j = rtl ? i + 1 : i - 1; else if (k === "Home") j = 0; else if (k === "End") j = n - 1; else return;
+      e.preventDefault(); choose(items[(j + n) % n].value);
+    }
+    return h("div", { role: "tablist", "aria-label": p.label, className: cx("ar-tabs", p.className) }, items.map(function (it, i) {
+      var on = cur === it.value;
+      return h("button", { key: it.value, ref: function (el) { refs.current[it.value] = el; }, role: "tab", type: "button", className: "ar-tab", id: p.id ? p.id + "-" + it.value : undefined,
+        "aria-controls": p.id ? p.id + "-" + it.value + "-panel" : undefined, "aria-selected": on ? "true" : "false", tabIndex: on ? 0 : -1,
+        onClick: function () { choose(it.value); }, onKeyDown: function (e) { onKey(e, i); } }, it.label);
     }));
+  }
+  /* The panel for one tab of a Tabs with an `id`. Render only the current one. */
+  function TabPanel(p) {
+    return h("div", Object.assign({}, rest(p, ["tabs", "value", "className", "children"]), { role: "tabpanel", id: p.tabs + "-" + p.value + "-panel", "aria-labelledby": p.tabs + "-" + p.value, tabIndex: 0, className: cx("ar-tabpanel", p.className) }), p.children);
   }
 
   function ListItem(p) {
@@ -177,15 +194,25 @@
   }
 
   function Dialog(p) {
-    var titleId = useId(), descId = titleId + "-d";
+    var titleId = useId(), descId = titleId + "-d", box = React.useRef(null);
+    /* WAI-ARIA dialog: focus moves in on open (first field or button), Tab stays inside, Escape closes, focus returns to the opener. */
     React.useEffect(function () {
       if (!p.open) return;
-      function onKey(e) { if (e.key === "Escape" && p.onClose) p.onClose(); }
-      document.addEventListener("keydown", onKey); return function () { document.removeEventListener("keydown", onKey); };
+      var opener = document.activeElement, sel = 'a[href],button:not([disabled]),input:not([disabled]):not([type="hidden"]),textarea,[tabindex]:not([tabindex="-1"])';
+      var list = function () { return box.current ? Array.prototype.slice.call(box.current.querySelectorAll(sel)) : []; };
+      var first = list().filter(function (el) { return el.tagName === "INPUT"; })[0] || list()[0] || box.current; if (first) first.focus();
+      function onKey(e) {
+        if (e.key === "Escape" && p.onClose) p.onClose();
+        if (e.key !== "Tab") return; var els = list(); if (!els.length) return;
+        var a = els[0], z = els[els.length - 1];
+        if (e.shiftKey && document.activeElement === a) { e.preventDefault(); z.focus(); } else if (!e.shiftKey && document.activeElement === z) { e.preventDefault(); a.focus(); }
+      }
+      document.addEventListener("keydown", onKey);
+      return function () { document.removeEventListener("keydown", onKey); if (opener && opener.focus && document.contains(opener)) opener.focus(); };
     }, [p.open]);
     if (!p.open) return null;
     return h("div", { className: "ar-dialog-backdrop", onClick: function (e) { if (e.target === e.currentTarget && p.onClose) p.onClose(); } },
-      h("div", { role: p.tone === "danger" ? "alertdialog" : "dialog", "aria-modal": "true", "aria-labelledby": titleId, "aria-describedby": descId, className: cx("ar-dialog", p.sheet && "ar-dialog-sheet", p.className) },
+      h("div", { ref: box, tabIndex: -1, role: p.tone === "danger" ? "alertdialog" : "dialog", "aria-modal": "true", "aria-labelledby": titleId, "aria-describedby": descId, className: cx("ar-dialog", p.sheet && "ar-dialog-sheet", p.className) },
         h("h2", { id: titleId, className: "ar-dialog-title" }, p.title),
         h("div", { id: descId, className: "ar-dialog-body" }, p.children),
         p.actions && h("div", { className: "ar-dialog-actions" }, p.actions)));
@@ -543,15 +570,25 @@
     var items = p.items || [], os = React.useState(false), open = os[0], as = React.useState(0), active = as[0];
     var wrap = React.useRef(null), trig = React.useRef(null), menuId = useId() + "-menu", refs = React.useRef([]);
     var enabled = items.map(function (it, i) { return it.disabled ? -1 : i; }).filter(function (i) { return i >= 0; });
-    function openAt(i) { os[1](true); as[1](i); }
+    var ps = React.useState(null), pos = ps[0];
+    /* The menu is placed against the viewport, so a scrolling parent (a table) does not cut it off. */
+    function place() {
+      var el = trig.current; if (!el) return; var r = el.getBoundingClientRect(), rtl = getComputedStyle(el).direction === "rtl", end = p.align !== "start";
+      var o = { position: "fixed", top: r.bottom + 4 };
+      if (end !== rtl) { o.right = document.documentElement.clientWidth - r.right; o.left = "auto"; } else { o.left = r.left; o.right = "auto"; }
+      ps[1](o);
+    }
+    function openAt(i) { place(); os[1](true); as[1](i); }
     function close(refocus) { os[1](false); if (refocus && trig.current) trig.current.focus(); }
     function move(d) { var k = enabled.indexOf(active); as[1](enabled[(k + d + enabled.length) % enabled.length]); }
     function choose(i) { var it = items[i]; if (!it || it.disabled) return; close(true); if (it.onSelect) it.onSelect(); }
-    React.useEffect(function () { if (open && refs.current[active]) refs.current[active].focus(); }, [open, active]);
+    React.useEffect(function () { if (open && refs.current[active]) refs.current[active].focus({ preventScroll: true }); }, [open, active]);
     React.useEffect(function () {
       if (!open) return;
       function out(e) { if (wrap.current && !wrap.current.contains(e.target)) close(false); }
-      document.addEventListener("mousedown", out); return function () { document.removeEventListener("mousedown", out); };
+      function shut() { close(false); }
+      document.addEventListener("mousedown", out); window.addEventListener("resize", shut); window.addEventListener("scroll", shut, true);
+      return function () { document.removeEventListener("mousedown", out); window.removeEventListener("resize", shut); window.removeEventListener("scroll", shut, true); };
     }, [open]);
     function onTrigKey(e) { if (e.key === "ArrowDown" || e.key === "Enter" || e.key === " ") { e.preventDefault(); openAt(enabled[0]); } else if (e.key === "ArrowUp") { e.preventDefault(); openAt(enabled[enabled.length - 1]); } }
     function onMenuKey(e) {
@@ -566,7 +603,7 @@
       onClick: function () { open ? close(false) : openAt(enabled[0]); }, onKeyDown: onTrigKey };
     return h("div", { className: cx("ar-menu-wrap", p.className), ref: wrap },
       p.button ? p.button(trigProps) : h(IconButton, Object.assign({ icon: "more", label: p.label || ui().more }, trigProps)),
-      open && h("ul", { className: cx("ar-menu", p.align === "start" && "ar-menu-start"), role: "menu", id: menuId, "aria-label": p.label || ui().more, onKeyDown: onMenuKey },
+      open && h("ul", { className: cx("ar-menu", p.align === "start" && "ar-menu-start"), style: pos || undefined, role: "menu", id: menuId, "aria-label": p.label || ui().more, onKeyDown: onMenuKey },
         items.map(function (it, i) {
           return h("li", { key: i, role: "menuitem", tabIndex: -1, ref: function (el) { refs.current[i] = el; }, "aria-disabled": it.disabled ? "true" : undefined,
             className: cx("ar-menu-item", it.danger && "ar-menu-danger"), onClick: function () { choose(i); }, onMouseEnter: function () { if (!it.disabled) as[1](i); } },
@@ -795,9 +832,57 @@
       h("span", { className: "ar-sr-only", "aria-live": "polite" }, copied ? t.copied : ""));
   }
 
+  /* ---- round 3: SaaS components ---- */
+
+  /* A titled surface for a part of a page: a form section, a summary, a short list. Actions sit at the end of the header; the footer holds the form's buttons. */
+  function Panel(p) {
+    var id = useId();
+    return h("section", { className: cx("ar-panel", p.className), "aria-labelledby": p.title ? id : undefined },
+      (p.title || p.actions) && h("div", { className: "ar-panel-head" },
+        h("div", { className: "ar-panel-heading" }, p.title && h("h2", { className: "ar-panel-title", id: id }, p.title), p.description && h("p", { className: "ar-panel-desc" }, p.description)),
+        p.actions && h("div", { className: "ar-panel-actions" }, p.actions)),
+      h("div", { className: cx("ar-panel-body", p.flush && "ar-panel-flush") }, p.children),
+      p.footer && h("div", { className: "ar-panel-foot" }, p.footer));
+  }
+
+  /* Page numbers for long tables. 1-based `page`; `total` and `pageSize` add the "1–25 of 1,284" range. */
+  function pageList(page, count) {
+    if (count <= 7) return Array.from({ length: count }, function (_, i) { return i + 1; });
+    var out = [1], a = Math.max(2, page - 1), b = Math.min(count - 1, page + 1);
+    if (page <= 3) { a = 2; b = 4; } else if (page >= count - 2) { a = count - 3; b = count - 1; }
+    if (a > 2) out.push("…a"); for (var i = a; i <= b; i++) out.push(i); if (b < count - 1) out.push("…b"); out.push(count); return out;
+  }
+  function Pagination(p) {
+    var t = ui(), count = Math.max(1, p.pageCount || Math.ceil((p.total || 0) / (p.pageSize || 25))), page = Math.min(Math.max(1, p.page || 1), count);
+    var fmt = function (n) { return Number(n).toLocaleString("en-US"); };
+    function go(n) { if (n >= 1 && n <= count && n !== page && p.onChange) p.onChange(n); }
+    var range = p.total != null && p.pageSize ? t.range(fmt((page - 1) * p.pageSize + 1), fmt(Math.min(page * p.pageSize, p.total)), fmt(p.total)) : null;
+    return h("nav", { className: cx("ar-pager", p.className), "aria-label": p.label || t.pages },
+      range && h("span", { className: "ar-pager-range" }, h("bdi", null, range)),
+      h("div", { className: "ar-pager-pages" },
+        h("button", { type: "button", className: "ar-pager-btn", "aria-label": t.prevPage, disabled: page === 1, onClick: function () { go(page - 1); } }, h(icons.chevronLeft, null)),
+        pageList(page, count).map(function (n) {
+          return typeof n === "string" ? h("span", { key: n, className: "ar-pager-gap", "aria-hidden": "true" }, "…")
+            : h("button", { key: n, type: "button", className: cx("ar-pager-btn", n === page && "ar-pager-on"), "aria-label": t.page(n), "aria-current": n === page ? "page" : undefined, onClick: function () { go(n); } }, n);
+        }),
+        h("button", { type: "button", className: "ar-pager-btn", "aria-label": t.nextPage, disabled: page === count, onClick: function () { go(page + 1); } }, h(icons.chevronRight, null))));
+  }
+
+  /* How much of something is used: a limit, a quota, onboarding steps. A WAI-ARIA meter; `valueText` is what is read and shown ("$3,200 of $5,000"). */
+  function Meter(p) {
+    var id = useId(), max = p.max || 100, v = Math.min(Math.max(p.value || 0, 0), max), pct = Math.round(v / max * 100);
+    var tone = p.tone || (pct >= 90 ? "danger" : pct >= 75 ? "warning" : "brand");
+    return h("div", { className: cx("ar-meter", "ar-meter-" + tone, p.className) },
+      (p.label || p.valueText) && h("div", { className: "ar-meter-head" }, p.label && h("span", { className: "ar-meter-label", id: id }, p.label), h("span", { className: "ar-meter-value" }, h("bdi", null, p.valueText || pct + "%"))),
+      h("div", { className: "ar-meter-track", role: "meter", "aria-labelledby": p.label ? id : undefined, "aria-label": p.label ? undefined : p["aria-label"], "aria-valuemin": 0, "aria-valuemax": max, "aria-valuenow": v, "aria-valuetext": p.valueText || pct + "%" },
+        h("span", { className: "ar-meter-fill", style: { width: pct + "%" } })),
+      p.hint && h("span", { className: "ar-meter-hint" }, p.hint));
+  }
+
   window.Areeba = Object.assign(window.Areeba || {}, { Button: Button, TextField: TextField, Switch: Switch, Badge: Badge, Alert: Alert, Tabs: Tabs, ListItem: ListItem, List: List, TabBar: TabBar, Sidebar: Sidebar, DataTable: DataTable, Dialog: Dialog, Toast: Toast, PaymentCard: PaymentCard, EmptyState: EmptyState, Checkbox: Checkbox, Select: Select, DatePicker: DatePicker, Calendar: Calendar, LineChart: LineChart, BarChart: BarChart, icons: icons, ltr: ltr,
     IconButton: IconButton, AppHeader: AppHeader, QuickAction: QuickAction, QuickActions: QuickActions, Balance: Balance, ActionMenu: ActionMenu,
     SettingsList: SettingsList, SettingsRow: SettingsRow, DetailList: DetailList, FilterChip: FilterChip, SearchField: SearchField,
     NumberPad: NumberPad, padInput: padInput, AmountInput: AmountInput, MiniCard: MiniCard, CardPicker: CardPicker, ActionBar: ActionBar, PageDots: PageDots, Result: Result,
-    Avatar: Avatar, CodeInput: CodeInput, PasscodeDots: PasscodeDots, NotificationItem: NotificationItem, ServiceTile: ServiceTile, StatCard: StatCard, CopyCode: CopyCode });
+    Avatar: Avatar, CodeInput: CodeInput, PasscodeDots: PasscodeDots, NotificationItem: NotificationItem, ServiceTile: ServiceTile, StatCard: StatCard, CopyCode: CopyCode,
+    TabPanel: TabPanel, Panel: Panel, Pagination: Pagination, Meter: Meter });
 })();

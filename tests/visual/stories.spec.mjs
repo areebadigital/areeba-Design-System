@@ -65,7 +65,7 @@ for (const id of stories) {
         const latin = await page.evaluate(() => {
           const root = document.querySelector('#storybook-root'), out = new Set(), add = (s) => (s || '').match(/[A-Za-z_][A-Za-z0-9_]*/g)?.forEach((w) => out.add(w));
           const tw = document.createTreeWalker(root, NodeFilter.SHOW_TEXT); while (tw.nextNode()) { const el = tw.currentNode.parentElement; if (!(el && el.closest('[dir="ltr"]'))) add(tw.currentNode.nodeValue); } // text marked left-to-right (emails, phone numbers, codes) is Latin by design
-          root.querySelectorAll('[aria-label],[placeholder],input').forEach((el) => { add(el.getAttribute('aria-label')); add(el.getAttribute('placeholder')); add(el.value); });
+          root.querySelectorAll('[aria-label],[placeholder],input:not([type=hidden])').forEach((el) => { if (el.closest('[dir="ltr"]')) return; add(el.getAttribute('aria-label')); add(el.getAttribute('placeholder')); add(el.value); }); // left-to-right fields (emails) are Latin by design; hidden inputs carry codes, not copy
           return [...out];
         });
         expect.soft(latin.filter((w) => !LATIN_OK.test(w)), 'English left on an RTL screen: add it to stories/i18n.js').toEqual([]);

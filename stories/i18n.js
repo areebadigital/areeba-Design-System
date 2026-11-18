@@ -6,6 +6,8 @@
 const L = (s) => '⁦' + s + '⁩';
 
 export const AR = {
+  // SaaS components (round 3)
+  'Business details': 'تفاصيل النشاط التجاري', 'Shown on receipts and invoices.': 'تظهر على الإيصالات والفواتير.', 'Edit': 'تعديل', 'Save changes': 'حفظ التغييرات', 'Business name': 'اسم النشاط التجاري', 'Spinneys Lebanon': 'سبينيس لبنان', 'Country': 'البلد', 'Lebanon': 'لبنان', 'Settlement currency': 'عملة التسوية', 'Recent payouts': 'أحدث المدفوعات', 'View all': 'عرض الكل', '28 Nov': '28 نوفمبر', '21 Nov': '21 نوفمبر', 'Monthly limit': 'الحد الشهري', 'Resets on 1 December': 'يُعاد ضبطه في 1 ديسمبر', 'Close to your limit': 'قاربت الحد', 'Account set-up': 'إعداد الحساب', '3 of 5 steps': '3 من 5 خطوات', 'Business': 'النشاط التجاري', 'Team': 'الفريق', 'Business name, address and settlement account.': 'اسم النشاط التجاري وعنوانه وحساب التسوية.', 'People who can sign in to this portal.': 'الأشخاص الذين يمكنهم تسجيل الدخول إلى هذه البوابة.', 'Emails and texts about payments and payouts.': 'رسائل البريد والرسائل النصية عن المدفوعات والدفعات.', '$3,200 of $5,000': L('$3,200') + ' من ' + L('$5,000'), '$4,100 of $5,000': L('$4,100') + ' من ' + L('$5,000'), '$4,800 of $5,000': L('$4,800') + ' من ' + L('$5,000'), 'Payments stop at $5,000': 'تتوقف المدفوعات عند ' + L('$5,000'),
   // Actions
   'Send money': 'إرسال الأموال', 'Pay $42.00': 'ادفع ' + L('$42.00'), 'Export CSV': 'تصدير CSV', 'Cancel': 'إلغاء',
   'Freeze card': 'تجميد البطاقة', 'Disabled': 'غير متاح', 'Continue': 'متابعة', 'Refund': 'استرداد', 'Request': 'طلب',

@@ -128,6 +128,15 @@ Fast and functional: 150ms for hover and press, 250ms ease-out for sheets and pa
 | StatCard | Dashboard key numbers with change against the last period. |
 | CopyCode | Voucher codes, references and IBANs to copy. |
 
+**SaaS components** (for the merchant and bank portals):
+
+| Component | Use it for |
+| --- | --- |
+| Panel | A titled surface for a part of a page: a form section, a summary, a table. |
+| Pagination | Page numbers under long tables, with the "1–25 of 1,284" range. |
+| Meter | How much of a limit, quota or set-up is used. |
+| TabPanel | The content of one tab, linked to its Tabs (`id`). |
+
 Every control is drawn by areeba, never the browser's native widgets (no native dropdowns, date inputs or pickers); each follows the matching WAI-ARIA pattern so keyboard and screen readers still work. React components ship in `components/bundle.js` under `window.Areeba`; all styling is in `components/bundle.css` and reads only tokens, so it works in any web stack. For native iOS/Android, map the same tokens to your platform theme.
 
 ## Blocks
@@ -148,9 +157,13 @@ Whole screens built only from areeba components, ready to copy, like shadcn/ui b
 | Mobile / Notifications | Money requests to accept or decline, and how earlier ones ended. |
 | Mobile / Profile | Account, notifications, security, help and sign out. |
 | Mobile / eStore vouchers | Services, voucher prices in USD and LBP, confirm with a card, the code to copy. |
-| SaaS / Transactions | Merchant portal: key numbers, daily volume, the transactions table with filters and export. |
+| SaaS / Overview | Merchant portal home: an alert, key numbers, volume and sales by store, latest transactions, next payout, limit and set-up meters. |
+| SaaS / Transactions | Key numbers, daily volume, the transactions table with filters, export and pages. |
+| SaaS / Payouts | Payout history with pages, the next payout and its account, the payout schedule changed in a dialog. |
+| SaaS / Settings | Tabs for the business details form, the settlement account, the team with an invite dialog, and notifications. |
+| SaaS / Sign in | Work email and password beside the brand panel, with the wrong-password state. |
 
-The mobile blocks follow the layouts and flows of the areeba pay app, restyled to the system: actions in Crimson Deep, spending in ink, digits 0–9 in Arabic too. They are stories, so the screenshot tests check each in light, dark and right-to-left.
+The mobile blocks follow the layouts and flows of the areeba pay app, restyled to the system: actions in Crimson Deep, spending in ink, digits 0–9 in Arabic too. The SaaS blocks use the `ar-app-*` layout classes: `ar-app-split` (main and side columns from 1024px), `ar-app-narrow` and `ar-app-form` (settings forms, two columns from 720px) and `ar-app-auth` (sign in). They are stories, so the screenshot tests check each in light, dark and right-to-left.
 
 ## Right-to-left
 

@@ -37,8 +37,11 @@ export declare function Badge(props: BadgeProps): React.ReactElement;
 export interface AlertProps { tone?: 'info' | 'success' | 'warning' | 'danger'; title?: React.ReactNode; className?: string; children?: React.ReactNode }
 export declare function Alert(props: AlertProps): React.ReactElement;
 
-export interface TabsProps { items: { value: string; label: React.ReactNode }[]; value?: string; defaultValue?: string; onChange?: (value: string) => void; label?: string; className?: string }
+export interface TabsProps { items: { value: string; label: React.ReactNode }[]; value?: string; defaultValue?: string; onChange?: (value: string) => void; label?: string;
+  /** Links tabs to TabPanels: tab `${id}-${value}` controls panel `${id}-${value}-panel`. */ id?: string; className?: string }
 export declare function Tabs(props: TabsProps): React.ReactElement;
+/** The panel of one tab. `tabs` is the Tabs `id`, `value` the tab's value. Render only the current one. */
+export declare function TabPanel(props: { tabs: string; value: string; className?: string; children?: React.ReactNode }): React.ReactElement;
 
 export interface ListItemProps {
   title: React.ReactNode;
@@ -216,6 +219,17 @@ export interface StatCardProps { label: React.ReactNode; value: React.ReactNode;
 export declare function StatCard(props: StatCardProps): React.ReactElement;
 export declare function CopyCode(props: { code: string; label?: React.ReactNode; onCopy?: (code: string) => void; className?: string }): React.ReactElement;
 
+/** A titled surface for part of a page. `flush` drops the body padding (for a table or list). */
+export interface PanelProps { title?: React.ReactNode; description?: React.ReactNode; actions?: React.ReactNode; footer?: React.ReactNode; flush?: boolean; className?: string; children?: React.ReactNode }
+export declare function Panel(props: PanelProps): React.ReactElement;
+/** Page numbers for long tables. `page` is 1-based; give `pageCount`, or `total` and `pageSize` (which also shows "1–25 of 1,284"). */
+export interface PaginationProps { page: number; pageCount?: number; total?: number; pageSize?: number; onChange?: (page: number) => void; label?: string; className?: string }
+export declare function Pagination(props: PaginationProps): React.ReactElement;
+/** How much of something is used (role="meter"). Tone defaults to brand, warning from 75%, danger from 90%. */
+export interface MeterProps { value: number; max?: number; label?: React.ReactNode; valueText?: string; hint?: React.ReactNode; tone?: 'brand' | 'success' | 'warning' | 'danger'; 'aria-label'?: string; className?: string }
+export declare function Meter(props: MeterProps): React.ReactElement;
+
 declare global { interface Window { Areeba: { Button: typeof Button; TextField: typeof TextField; Switch: typeof Switch; Badge: typeof Badge; Alert: typeof Alert; Tabs: typeof Tabs; ListItem: typeof ListItem; List: typeof List; TabBar: typeof TabBar; Sidebar: typeof Sidebar; DataTable: typeof DataTable; Dialog: typeof Dialog; Toast: typeof Toast; PaymentCard: typeof PaymentCard; EmptyState: typeof EmptyState; Checkbox: typeof Checkbox; Select: typeof Select; Calendar: typeof Calendar; DatePicker: typeof DatePicker; LineChart: typeof LineChart; BarChart: typeof BarChart; ltr: typeof ltr;
   icons: typeof icons; IconButton: typeof IconButton; AppHeader: typeof AppHeader; QuickAction: typeof QuickAction; QuickActions: typeof QuickActions; Balance: typeof Balance; ActionMenu: typeof ActionMenu; SettingsList: typeof SettingsList; SettingsRow: typeof SettingsRow; DetailList: typeof DetailList; FilterChip: typeof FilterChip; SearchField: typeof SearchField; NumberPad: typeof NumberPad; padInput: typeof padInput; AmountInput: typeof AmountInput; MiniCard: typeof MiniCard; CardPicker: typeof CardPicker; ActionBar: typeof ActionBar; PageDots: typeof PageDots; Result: typeof Result;
-  Avatar: typeof Avatar; CodeInput: typeof CodeInput; PasscodeDots: typeof PasscodeDots; NotificationItem: typeof NotificationItem; ServiceTile: typeof ServiceTile; StatCard: typeof StatCard; CopyCode: typeof CopyCode } } }
+  Avatar: typeof Avatar; CodeInput: typeof CodeInput; PasscodeDots: typeof PasscodeDots; NotificationItem: typeof NotificationItem; ServiceTile: typeof ServiceTile; StatCard: typeof StatCard; CopyCode: typeof CopyCode;
+  TabPanel: typeof TabPanel; Panel: typeof Panel; Pagination: typeof Pagination; Meter: typeof Meter } } }

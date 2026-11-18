@@ -1,0 +1,12 @@
+<!-- @dsCard group="Data display" height=260 -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>Panel — preview</title></head>
+<body>
+<div id="root"></div>
+<script>
+  var A = window.Areeba, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h('div',{style:{padding:16,maxWidth:520}}, h(A.Panel,{title:'Business details',description:'Shown on receipts and invoices.',actions:h(A.Button,{variant:'ghost',size:'sm'},'Edit'),footer:[h(A.Button,{key:'c',variant:'secondary'},'Cancel'),h(A.Button,{key:'s'},'Save changes')]}, h(A.DetailList,{items:[{label:'Business name',value:'Spinneys Lebanon'},{label:'Country',value:'Lebanon'}]}))));
+</script>
+</body>
+</html>
