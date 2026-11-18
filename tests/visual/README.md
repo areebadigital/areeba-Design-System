@@ -7,7 +7,7 @@ Every Storybook story is rendered in **light**, **dark** and **right-to-left** (
 3. No axe accessibility violations.
 4. No horizontal overflow, and in RTL no English left on screen (Arabic copy comes from `stories/i18n.js`).
 
-Stories come from the built Storybook, so a new story is tested automatically. Its reference screenshot is missing until you create it (below), and the run fails until then. The clock is fixed to 17 Nov 2026 so calendars render the same every day.
+Stories come from the built Storybook (every component, block and guide story), so a new story is tested automatically. Its reference screenshot is missing until you create it (below), and the run fails until then. The clock is fixed to 17 Nov 2026 so calendars render the same every day.
 
 ## In CI
 
