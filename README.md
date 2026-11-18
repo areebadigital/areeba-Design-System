@@ -120,6 +120,13 @@ Fast and functional: 150ms for hover and press, 250ms ease-out for sheets and pa
 | CardPicker | Choosing which card pays or receives. |
 | PageDots | Carousel position. |
 | Result | The success or failure screen at the end of a flow. |
+| Avatar | People and merchants: photo or initials. |
+| CodeInput | One-time codes from SMS or email (paste and autofill work). |
+| PasscodeDots | Passcode progress above the number pad. |
+| NotificationItem | Notifications and money requests, with Accept/Decline and how they ended. |
+| ServiceTile | Grids of services and categories (eStore, bills). |
+| StatCard | Dashboard key numbers with change against the last period. |
+| CopyCode | Voucher codes, references and IBANs to copy. |
 
 Every control is drawn by areeba, never the browser's native widgets (no native dropdowns, date inputs or pickers); each follows the matching WAI-ARIA pattern so keyboard and screen readers still work. React components ship in `components/bundle.js` under `window.Areeba`; all styling is in `components/bundle.css` and reads only tokens, so it works in any web stack. For native iOS/Android, map the same tokens to your platform theme.
 
@@ -134,6 +141,14 @@ Whole screens built only from areeba components, ready to copy, like shadcn/ui b
 | Mobile / Activity | Search, filter chips, transactions grouped by day with totals, empty state. |
 | Mobile / Activity details | One transaction as a sheet; pending and declined. |
 | Mobile / Top up | The full flow: method, card, amount on the number pad, confirm, done. |
+| Mobile / Sign in | Phone number and password, forgotten password, sign up. |
+| Mobile / Passcode | Unlock with six digits or Face ID; wrong tries; locked with a reset link. |
+| Mobile / Verify code | The SMS one-time code before a transfer or on a new device. |
+| Mobile / Send money | Who, how much and why, confirm (3 days to accept), done. |
+| Mobile / Notifications | Money requests to accept or decline, and how earlier ones ended. |
+| Mobile / Profile | Account, notifications, security, help and sign out. |
+| Mobile / eStore vouchers | Services, voucher prices in USD and LBP, confirm with a card, the code to copy. |
+| SaaS / Transactions | Merchant portal: key numbers, daily volume, the transactions table with filters and export. |
 
 The mobile blocks follow the layouts and flows of the areeba pay app, restyled to the system: actions in Crimson Deep, spending in ink, digits 0–9 in Arabic too. They are stories, so the screenshot tests check each in light, dark and right-to-left.
 

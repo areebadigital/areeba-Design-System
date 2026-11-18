@@ -8,6 +8,13 @@ export const phone = (Story) => (
   </div>
 );
 
+/* Desktop frame for SaaS blocks: full width, at least a laptop screen tall. */
+export const desktop = (Story) => (
+  <div style={{ minHeight: 760, display: 'flex', flexDirection: 'column', border: '1px solid var(--line)', borderRadius: 12, overflow: 'hidden' }}>
+    <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}><Story /></div>
+  </div>
+);
+
 export const blockParams = (source, description) => ({
   layout: 'padded',
   docs: {

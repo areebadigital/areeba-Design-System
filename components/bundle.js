@@ -1,4 +1,4 @@
-/* @ds-bundle: {"format":4,"namespace":"Areeba","components":[{"name":"Button"},{"name":"TextField"},{"name":"Switch"},{"name":"Badge"},{"name":"Alert"},{"name":"Tabs"},{"name":"ListItem"},{"name":"TabBar"},{"name":"Sidebar"},{"name":"DataTable"},{"name":"Dialog"},{"name":"Toast"},{"name":"PaymentCard"},{"name":"EmptyState"},{"name":"Checkbox"},{"name":"Select"},{"name":"DatePicker"},{"name":"LineChart"},{"name":"BarChart"},{"name":"AppHeader"},{"name":"IconButton"},{"name":"QuickAction"},{"name":"Balance"},{"name":"ActionMenu"},{"name":"SettingsList"},{"name":"DetailList"},{"name":"FilterChip"},{"name":"SearchField"},{"name":"NumberPad"},{"name":"AmountInput"},{"name":"CardPicker"},{"name":"ActionBar"},{"name":"PageDots"},{"name":"Result"}]} */
+/* @ds-bundle: {"format":4,"namespace":"Areeba","components":[{"name":"Button"},{"name":"TextField"},{"name":"Switch"},{"name":"Badge"},{"name":"Alert"},{"name":"Tabs"},{"name":"ListItem"},{"name":"TabBar"},{"name":"Sidebar"},{"name":"DataTable"},{"name":"Dialog"},{"name":"Toast"},{"name":"PaymentCard"},{"name":"EmptyState"},{"name":"Checkbox"},{"name":"Select"},{"name":"DatePicker"},{"name":"LineChart"},{"name":"BarChart"},{"name":"AppHeader"},{"name":"IconButton"},{"name":"QuickAction"},{"name":"Balance"},{"name":"ActionMenu"},{"name":"SettingsList"},{"name":"DetailList"},{"name":"FilterChip"},{"name":"SearchField"},{"name":"NumberPad"},{"name":"AmountInput"},{"name":"CardPicker"},{"name":"ActionBar"},{"name":"PageDots"},{"name":"Result"},{"name":"Avatar"},{"name":"CodeInput"},{"name":"PasscodeDots"},{"name":"NotificationItem"},{"name":"ServiceTile"},{"name":"StatCard"},{"name":"CopyCode"}]} */
 (function () {
   var React = window.React, h = React.createElement;
   function cx() { return Array.prototype.filter.call(arguments, Boolean).join(" "); }
@@ -56,11 +56,13 @@
     en: { nav: "Main", empty: "No results", select: "Select", frozen: "Frozen", card: function (n, l4, fz) { return (n || "Card") + " ending " + l4 + (fz ? ", frozen" : ""); },
       prev: "Previous month", next: "Next month", pick: "Select date",
       balance: "Available balance", showBalance: "Show balance", hideBalance: "Hide balance", balanceHidden: "Balance hidden", more: "More actions",
-      search: "Search", clear: "Clear search", keypad: "Number pad", del: "Delete", fee: "Transaction fee", free: "Free", position: function (c, n) { return c + " of " + n; } },
+      search: "Search", clear: "Clear search", keypad: "Number pad", del: "Delete", fee: "Transaction fee", free: "Free", position: function (c, n) { return c + " of " + n; },
+      digits: function (c, n) { return c + " of " + n + " digits entered"; }, unread: "Unread", copy: "Copy", copied: "Copied" },
     ar: { nav: "التنقل الرئيسي", empty: "لا توجد نتائج", select: "اختر", frozen: "مجمّدة", card: function (n, l4, fz) { return "بطاقة " + (n || "") + " تنتهي بـ " + l4 + (fz ? "، مجمّدة" : ""); },
       prev: "الشهر السابق", next: "الشهر التالي", pick: "اختر تاريخًا",
       balance: "الرصيد المتاح", showBalance: "إظهار الرصيد", hideBalance: "إخفاء الرصيد", balanceHidden: "الرصيد مخفي", more: "إجراءات إضافية",
-      search: "بحث", clear: "مسح البحث", keypad: "لوحة الأرقام", del: "حذف", fee: "رسوم المعاملة", free: "مجاني", position: function (c, n) { return c + " من " + n; } },
+      search: "بحث", clear: "مسح البحث", keypad: "لوحة الأرقام", del: "حذف", fee: "رسوم المعاملة", free: "مجاني", position: function (c, n) { return c + " من " + n; },
+      digits: function (c, n) { return "أُدخل " + c + " من " + n + " أرقام"; }, unread: "غير مقروء", copy: "نسخ", copied: "تم النسخ" },
   };
   function ui(lang) { var l = String(lang || (typeof document !== "undefined" && document.documentElement.lang) || "en").slice(0, 2).toLowerCase(); return UI_TEXT[l] || UI_TEXT.en; }
 
@@ -705,8 +707,97 @@
       h("h2", { className: "ar-result-title" }, p.title), p.children && h("div", { className: "ar-result-body" }, p.children), p.action && h("div", { className: "ar-result-action" }, p.action));
   }
 
+
+  /* ---- round 2 app components ---- */
+
+  /* A person or merchant: photo, or initials on a tinted circle. Decorative by default (the name is next to it); pass `label` when it stands alone. */
+  function Avatar(p) {
+    var size = p.size || "md";
+    return h("span", { className: cx("ar-avatar", "ar-avatar-" + size, p.className), role: p.label ? "img" : undefined, "aria-label": p.label, "aria-hidden": p.label ? undefined : "true" },
+      p.src ? h("img", { src: p.src, alt: "" }) : h("span", { dir: "auto" }, p.initials),
+      p.status && h("span", { className: "ar-avatar-status", "aria-hidden": "true" }));
+  }
+
+  /* One-time code entry: one real input (so paste and SMS autofill work), drawn as boxes.
+     Digits only, 0–9, always left-to-right. onComplete fires when every box is filled. */
+  function CodeInput(p) {
+    var n = p.length || 6, id = useId(p.id), hintId = id + "-hint", st = React.useState(p.defaultValue || ""), val = p.value !== undefined ? p.value : st[0];
+    var fs = React.useState(false), focused = fs[0];
+    function set(v) { v = v.replace(/\D/g, "").slice(0, n); st[1](v); if (p.onChange) p.onChange(v); if (v.length === n && p.onComplete) p.onComplete(v); }
+    var boxes = []; for (var i = 0; i < n; i++) boxes.push(h("span", { key: i, className: cx("ar-code-box", focused && i === Math.min(val.length, n - 1) && "ar-code-active", val[i] && "ar-code-filled") }, val[i] || ""));
+    return h("div", { className: cx("ar-code", p.error && "ar-code-invalid", p.className) },
+      p.label && h("label", { className: "ar-field-label", htmlFor: id }, p.label),
+      h("div", { className: "ar-code-row", dir: "ltr" },
+        h("input", { id: id, className: "ar-code-input", value: val, inputMode: "numeric", autoComplete: "one-time-code", pattern: "[0-9]*", /* no maxLength: pasted codes with spaces or dashes must reach set() whole */
+          "aria-invalid": p.error ? "true" : undefined, "aria-describedby": (p.error || p.hint) ? hintId : undefined, autoFocus: p.autoFocus,
+          onChange: function (e) { set(e.target.value); }, onFocus: function () { fs[1](true); }, onBlur: function () { fs[1](false); } }),
+        h("div", { className: "ar-code-boxes", "aria-hidden": "true" }, boxes)),
+      (p.error || p.hint) && h("span", { className: "ar-field-hint", id: hintId, role: p.error ? "alert" : undefined }, p.error || p.hint));
+  }
+
+  /* Passcode progress: filled dots for digits entered. Announces "3 of 6 digits entered" politely; `error` shakes the dots and is announced. */
+  function PasscodeDots(p) {
+    var n = p.length || 6, c = Math.min(p.filled || 0, n), t = ui();
+    return h("div", { className: cx("ar-passdots", p.error && "ar-passdots-error", p.className) },
+      h("div", { className: "ar-passdots-row", dir: "ltr", "aria-hidden": "true" }, Array.from({ length: n }, function (_, i) { return h("span", { key: i, className: cx("ar-passdot", i < c && "ar-passdot-on") }); })),
+      h("span", { className: "ar-sr-only", "aria-live": "polite" }, t.digits(c, n)),
+      p.error && h("span", { className: "ar-passdots-msg", role: "alert" }, p.error));
+  }
+
+  /* A notification or money request. `actions` holds its buttons (Accept, Decline); `status` shows how it ended ({ tone, label }). */
+  function NotificationItem(p) {
+    var tone = p.status && p.status.tone;
+    return h("article", { className: cx("ar-notif", p.unread && "ar-notif-unread", p.className), "aria-label": p.unread ? ui().unread + ": " + p.title : undefined },
+      h("div", { className: "ar-notif-row" },
+        p.avatar || h("span", { className: "ar-notif-icon", "aria-hidden": "true" }, renderIcon(p.icon || "bell")),
+        h("div", { className: "ar-notif-main" },
+          h("h3", { className: "ar-notif-title" }, p.title),
+          p.children && h("div", { className: "ar-notif-body" }, p.children)),
+        h("div", { className: "ar-notif-meta" }, p.time && h("time", { className: "ar-notif-time", dateTime: p.dateTime }, p.time), p.unread && h("span", { className: "ar-notif-dot", "aria-hidden": "true" }))),
+      p.actions && h("div", { className: "ar-notif-actions" }, p.actions),
+      p.status && h("div", { className: cx("ar-notif-status", "ar-notif-status-" + (tone || "neutral")) }, renderIcon(tone === "success" ? "check" : tone === "danger" ? "alert" : "info", { className: "ar-notif-status-icon" }), p.status.label));
+  }
+
+  /* A tile in a grid of services or categories (eStore, bill payments). A button or link with an icon or initials and a label. */
+  function ServiceTile(p) {
+    var inner = [h("span", { key: "m", className: cx("ar-tile-mark", p.tone && "ar-tile-" + p.tone), "aria-hidden": "true" }, p.icon ? renderIcon(p.icon) : p.initials),
+      h("span", { key: "l", className: "ar-tile-label" }, p.label), p.description && h("span", { key: "d", className: "ar-tile-desc" }, p.description)];
+    return p.href ? h("a", { href: p.href, className: cx("ar-tile", p.className) }, inner)
+      : h("button", { type: "button", className: cx("ar-tile", p.className), onClick: p.onClick, disabled: p.disabled }, inner);
+  }
+
+  /* A key number on a dashboard: label, value, and the change against the previous period. Change is a word and an arrow, never colour alone. */
+  function StatCard(p) {
+    var d = p.change, up = d && d.direction === "up", down = d && d.direction === "down";
+    return h("section", { className: cx("ar-stat", p.className), "aria-label": typeof p.label === "string" ? p.label : undefined },
+      h("div", { className: "ar-stat-label" }, p.icon && renderIcon(p.icon, { className: "ar-stat-icon" }), p.label),
+      h("div", { className: "ar-stat-value", dir: "ltr" }, p.value),
+      d && h("div", { className: cx("ar-stat-change", d.good === true && "ar-stat-good", d.good === false && "ar-stat-bad") },
+        h("span", { "aria-hidden": "true" }, up ? "↑" : down ? "↓" : "→"), h("span", { dir: "ltr" }, d.value), " ", h("span", null, d.label)));
+  }
+
+  /* A code to copy: voucher codes, references, IBANs. The button copies it and announces "Copied". */
+  function CopyCode(p) {
+    var cs = React.useState(false), copied = cs[0], t = ui(), codeRef = React.useRef(null);
+    /* Says "Copied" only after the copy worked: the clipboard API, else select-and-copy; if both fail the code is left selected. */
+    function done() { cs[1](true); setTimeout(function () { cs[1](false); }, 2000); if (p.onCopy) p.onCopy(p.code); }
+    function selectCode() { var el = codeRef.current, sel = window.getSelection && window.getSelection(); if (!el || !sel) return false; var r = document.createRange(); r.selectNodeContents(el); sel.removeAllRanges(); sel.addRange(r); return true; }
+    function fallback() { var ok = false; try { ok = selectCode() && document.execCommand && document.execCommand("copy"); } catch (e) { ok = false; } if (ok) done(); else selectCode(); }
+    function copy() {
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(p.code).then(done, fallback);
+      else fallback();
+    }
+    return h("div", { className: cx("ar-copycode", p.className) },
+      p.label && h("span", { className: "ar-copycode-label" }, p.label),
+      h("div", { className: "ar-copycode-row" },
+        h("code", { className: "ar-copycode-code", dir: "ltr", ref: codeRef }, p.code),
+        h("button", { type: "button", className: "ar-btn ar-btn-secondary ar-btn-sm", onClick: copy }, copied ? t.copied : t.copy)),
+      h("span", { className: "ar-sr-only", "aria-live": "polite" }, copied ? t.copied : ""));
+  }
+
   window.Areeba = Object.assign(window.Areeba || {}, { Button: Button, TextField: TextField, Switch: Switch, Badge: Badge, Alert: Alert, Tabs: Tabs, ListItem: ListItem, List: List, TabBar: TabBar, Sidebar: Sidebar, DataTable: DataTable, Dialog: Dialog, Toast: Toast, PaymentCard: PaymentCard, EmptyState: EmptyState, Checkbox: Checkbox, Select: Select, DatePicker: DatePicker, Calendar: Calendar, LineChart: LineChart, BarChart: BarChart, icons: icons, ltr: ltr,
     IconButton: IconButton, AppHeader: AppHeader, QuickAction: QuickAction, QuickActions: QuickActions, Balance: Balance, ActionMenu: ActionMenu,
     SettingsList: SettingsList, SettingsRow: SettingsRow, DetailList: DetailList, FilterChip: FilterChip, SearchField: SearchField,
-    NumberPad: NumberPad, padInput: padInput, AmountInput: AmountInput, MiniCard: MiniCard, CardPicker: CardPicker, ActionBar: ActionBar, PageDots: PageDots, Result: Result });
+    NumberPad: NumberPad, padInput: padInput, AmountInput: AmountInput, MiniCard: MiniCard, CardPicker: CardPicker, ActionBar: ActionBar, PageDots: PageDots, Result: Result,
+    Avatar: Avatar, CodeInput: CodeInput, PasscodeDots: PasscodeDots, NotificationItem: NotificationItem, ServiceTile: ServiceTile, StatCard: StatCard, CopyCode: CopyCode });
 })();

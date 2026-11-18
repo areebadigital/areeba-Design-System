@@ -24,7 +24,7 @@ const MODES = [{ name: 'light', theme: 'light', dir: 'ltr' }, { name: 'dark', th
 const modesFor = (id) => (id.startsWith('guides-') ? [{ name: 'light', theme: 'light', dir: 'rtl' }, { name: 'dark', theme: 'dark', dir: 'rtl' }] : MODES);
 
 /* Latin words allowed on an Arabic screen: brand and currency codes, card faces (which stay Latin by design), IDs. */
-const LATIN_OK = /^(areeba|pay|v\d+|CSV|PDF|QR|USD|LBP|EUR|GBP|VISA|Visa|MC|IBAN|LB\d+|txn_\w+|k|M|Lina|Haddad|Rami|Khoury|RAMI|KHOURY)$/;
+const LATIN_OK = /^(areeba|pay|ID|v\d+|CSV|PDF|QR|USD|LBP|EUR|GBP|VISA|Visa|MC|IBAN|LB\d+|txn_\w+|k|M|Lina|Haddad|Rami|Khoury|RAMI|KHOURY)$/;
 
 test.beforeEach(async ({ context }) => {
   await context.route('http://sb.local/**', (route) => {
@@ -64,7 +64,7 @@ for (const id of stories) {
       if (mode.dir === 'rtl') {
         const latin = await page.evaluate(() => {
           const root = document.querySelector('#storybook-root'), out = new Set(), add = (s) => (s || '').match(/[A-Za-z_][A-Za-z0-9_]*/g)?.forEach((w) => out.add(w));
-          const tw = document.createTreeWalker(root, NodeFilter.SHOW_TEXT); while (tw.nextNode()) add(tw.currentNode.nodeValue);
+          const tw = document.createTreeWalker(root, NodeFilter.SHOW_TEXT); while (tw.nextNode()) { const el = tw.currentNode.parentElement; if (!(el && el.closest('[dir="ltr"]'))) add(tw.currentNode.nodeValue); } // text marked left-to-right (emails, phone numbers, codes) is Latin by design
           root.querySelectorAll('[aria-label],[placeholder],input').forEach((el) => { add(el.getAttribute('aria-label')); add(el.getAttribute('placeholder')); add(el.value); });
           return [...out];
         });
