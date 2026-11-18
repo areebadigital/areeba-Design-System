@@ -1,0 +1,12 @@
+<!-- @dsCard group="Status" height=220 -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>Result — preview</title></head>
+<body>
+<div id="root"></div>
+<script>
+  var A = window.Areeba, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h('div',{className:'ar-row',style:{alignItems:'flex-start'}}, h(A.Result,{title:'Top up successful'},'You added $100.00 to card •••• 1395.'), h(A.Result,{tone:'danger',title:'Payment declined'},'Top up your card or use another card, then try again.')));
+</script>
+</body>
+</html>

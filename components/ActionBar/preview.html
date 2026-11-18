@@ -1,0 +1,12 @@
+<!-- @dsCard group="Actions" height=150 -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>ActionBar — preview</title></head>
+<body>
+<div id="root"></div>
+<script>
+  var A = window.Areeba, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h('div',{}, h(A.ActionBar,{}, h(A.Button,{},'Continue')), h(A.ActionBar,{stacked:true}, h(A.Button,{},'Share receipt'), h(A.Button,{variant:'secondary'},'Report a problem'))));
+</script>
+</body>
+</html>

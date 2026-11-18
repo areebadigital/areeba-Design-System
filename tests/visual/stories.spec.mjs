@@ -16,7 +16,7 @@ const TYPES = { '.html': 'text/html', '.js': 'text/javascript', '.mjs': 'text/ja
 
 if (!fs.existsSync(path.join(ROOT, 'index.json'))) throw new Error('storybook-static/ is missing: run `npm run build-storybook` first.');
 const stories = Object.values(JSON.parse(fs.readFileSync(path.join(ROOT, 'index.json'), 'utf8')).entries)
-  .filter((e) => e.type === 'story' && (e.id.startsWith('components-') || e.id.startsWith('guides-')))
+  .filter((e) => e.type === 'story' && (e.id.startsWith('components-') || e.id.startsWith('blocks-') || e.id.startsWith('guides-')))
   .map((e) => e.id).sort();
 
 /* The guides page is always RTL, so it runs in light and dark only. */
@@ -24,7 +24,7 @@ const MODES = [{ name: 'light', theme: 'light', dir: 'ltr' }, { name: 'dark', th
 const modesFor = (id) => (id.startsWith('guides-') ? [{ name: 'light', theme: 'light', dir: 'rtl' }, { name: 'dark', theme: 'dark', dir: 'rtl' }] : MODES);
 
 /* Latin words allowed on an Arabic screen: brand and currency codes, card faces (which stay Latin by design), IDs. */
-const LATIN_OK = /^(areeba|CSV|QR|USD|LBP|EUR|GBP|VISA|Visa|MC|IBAN|LB\d+|txn_\w+|k|M|Lina|Haddad|Rami|Khoury|RAMI|KHOURY)$/;
+const LATIN_OK = /^(areeba|pay|v\d+|CSV|PDF|QR|USD|LBP|EUR|GBP|VISA|Visa|MC|IBAN|LB\d+|txn_\w+|k|M|Lina|Haddad|Rami|Khoury|RAMI|KHOURY)$/;
 
 test.beforeEach(async ({ context }) => {
   await context.route('http://sb.local/**', (route) => {

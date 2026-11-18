@@ -1,0 +1,12 @@
+<!-- @dsCard group="Actions" height=96 -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>IconButton — preview</title></head>
+<body>
+<div id="root"></div>
+<script>
+  var A = window.Areeba, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h('div',{className:'ar-row'}, h(A.IconButton,{icon:'back',label:'Back'}), h(A.IconButton,{icon:'bell',label:'Notifications, 2 unread',badge:true}), h(A.IconButton,{icon:'download',label:'Download statement'}), h(A.IconButton,{icon:'close',label:'Close'}), h(A.IconButton,{icon:'eye',label:'Hide balance',variant:'plain'})));
+</script>
+</body>
+</html>

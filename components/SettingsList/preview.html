@@ -1,0 +1,12 @@
+<!-- @dsCard group="Data display" height=260 -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>SettingsList — preview</title></head>
+<body>
+<div id="root"></div>
+<script>
+  var A = window.Areeba, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h('div',{style:{padding:16,maxWidth:380}}, h(A.SettingsList,{title:'Security'}, h(A.SettingsRow,{icon:'lock',label:'Passcode',onClick:function(){}}), h(A.SettingsRow,{icon:'faceId',label:'Face ID',toggle:{defaultChecked:true}}), h(A.SettingsRow,{icon:'alert',label:'Report stolen or missing',tone:'danger',onClick:function(){}}))));
+</script>
+</body>
+</html>

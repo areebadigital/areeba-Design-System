@@ -31,7 +31,7 @@ export interface SwitchProps extends Omit<React.ButtonHTMLAttributes<HTMLButtonE
 }
 export declare function Switch(props: SwitchProps): React.ReactElement;
 
-export interface BadgeProps { tone?: 'neutral' | 'brand' | 'success' | 'warning' | 'danger' | 'info'; dot?: boolean; className?: string; children?: React.ReactNode }
+export interface BadgeProps { tone?: 'neutral' | 'brand' | 'success' | 'warning' | 'danger' | 'info'; dot?: boolean; /** Leading icon (name in Areeba.icons or a component). */ icon?: string | React.ComponentType<React.SVGProps<SVGSVGElement>>; className?: string; children?: React.ReactNode }
 export declare function Badge(props: BadgeProps): React.ReactElement;
 
 export interface AlertProps { tone?: 'info' | 'success' | 'warning' | 'danger'; title?: React.ReactNode; className?: string; children?: React.ReactNode }
@@ -70,10 +70,10 @@ export declare function Dialog(props: DialogProps): React.ReactElement | null;
 export interface ToastProps { tone?: 'neutral' | 'success' | 'danger'; action?: string; onAction?: () => void; className?: string; children?: React.ReactNode }
 export declare function Toast(props: ToastProps): React.ReactElement;
 
-export interface PaymentCardProps { last4: string; holder: string; expiry: string; network?: string; variant?: 'night' | 'brand'; frozen?: boolean; className?: string }
+export interface PaymentCardProps { last4: string; holder: string; expiry: string; network?: string; variant?: 'night' | 'brand'; frozen?: boolean; /** Fill the container width (up to 420px) instead of the fixed 320px. */ fluid?: boolean; className?: string }
 export declare function PaymentCard(props: PaymentCardProps): React.ReactElement;
 
-export interface EmptyStateProps { title: React.ReactNode; action?: React.ReactNode; className?: string; children?: React.ReactNode }
+export interface EmptyStateProps { title: React.ReactNode; action?: React.ReactNode; /** Heading level of the title (default 3). Use 2 when it is the first heading under the page title. */ level?: 2 | 3 | 4; className?: string; children?: React.ReactNode }
 export declare function EmptyState(props: EmptyStateProps): React.ReactElement;
 
 /** A button with role="checkbox" (no native input). */
@@ -128,4 +128,76 @@ export declare function ltr(text: string): string;
 export declare function LineChart(props: ChartProps): React.ReactElement;
 export declare function BarChart(props: ChartProps): React.ReactElement;
 
-declare global { interface Window { Areeba: { Button: typeof Button; TextField: typeof TextField; Switch: typeof Switch; Badge: typeof Badge; Alert: typeof Alert; Tabs: typeof Tabs; ListItem: typeof ListItem; List: typeof List; TabBar: typeof TabBar; Sidebar: typeof Sidebar; DataTable: typeof DataTable; Dialog: typeof Dialog; Toast: typeof Toast; PaymentCard: typeof PaymentCard; EmptyState: typeof EmptyState; Checkbox: typeof Checkbox; Select: typeof Select; Calendar: typeof Calendar; DatePicker: typeof DatePicker; LineChart: typeof LineChart; BarChart: typeof BarChart; ltr: typeof ltr } } }
+
+/* ---- App building blocks (patterns from the areeba pay app) ---- */
+type IconName = string;
+type IconRef = IconName | React.ComponentType<React.SVGProps<SVGSVGElement>>;
+export declare const icons: Record<string, React.ComponentType<React.SVGProps<SVGSVGElement>>>;
+
+/** Round icon-only button. `label` is the accessible name and is required. */
+export interface IconButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> { icon: IconRef; label: string; /** Unread dot. */ badge?: boolean; variant?: 'soft' | 'plain' }
+export declare const IconButton: React.ForwardRefExoticComponent<IconButtonProps & React.RefAttributes<HTMLButtonElement>>;
+
+/** Top bar of an app screen: start action, centred title (h1), end actions. */
+export interface AppHeaderProps { title: React.ReactNode; subtitle?: React.ReactNode; start?: React.ReactNode; end?: React.ReactNode; /** modal adds a drag handle for sheets. */ variant?: 'default' | 'modal' | 'transparent'; className?: string }
+export declare function AppHeader(props: AppHeaderProps): React.ReactElement;
+
+/** A labelled round action (Top up, Send, More). */
+export interface QuickActionProps extends React.ButtonHTMLAttributes<HTMLButtonElement> { icon: IconRef; label: React.ReactNode }
+export declare const QuickAction: React.ForwardRefExoticComponent<QuickActionProps & React.RefAttributes<HTMLButtonElement>>;
+export declare function QuickActions(props: { label?: string; className?: string; children?: React.ReactNode }): React.ReactElement;
+
+/** Balance hero with a show/hide toggle. */
+export interface BalanceProps { amount: string; label?: React.ReactNode; hidden?: boolean; defaultHidden?: boolean; onToggle?: (hidden: boolean) => void; className?: string }
+export declare function Balance(props: BalanceProps): React.ReactElement;
+
+/** WAI-ARIA menu button. */
+export interface ActionMenuItem { label: string; icon?: IconRef; onSelect?: () => void; disabled?: boolean; danger?: boolean }
+export interface ActionMenuProps { items: ActionMenuItem[]; label?: string; /** Custom trigger; spread the props it receives (ref and ARIA) onto a button. */ button?: (props: Record<string, any>) => React.ReactElement; align?: 'end' | 'start'; className?: string }
+export declare function ActionMenu(props: ActionMenuProps): React.ReactElement;
+
+/** Titled group of settings rows. */
+export declare function SettingsList(props: { title?: React.ReactNode; className?: string; children?: React.ReactNode }): React.ReactElement;
+export interface SettingsRowProps { label: React.ReactNode; icon?: IconRef; description?: React.ReactNode; value?: React.ReactNode; badge?: React.ReactNode; href?: string; onClick?: () => void;
+  /** Turns the row into a switch row. */ toggle?: { checked?: boolean; defaultChecked?: boolean; onChange?: (checked: boolean) => void }; tone?: 'default' | 'danger'; disabled?: boolean }
+export declare function SettingsRow(props: SettingsRowProps): React.ReactElement;
+
+/** Label/value rows for summaries and receipts. */
+export interface DetailItem { label: React.ReactNode; value: React.ReactNode; icon?: IconRef; /** Isolate left-to-right (amounts, card numbers). */ ltr?: boolean; /** Bold row with a divider, for totals. */ emphasis?: boolean }
+export declare function DetailList(props: { items: DetailItem[]; className?: string }): React.ReactElement;
+
+/** Filter pill: toggle (selected) or picker trigger (hasPopup). */
+export interface FilterChipProps extends React.ButtonHTMLAttributes<HTMLButtonElement> { label: React.ReactNode; selected?: boolean; hasPopup?: 'dialog' | 'listbox' | 'menu'; icon?: IconRef }
+export declare function FilterChip(props: FilterChipProps): React.ReactElement;
+
+/** Search input with a clear button. onChange receives the text. */
+export interface SearchFieldProps { label?: string; placeholder?: string; value?: string; defaultValue?: string; onChange?: (value: string) => void; className?: string }
+export declare function SearchField(props: SearchFieldProps): React.ReactElement;
+
+/** Number pad: onKey receives "0"–"9", "." and "back". */
+export interface NumberPadProps { onKey?: (key: string) => void; decimal?: boolean; label?: string; disabled?: boolean; className?: string }
+export declare function NumberPad(props: NumberPadProps): React.ReactElement;
+/** Applies a NumberPad key to an amount string (one point, two decimals, no leading zeros). */
+export declare function padInput(value: string, key: string, maxDigits?: number): string;
+
+/** Large amount entry with fee and limits. value is a plain number string, e.g. "1250.5". */
+export interface AmountInputProps { value?: string; defaultValue?: string; onChange?: (value: string) => void; label?: React.ReactNode; currency?: string;
+  /** 0 shows "Free". */ fee?: number | React.ReactNode; feeLabel?: React.ReactNode; hint?: React.ReactNode; error?: React.ReactNode; /** Driven by a NumberPad. */ readOnly?: boolean; id?: string; className?: string }
+export declare function AmountInput(props: AmountInputProps): React.ReactElement;
+
+export declare function MiniCard(props: { variant?: 'night' | 'brand'; className?: string }): React.ReactElement;
+
+/** Choose one card (WAI-ARIA radio group). */
+export interface PickerCard { value: string; last4: string; balance?: string; variant?: 'night' | 'brand'; note?: React.ReactNode; disabled?: boolean }
+export interface CardPickerProps { cards: PickerCard[]; value?: string | null; defaultValue?: string | null; onChange?: (value: string, card: PickerCard) => void; label?: React.ReactNode; name?: string; className?: string }
+export declare function CardPicker(props: CardPickerProps): React.ReactElement;
+
+/** Sticky bottom actions for a flow step. */
+export declare function ActionBar(props: { stacked?: boolean; className?: string; children?: React.ReactNode }): React.ReactElement;
+/** Carousel position. */
+export declare function PageDots(props: { count: number; current: number; label?: string; className?: string }): React.ReactElement;
+/** End of a flow: success or failure. */
+export declare function Result(props: { title: React.ReactNode; tone?: 'success' | 'danger'; action?: React.ReactNode; className?: string; children?: React.ReactNode }): React.ReactElement;
+
+declare global { interface Window { Areeba: { Button: typeof Button; TextField: typeof TextField; Switch: typeof Switch; Badge: typeof Badge; Alert: typeof Alert; Tabs: typeof Tabs; ListItem: typeof ListItem; List: typeof List; TabBar: typeof TabBar; Sidebar: typeof Sidebar; DataTable: typeof DataTable; Dialog: typeof Dialog; Toast: typeof Toast; PaymentCard: typeof PaymentCard; EmptyState: typeof EmptyState; Checkbox: typeof Checkbox; Select: typeof Select; Calendar: typeof Calendar; DatePicker: typeof DatePicker; LineChart: typeof LineChart; BarChart: typeof BarChart; ltr: typeof ltr;
+  icons: typeof icons; IconButton: typeof IconButton; AppHeader: typeof AppHeader; QuickAction: typeof QuickAction; QuickActions: typeof QuickActions; Balance: typeof Balance; ActionMenu: typeof ActionMenu; SettingsList: typeof SettingsList; SettingsRow: typeof SettingsRow; DetailList: typeof DetailList; FilterChip: typeof FilterChip; SearchField: typeof SearchField; NumberPad: typeof NumberPad; padInput: typeof padInput; AmountInput: typeof AmountInput; MiniCard: typeof MiniCard; CardPicker: typeof CardPicker; ActionBar: typeof ActionBar; PageDots: typeof PageDots; Result: typeof Result } } }
