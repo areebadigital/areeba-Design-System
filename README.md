@@ -101,7 +101,41 @@ Fast and functional: 150ms for hover and press, 250ms ease-out for sheets and pa
 | LineChart | Trends over time, up to four series. |
 | BarChart | Comparing amounts across categories. |
 
+**App components** (patterns from the areeba pay app):
+
+| Component | Use it for |
+| --- | --- |
+| AppHeader | The top bar of an app screen: back or avatar, title, notifications or close. `modal` for sheets. |
+| IconButton | Icon-only actions in headers (back, close, download), always with a label. |
+| QuickAction | The round labelled actions under the balance (Top up, Send, More). |
+| ActionMenu | A short action menu behind a button (lock card, view PIN, report stolen). |
+| ActionBar | Sticky bottom actions of a flow step. |
+| Balance | The balance hero with a show/hide toggle. |
+| SettingsList | Grouped settings, profile and "More" rows: links, switches, values, danger. |
+| DetailList | Label/value rows for receipts and summaries. |
+| FilterChip | Filters above a list, as toggles or picker triggers. |
+| SearchField | Searching a list. |
+| AmountInput | The big amount entry with fee and limits. |
+| NumberPad | A number pad for amounts and passcodes; `padInput()` applies its keys. |
+| CardPicker | Choosing which card pays or receives. |
+| PageDots | Carousel position. |
+| Result | The success or failure screen at the end of a flow. |
+
 Every control is drawn by areeba, never the browser's native widgets (no native dropdowns, date inputs or pickers); each follows the matching WAI-ARIA pattern so keyboard and screen readers still work. React components ship in `components/bundle.js` under `window.Areeba`; all styling is in `components/bundle.css` and reads only tokens, so it works in any web stack. For native iOS/Android, map the same tokens to your platform theme.
+
+## Blocks
+
+Whole screens built only from areeba components, ready to copy, like shadcn/ui blocks. Each is one file in `blocks/` (JSX, `window.Areeba` components, English and Arabic copy picked from `<html lang>`), and its Storybook page shows that file, so the code you copy is the code that runs.
+
+| Block | What it shows |
+| --- | --- |
+| Mobile / Home | Balance, card, quick actions with the card menu, today's activity, tab bar. |
+| Mobile / Card details | Card actions, card settings with the danger action last, recent card activity. |
+| Mobile / Activity | Search, filter chips, transactions grouped by day with totals, empty state. |
+| Mobile / Activity details | One transaction as a sheet; pending and declined. |
+| Mobile / Top up | The full flow: method, card, amount on the number pad, confirm, done. |
+
+The mobile blocks follow the layouts and flows of the areeba pay app, restyled to the system: actions in Crimson Deep, spending in ink, digits 0–9 in Arabic too. They are stories, so the screenshot tests check each in light, dark and right-to-left.
 
 ## Right-to-left
 
@@ -128,6 +162,10 @@ npm run storybook
 ```
 
 `npm run build-storybook` writes a static site to `storybook-static/`. The `Storybook` GitHub Actions workflow builds it on every pull request and publishes it from `main` to https://areebadigital.github.io/areeba-Design-System/ (GitHub Pages). Stories live in `stories/`; they load the real `components/bundle.js`, so Storybook always shows what ships.
+
+### Screenshot tests
+
+The `Screenshot tests` workflow renders every story in light, dark and right-to-left (Arabic) on each pull request. It compares them with the reference screenshots in `tests/visual/__screenshots__`, and checks for errors, accessibility violations (axe), horizontal overflow and English left on Arabic screens. When a change is intended, add the `update-screenshots` label to the pull request to regenerate them on its branch. Details: [`tests/visual/README.md`](tests/visual/README.md).
 
 ## Figma
 

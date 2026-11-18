@@ -1,0 +1,12 @@
+<!-- @dsCard group="Inputs" height=230 -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>CardPicker — preview</title></head>
+<body>
+<div id="root"></div>
+<script>
+  var A = window.Areeba, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h('div',{style:{padding:16,maxWidth:360}}, h(A.CardPicker,{label:'From this card',defaultValue:'5678',cards:[{value:'5678',last4:'5678',balance:'$1,395.72'},{value:'9101',last4:'9101',balance:'$240.10',variant:'brand'},{value:'1121',last4:'1121',note:'Supplementary',disabled:true}]})));
+</script>
+</body>
+</html>

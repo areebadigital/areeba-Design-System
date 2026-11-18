@@ -1,13 +1,13 @@
-/* @ds-bundle: {"format":4,"namespace":"Areeba","components":[{"name":"Button"},{"name":"TextField"},{"name":"Switch"},{"name":"Badge"},{"name":"Alert"},{"name":"Tabs"},{"name":"ListItem"},{"name":"TabBar"},{"name":"Sidebar"},{"name":"DataTable"},{"name":"Dialog"},{"name":"Toast"},{"name":"PaymentCard"},{"name":"EmptyState"},{"name":"Checkbox"},{"name":"Select"},{"name":"DatePicker"},{"name":"LineChart"},{"name":"BarChart"}]} */
+/* @ds-bundle: {"format":4,"namespace":"Areeba","components":[{"name":"Button"},{"name":"TextField"},{"name":"Switch"},{"name":"Badge"},{"name":"Alert"},{"name":"Tabs"},{"name":"ListItem"},{"name":"TabBar"},{"name":"Sidebar"},{"name":"DataTable"},{"name":"Dialog"},{"name":"Toast"},{"name":"PaymentCard"},{"name":"EmptyState"},{"name":"Checkbox"},{"name":"Select"},{"name":"DatePicker"},{"name":"LineChart"},{"name":"BarChart"},{"name":"AppHeader"},{"name":"IconButton"},{"name":"QuickAction"},{"name":"Balance"},{"name":"ActionMenu"},{"name":"SettingsList"},{"name":"DetailList"},{"name":"FilterChip"},{"name":"SearchField"},{"name":"NumberPad"},{"name":"AmountInput"},{"name":"CardPicker"},{"name":"ActionBar"},{"name":"PageDots"},{"name":"Result"}]} */
 (function () {
   var React = window.React, h = React.createElement;
   function cx() { return Array.prototype.filter.call(arguments, Boolean).join(" "); }
   function rest(p, keys) { var o = {}; for (var k in p) if (keys.indexOf(k) < 0) o[k] = p[k]; return o; }
   var uid = 0; function useId(given) { var r = React.useRef(given || "ar-" + (++uid)); return r.current; }
 
-  function Icon(path) {
+  function Icon(path, flip) {
     return function (props) {
-      return h("svg", Object.assign({ viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 1.75, strokeLinecap: "round", strokeLinejoin: "round", "aria-hidden": "true" }, props), path.map(function (d, i) { return h("path", { key: i, d: d }); }));
+      return h("svg", Object.assign({ viewBox: "0 0 24 24", className: flip ? "ar-icon-flip" : undefined, fill: "none", stroke: "currentColor", strokeWidth: 1.75, strokeLinecap: "round", strokeLinejoin: "round", "aria-hidden": "true" }, props, { className: cx(flip && "ar-icon-flip", props && props.className) || undefined }), path.map(function (d, i) { return h("path", { key: i, d: d }); }));
     };
   }
   var icons = {
@@ -21,15 +21,46 @@
     settings: Icon(["M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z", "M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"]),
     info: Icon(["M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z", "M12 11v5", "M12 8h.01"]),
     check: Icon(["M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z", "M8 12l3 3 5-6"]),
-    alert: Icon(["M12 3 2 20h20z", "M12 10v4", "M12 17h.01"])
+    alert: Icon(["M12 3 2 20h20z", "M12 10v4", "M12 17h.01"]),
+    /* added for the app blocks; flip=true for arrows that mean back/forward, so they mirror in RTL */
+    bell: Icon(["M6 9a6 6 0 1 1 12 0c0 7 3 8 3 8H3s3-1 3-8", "M10 21h4"]),
+    eye: Icon(["M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z", "M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"]),
+    eyeOff: Icon(["M3 3l18 18", "M10.6 5.1A10 10 0 0 1 12 5c6.5 0 10 7 10 7a17 17 0 0 1-3.2 4.1", "M6.6 6.6C3.8 8.4 2 12 2 12s3.5 7 10 7a9.8 9.8 0 0 0 5.4-1.6", "M9.9 9.9a3 3 0 0 0 4.2 4.2"]),
+    plus: Icon(["M12 5v14", "M5 12h14"]),
+    arrowUpRight: Icon(["M7 17 17 7", "M8 7h9v9"]),
+    more: Icon(["M11 5a1 1 0 1 0 2 0a1 1 0 1 0-2 0", "M11 12a1 1 0 1 0 2 0a1 1 0 1 0-2 0", "M11 19a1 1 0 1 0 2 0a1 1 0 1 0-2 0"]),
+    lock: Icon(["M6 11h12v10H6z", "M8 11V7a4 4 0 0 1 8 0v4"]),
+    pin: Icon(["M3 7h18v10H3z", "M7 12h.01", "M11 12h.01", "M15 12h2"]),
+    star: Icon(["M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"]),
+    close: Icon(["M6 6l12 12", "M18 6 6 18"]),
+    back: Icon(["M19 12H5", "M11 6l-6 6 6 6"], true),
+    forward: Icon(["M5 12h14", "M13 6l6 6-6 6"], true),
+    chevronRight: Icon(["M9 6l6 6-6 6"], true),
+    chevronDown: Icon(["M6 9l6 6 6-6"]),
+    search: Icon(["M11 18a7 7 0 1 0 0-14 7 7 0 0 0 0 14z", "M20 20l-4-4"]),
+    download: Icon(["M12 4v11", "M7 10l5 5 5-5", "M5 20h14"]),
+    share: Icon(["M12 15V4", "M8 8l4-4 4 4", "M5 12v8h14v-8"]),
+    doc: Icon(["M7 3h7l5 5v13H7z", "M14 3v5h5", "M10 13h6", "M10 17h6"]),
+    backspace: Icon(["M9 5h11v14H9l-6-7z", "M12 9l5 6", "M17 9l-5 6"], true),
+    phone: Icon(["M8 3h8v18H8z", "M11 18h2"]),
+    mail: Icon(["M3 6h18v12H3z", "M3 7l9 6 9-6"]),
+    logout: Icon(["M10 4H5v16h5", "M15 8l4 4-4 4", "M19 12H9"], true),
+    faceId: Icon(["M4 8V5h3", "M17 5h3v3", "M20 16v3h-3", "M7 19H4v-3", "M9 10v1", "M15 10v1", "M12 10v3h-1", "M9.5 16a4 4 0 0 0 5 0"]),
+    help: Icon(["M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z", "M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7", "M12 17h.01"]),
+    globe: Icon(["M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z", "M3 12h18", "M12 3a14 14 0 0 1 0 18", "M12 3a14 14 0 0 0 0 18"]),
+    transfer: Icon(["M4 8h14", "M14 4l4 4-4 4", "M20 16H6", "M10 12l-4 4 4 4"])
   };
 
   /* Built-in words, in the page's language (<html lang>). Every one can be overridden by a prop. */
   var UI_TEXT = {
     en: { nav: "Main", empty: "No results", select: "Select", frozen: "Frozen", card: function (n, l4, fz) { return (n || "Card") + " ending " + l4 + (fz ? ", frozen" : ""); },
-      prev: "Previous month", next: "Next month", pick: "Select date" },
+      prev: "Previous month", next: "Next month", pick: "Select date",
+      balance: "Available balance", showBalance: "Show balance", hideBalance: "Hide balance", balanceHidden: "Balance hidden", more: "More actions",
+      search: "Search", clear: "Clear search", keypad: "Number pad", del: "Delete", fee: "Transaction fee", free: "Free", position: function (c, n) { return c + " of " + n; } },
     ar: { nav: "التنقل الرئيسي", empty: "لا توجد نتائج", select: "اختر", frozen: "مجمّدة", card: function (n, l4, fz) { return "بطاقة " + (n || "") + " تنتهي بـ " + l4 + (fz ? "، مجمّدة" : ""); },
-      prev: "الشهر السابق", next: "الشهر التالي", pick: "اختر تاريخًا" },
+      prev: "الشهر السابق", next: "الشهر التالي", pick: "اختر تاريخًا",
+      balance: "الرصيد المتاح", showBalance: "إظهار الرصيد", hideBalance: "إخفاء الرصيد", balanceHidden: "الرصيد مخفي", more: "إجراءات إضافية",
+      search: "بحث", clear: "مسح البحث", keypad: "لوحة الأرقام", del: "حذف", fee: "رسوم المعاملة", free: "مجاني", position: function (c, n) { return c + " من " + n; } },
   };
   function ui(lang) { var l = String(lang || (typeof document !== "undefined" && document.documentElement.lang) || "en").slice(0, 2).toLowerCase(); return UI_TEXT[l] || UI_TEXT.en; }
 
@@ -66,7 +97,7 @@
     var id = useId(p.id), labelId = id + "-label", t = useToggle(p), on = t[0];
     return h(React.Fragment, null,
       h("button", Object.assign({}, rest(p, TOGGLE_KEYS), { type: "button", role: "switch", id: id, className: cx("ar-switch", p.className),
-        "aria-checked": on ? "true" : "false", "aria-labelledby": p.label ? labelId : undefined, disabled: p.disabled, onClick: t[1] }),
+        "aria-checked": on ? "true" : "false", "aria-labelledby": p.label ? labelId : p["aria-labelledby"], disabled: p.disabled, onClick: t[1] }),
         h("span", { className: "ar-switch-track", "aria-hidden": "true" }),
         p.label && h("span", { id: labelId, className: "ar-switch-label" }, p.label)),
       formValue(p, on));
@@ -75,7 +106,7 @@
   function Badge(p) {
     var tone = p.tone || "neutral";
     return h("span", { className: cx("ar-badge", tone !== "neutral" && "ar-badge-" + tone, p.className) },
-      p.dot && h("span", { className: "ar-badge-dot", "aria-hidden": "true" }), p.children);
+      p.dot && h("span", { className: "ar-badge-dot", "aria-hidden": "true" }), p.icon && renderIcon(p.icon, { className: "ar-badge-icon" }), p.children);
   }
 
   function Alert(p) {
@@ -167,7 +198,7 @@
   }
 
   function PaymentCard(p) {
-    return h("div", { className: cx("ar-pcard", "ar-pcard-" + (p.variant || "night"), p.className), dir: "ltr", role: "img", "aria-label": ui().card(p.network, p.last4, p.frozen) },
+    return h("div", { className: cx("ar-pcard", "ar-pcard-" + (p.variant || "night"), p.fluid && "ar-pcard-fluid", p.className), dir: "ltr", role: "img", "aria-label": ui().card(p.network, p.last4, p.frozen) },
       h("div", { className: "ar-pcard-top" }, h("span", { className: "ar-pcard-logo" }, "areeba"), p.frozen && h("span", { className: "ar-pcard-frozen", dir: "auto" }, ui().frozen)),
       h("svg", { className: "ar-pcard-chip", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 2, strokeLinecap: "round", "aria-hidden": "true" },
         h("path", { d: "M8 8a6 6 0 0 1 0 8" }), h("path", { d: "M12 5a10 10 0 0 1 0 14" }), h("path", { d: "M16 2a14 14 0 0 1 0 20" })),
@@ -182,7 +213,7 @@
         h("rect", { x: 28, y: 18, width: 64, height: 40, rx: 8, className: "ar-empty-b" }),
         h("rect", { x: 38, y: 44, width: 16, height: 4, rx: 2, className: "ar-empty-c" }),
         h("rect", { x: 58, y: 44, width: 16, height: 4, rx: 2, className: "ar-empty-c" })),
-      h("h3", { className: "ar-empty-title" }, p.title),
+      h("h" + (p.level || 3), { className: "ar-empty-title" }, p.title),
       p.children && h("p", { className: "ar-empty-body" }, p.children),
       p.action && h("div", { className: "ar-empty-action" }, p.action));
   }
@@ -462,5 +493,220 @@
      place inside translated sentences; components that show amounts already isolate them. */
   function ltr(text) { return "\u2066" + text + "\u2069"; }
 
-  window.Areeba = Object.assign(window.Areeba || {}, { Button: Button, TextField: TextField, Switch: Switch, Badge: Badge, Alert: Alert, Tabs: Tabs, ListItem: ListItem, List: List, TabBar: TabBar, Sidebar: Sidebar, DataTable: DataTable, Dialog: Dialog, Toast: Toast, PaymentCard: PaymentCard, EmptyState: EmptyState, Checkbox: Checkbox, Select: Select, DatePicker: DatePicker, Calendar: Calendar, LineChart: LineChart, BarChart: BarChart, icons: icons, ltr: ltr });
+
+  /* ---- app building blocks (from the areeba pay app) ---- */
+  function iconOf(i) { return typeof i === "string" ? icons[i] : i; }
+  function renderIcon(i, props) { var I = iconOf(i); return I ? h(I, props || null) : null; }
+
+  /* A round icon-only button (header actions, close, back). `label` is its accessible name and is required. */
+  var IconButton = React.forwardRef(function IconButton(p, ref) {
+    return h("button", Object.assign({}, rest(p, ["icon", "label", "badge", "variant", "className"]), { ref: ref, type: "button", "aria-label": p.label,
+      className: cx("ar-iconbtn", p.variant === "plain" && "ar-iconbtn-plain", p.className) }),
+      renderIcon(p.icon), p.badge && h("span", { className: "ar-iconbtn-dot", "aria-hidden": "true" }));
+  });
+
+  /* Top bar of an app screen: start action (back, avatar), centred title, end action (notifications, menu).
+     variant "modal" adds a drag handle for sheets; "transparent" drops the background. */
+  function AppHeader(p) {
+    var v = p.variant || "default";
+    return h("header", { className: cx("ar-apphead", "ar-apphead-" + v, p.className) },
+      v === "modal" && h("span", { className: "ar-apphead-handle", "aria-hidden": "true" }),
+      h("div", { className: "ar-apphead-row" },
+        h("div", { className: "ar-apphead-start" }, p.start),
+        h("div", { className: "ar-apphead-mid" }, h("h1", { className: "ar-apphead-title" }, p.title), p.subtitle && h("div", { className: "ar-apphead-sub" }, p.subtitle)),
+        h("div", { className: "ar-apphead-end" }, p.end)));
+  }
+
+  /* A labelled round action under the balance: Top up, Send, More. */
+  var QuickAction = React.forwardRef(function QuickAction(p, ref) {
+    return h("button", Object.assign({}, rest(p, ["icon", "label", "className"]), { ref: ref, type: "button", className: cx("ar-qa", p.className) }),
+      h("span", { className: "ar-qa-circle", "aria-hidden": "true" }, renderIcon(p.icon)), h("span", { className: "ar-qa-label" }, p.label));
+  });
+  function QuickActions(p) { return h("div", { className: cx("ar-qas", p.className), role: "group", "aria-label": p.label }, p.children); }
+
+  /* The balance hero with a show/hide toggle. Hidden balances are masked on screen and for screen readers. */
+  function Balance(p) {
+    var st = React.useState(!!p.defaultHidden), hidden = p.hidden !== undefined ? p.hidden : st[0], t = ui();
+    function toggle() { st[1](!hidden); if (p.onToggle) p.onToggle(!hidden); }
+    return h("div", { className: cx("ar-balance", p.className) },
+      h("div", { className: "ar-balance-label" }, h("span", null, p.label || t.balance),
+        h(IconButton, { icon: hidden ? "eyeOff" : "eye", label: hidden ? t.showBalance : t.hideBalance, "aria-pressed": hidden ? "false" : "true", variant: "plain", onClick: toggle, className: "ar-balance-toggle" })),
+      hidden ? h("div", { className: "ar-balance-amount" }, h("span", { className: "ar-sr-only" }, t.balanceHidden), h("span", { "aria-hidden": "true" }, "••••••"))
+        : h("div", { className: "ar-balance-amount", dir: "ltr" }, p.amount));
+  }
+
+  /* WAI-ARIA menu button. Items: { label, icon, onSelect, disabled, danger }. `button` renders a custom trigger
+     (it receives ref and ARIA props), e.g. a QuickAction; the default is an IconButton with the "more" icon. */
+  function ActionMenu(p) {
+    var items = p.items || [], os = React.useState(false), open = os[0], as = React.useState(0), active = as[0];
+    var wrap = React.useRef(null), trig = React.useRef(null), menuId = useId() + "-menu", refs = React.useRef([]);
+    var enabled = items.map(function (it, i) { return it.disabled ? -1 : i; }).filter(function (i) { return i >= 0; });
+    function openAt(i) { os[1](true); as[1](i); }
+    function close(refocus) { os[1](false); if (refocus && trig.current) trig.current.focus(); }
+    function move(d) { var k = enabled.indexOf(active); as[1](enabled[(k + d + enabled.length) % enabled.length]); }
+    function choose(i) { var it = items[i]; if (!it || it.disabled) return; close(true); if (it.onSelect) it.onSelect(); }
+    React.useEffect(function () { if (open && refs.current[active]) refs.current[active].focus(); }, [open, active]);
+    React.useEffect(function () {
+      if (!open) return;
+      function out(e) { if (wrap.current && !wrap.current.contains(e.target)) close(false); }
+      document.addEventListener("mousedown", out); return function () { document.removeEventListener("mousedown", out); };
+    }, [open]);
+    function onTrigKey(e) { if (e.key === "ArrowDown" || e.key === "Enter" || e.key === " ") { e.preventDefault(); openAt(enabled[0]); } else if (e.key === "ArrowUp") { e.preventDefault(); openAt(enabled[enabled.length - 1]); } }
+    function onMenuKey(e) {
+      var k = e.key;
+      if (k === "ArrowDown") { e.preventDefault(); move(1); } else if (k === "ArrowUp") { e.preventDefault(); move(-1); }
+      else if (k === "Home") { e.preventDefault(); as[1](enabled[0]); } else if (k === "End") { e.preventDefault(); as[1](enabled[enabled.length - 1]); }
+      else if (k === "Escape") { e.preventDefault(); close(true); } else if (k === "Tab") { close(false); }
+      else if (k === "Enter" || k === " ") { e.preventDefault(); choose(active); }
+      else if (k.length === 1) { var q = k.toLowerCase(), hit = enabled.filter(function (i) { return String(items[i].label).toLowerCase().indexOf(q) === 0; })[0]; if (hit !== undefined) as[1](hit); }
+    }
+    var trigProps = { ref: trig, "aria-haspopup": "menu", "aria-expanded": open ? "true" : "false", "aria-controls": open ? menuId : undefined,
+      onClick: function () { open ? close(false) : openAt(enabled[0]); }, onKeyDown: onTrigKey };
+    return h("div", { className: cx("ar-menu-wrap", p.className), ref: wrap },
+      p.button ? p.button(trigProps) : h(IconButton, Object.assign({ icon: "more", label: p.label || ui().more }, trigProps)),
+      open && h("ul", { className: cx("ar-menu", p.align === "start" && "ar-menu-start"), role: "menu", id: menuId, "aria-label": p.label || ui().more, onKeyDown: onMenuKey },
+        items.map(function (it, i) {
+          return h("li", { key: i, role: "menuitem", tabIndex: -1, ref: function (el) { refs.current[i] = el; }, "aria-disabled": it.disabled ? "true" : undefined,
+            className: cx("ar-menu-item", it.danger && "ar-menu-danger"), onClick: function () { choose(i); }, onMouseEnter: function () { if (!it.disabled) as[1](i); } },
+            h("span", null, it.label), it.icon && renderIcon(it.icon, { className: "ar-menu-icon" }));
+        })));
+  }
+
+  /* A titled group of rows for settings and "More" menus. */
+  function SettingsList(p) {
+    var id = useId();
+    return h("section", { className: cx("ar-set", p.className), "aria-labelledby": p.title ? id : undefined },
+      p.title && h("h2", { className: "ar-set-title", id: id }, p.title), h("div", { className: "ar-set-group", role: "list" }, p.children));
+  }
+  /* One settings row: a link (href), a button (onClick), a switch (toggle: { checked, defaultChecked, onChange }) or plain info.
+     tone "danger" for Report stolen / Sign out. */
+  function SettingsRow(p) {
+    var id = useId(), labelId = id + "-l", clickable = !!(p.href || p.onClick), tg = p.toggle;
+    var body = [renderIcon(p.icon, { key: "i", className: "ar-set-icon" }),
+      h("span", { key: "t", className: "ar-set-text" }, h("span", { id: labelId, className: "ar-set-label" }, p.label, p.badge && h("span", { className: "ar-set-badge" }, p.badge)),
+        p.description && h("span", { className: "ar-set-desc" }, p.description)),
+      p.value !== undefined && h("span", { key: "v", className: "ar-set-value", dir: "auto" }, p.value),
+      tg && h(Switch, { key: "s", "aria-labelledby": labelId, checked: tg.checked, defaultChecked: tg.defaultChecked, onChange: tg.onChange, disabled: p.disabled }),
+      clickable && h(icons.chevronRight, { key: "c", className: "ar-set-chev" })];
+    var cls = cx("ar-set-row", p.tone === "danger" && "ar-set-danger", p.disabled && "ar-set-disabled");
+    var inner = p.href ? h("a", { href: p.href, className: cls, onClick: p.onClick }, body)
+      : p.onClick ? h("button", { type: "button", className: cls, onClick: p.onClick, disabled: p.disabled }, body)
+      : h("div", { className: cls }, body);
+    return h("div", { role: "listitem", className: "ar-set-item" }, inner);
+  }
+
+  /* Label/value rows for summaries and receipts. Item: { label, value, ltr } (ltr isolates amounts and card numbers). */
+  function DetailList(p) {
+    return h("dl", { className: cx("ar-dl", p.className) }, (p.items || []).map(function (it, i) {
+      return h("div", { key: i, className: cx("ar-dl-row", it.emphasis && "ar-dl-strong") }, h("dt", null, it.icon && renderIcon(it.icon, { className: "ar-dl-icon" }), it.label),
+        h("dd", { dir: it.ltr ? "ltr" : undefined }, it.value));
+    }));
+  }
+
+  /* A filter pill. Toggle filters use `selected` (aria-pressed); filters that open a picker pass `hasPopup` and show a chevron. */
+  function FilterChip(p) {
+    return h("button", Object.assign({}, rest(p, ["label", "selected", "hasPopup", "className", "icon"]), { type: "button", className: cx("ar-chip", p.selected && "ar-chip-on", p.className),
+      "aria-pressed": p.hasPopup ? undefined : (p.selected ? "true" : "false"), "aria-haspopup": p.hasPopup ? p.hasPopup : undefined }),
+      p.icon && renderIcon(p.icon), h("span", { dir: "auto" }, p.label), p.hasPopup && h(icons.chevronDown, { className: "ar-chip-chev" }));
+  }
+
+  /* Search box: a real text input (type=search) with a clear button. `label` names it for screen readers. */
+  function SearchField(p) {
+    var st = React.useState(p.defaultValue || ""), val = p.value !== undefined ? p.value : st[0], ref = React.useRef(null), t = ui();
+    function set(v) { st[1](v); if (p.onChange) p.onChange(v); }
+    return h("div", { className: cx("ar-search", p.className), role: "search" },
+      h(icons.search, { className: "ar-search-icon" }),
+      h("input", { ref: ref, type: "search", className: "ar-search-input", "aria-label": p.label || t.search, placeholder: p.placeholder, value: val, onChange: function (e) { set(e.target.value); } }),
+      val && h("button", { type: "button", className: "ar-search-clear", "aria-label": t.clear, onClick: function () { set(""); if (ref.current) ref.current.focus(); } }, h(icons.close, null)));
+  }
+
+  /* Number pad for amounts and passcodes. onKey receives "0"–"9", "." and "back". Digits are always 0–9. */
+  function NumberPad(p) {
+    var t = ui(), keys = ["1", "2", "3", "4", "5", "6", "7", "8", "9", p.decimal ? "." : null, "0", "back"];
+    return h("div", { className: cx("ar-pad", p.className), role: "group", "aria-label": p.label || t.keypad, dir: "ltr" }, keys.map(function (k, i) {
+      if (k === null) return h("span", { key: i, "aria-hidden": "true" });
+      return h("button", { key: i, type: "button", className: cx("ar-pad-key", k === "back" && "ar-pad-back"), "aria-label": k === "back" ? t.del : undefined, disabled: p.disabled,
+        onClick: function () { if (p.onKey) p.onKey(k); } }, k === "back" ? h(icons.backspace, null) : k);
+    }));
+  }
+  /* Applies a NumberPad key to an amount string: one decimal point, two decimals, no leading zeros, `max` digits. */
+  function padInput(value, key, maxDigits) {
+    var v = String(value || "");
+    if (key === "back") return v.slice(0, -1);
+    if (key === ".") return v.indexOf(".") >= 0 ? v : (v || "0") + ".";
+    if (v.indexOf(".") >= 0 && v.split(".")[1].length >= 2) return v;
+    if (v.replace(".", "").length >= (maxDigits || 9)) return v;
+    return v === "0" ? key : v + key;
+  }
+  function groupDigits(v) { var s = String(v || ""), parts = s.split("."); parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ","); return parts.join("."); }
+
+  /* The big amount entry. Type it (inputMode decimal) or drive it from a NumberPad (readOnly). Shows fee and limits. */
+  function AmountInput(p) {
+    var id = useId(p.id), hintId = id + "-hint", st = React.useState(p.defaultValue || ""), val = p.value !== undefined ? p.value : st[0];
+    function set(v) { st[1](v); if (p.onChange) p.onChange(v); }
+    var invalid = !!p.error;
+    return h("div", { className: cx("ar-amount", invalid && "ar-amount-invalid", p.className) },
+      p.label && h("label", { className: "ar-amount-label", htmlFor: id }, p.label),
+      h("div", { className: "ar-amount-row", dir: "ltr" },
+        h("span", { className: "ar-amount-cur", "aria-hidden": "true" }, p.currency || "$"),
+        h("input", { id: id, className: "ar-amount-input", inputMode: p.readOnly ? "none" : "decimal", readOnly: p.readOnly, autoComplete: "off", placeholder: "0",
+          value: groupDigits(val), "aria-invalid": invalid ? "true" : undefined, "aria-describedby": hintId,
+          onChange: function (e) { var raw = e.target.value.replace(/[^\d.]/g, ""), dot = raw.indexOf("."); if (dot >= 0) raw = raw.slice(0, dot + 1) + raw.slice(dot + 1).replace(/\./g, "").slice(0, 2); set(raw); },
+          style: { width: Math.max(1, groupDigits(val).length || 1) + 0.5 + "ch" } })),
+      h("div", { className: "ar-amount-meta", id: hintId },
+        p.fee !== undefined && h("span", null, p.feeLabel || ui().fee, " ", h("b", { className: cx(p.fee === 0 || p.fee === ui().free ? "ar-amount-free" : ""), dir: "auto" }, p.fee === 0 ? ui().free : p.fee)),
+        invalid ? h("span", { className: "ar-amount-error", role: "alert" }, p.error) : p.hint && h("span", { dir: "auto" }, p.hint)));
+  }
+
+  /* A small card face for pickers and summaries. */
+  function MiniCard(p) { return h("span", { className: cx("ar-minicard", "ar-minicard-" + (p.variant || "night"), p.className), "aria-hidden": "true" }); }
+
+  /* Choose one card: WAI-ARIA radio group with roving focus. Card: { value, last4, balance, variant, disabled, note }. */
+  function CardPicker(p) {
+    var cards = p.cards || [], st = React.useState(p.defaultValue !== undefined ? p.defaultValue : null), val = p.value !== undefined ? p.value : st[0];
+    var refs = React.useRef([]), id = useId();
+    var focusIdx = Math.max(0, cards.findIndex(function (c) { return c.value === val && !c.disabled; }));
+    if (val == null || cards[focusIdx] && cards[focusIdx].disabled) focusIdx = cards.findIndex(function (c) { return !c.disabled; });
+    function choose(i) { var c = cards[i]; if (!c || c.disabled) return; st[1](c.value); if (p.onChange) p.onChange(c.value, c); }
+    function onKey(e, i) {
+      var d = (e.key === "ArrowDown" || e.key === "ArrowRight") ? 1 : (e.key === "ArrowUp" || e.key === "ArrowLeft") ? -1 : 0;
+      if (e.key === " " || e.key === "Enter") { e.preventDefault(); choose(i); return; }
+      if (!d) return; e.preventDefault();
+      for (var k = 1; k <= cards.length; k++) { var j = (i + d * k + cards.length * k) % cards.length; if (!cards[j].disabled) { choose(j); if (refs.current[j]) refs.current[j].focus(); return; } }
+    }
+    return h("div", { className: cx("ar-cardpick", p.className) },
+      p.label && h("div", { className: "ar-cardpick-label", id: id }, p.label),
+      h("div", { role: "radiogroup", "aria-labelledby": p.label ? id : undefined, className: "ar-cardpick-list" }, cards.map(function (c, i) {
+        var on = c.value === val;
+        return h("div", { key: c.value, ref: function (el) { refs.current[i] = el; }, role: "radio", "aria-checked": on ? "true" : "false", "aria-disabled": c.disabled ? "true" : undefined,
+          tabIndex: i === focusIdx ? 0 : -1, className: cx("ar-cardpick-opt", on && "ar-cardpick-on"), onClick: function () { choose(i); }, onKeyDown: function (e) { onKey(e, i); } },
+          h(MiniCard, { variant: c.variant }), h("span", { className: "ar-cardpick-num", dir: "ltr" }, "•••• " + c.last4),
+          c.balance && h("span", { className: "ar-cardpick-bal", dir: "ltr" }, c.balance), c.note && h("span", { className: "ar-badge" }, c.note),
+          h("span", { className: "ar-cardpick-dot", "aria-hidden": "true" }));
+      })),
+      p.name && h("input", { type: "hidden", name: p.name, value: val == null ? "" : val }));
+  }
+
+  /* Sticky bottom actions for a flow step. Children are Buttons; `stacked` puts them one above the other. */
+  function ActionBar(p) { return h("div", { className: cx("ar-actionbar", p.stacked && "ar-actionbar-stacked", p.className) }, p.children); }
+
+  /* Position in a carousel. Decorative for sighted users; screen readers hear "Card 1 of 2". */
+  function PageDots(p) {
+    var n = p.count || 0, c = p.current || 0;
+    return h("div", { className: cx("ar-dots", p.className), role: "img", "aria-label": p.label || ui().position(c + 1, n) },
+      Array.from({ length: n }, function (_, i) { return h("span", { key: i, className: cx("ar-dot", i === c && "ar-dot-on") }); }));
+  }
+
+  /* The end of a flow: success or failure with what happened and what next. */
+  function Result(p) {
+    var tone = p.tone || "success";
+    return h("div", { className: cx("ar-result", "ar-result-" + tone, p.className), role: tone === "danger" ? "alert" : "status" },
+      h("span", { className: "ar-result-icon", "aria-hidden": "true" }, h(tone === "danger" ? icons.alert : icons.check, null)),
+      h("h2", { className: "ar-result-title" }, p.title), p.children && h("div", { className: "ar-result-body" }, p.children), p.action && h("div", { className: "ar-result-action" }, p.action));
+  }
+
+  window.Areeba = Object.assign(window.Areeba || {}, { Button: Button, TextField: TextField, Switch: Switch, Badge: Badge, Alert: Alert, Tabs: Tabs, ListItem: ListItem, List: List, TabBar: TabBar, Sidebar: Sidebar, DataTable: DataTable, Dialog: Dialog, Toast: Toast, PaymentCard: PaymentCard, EmptyState: EmptyState, Checkbox: Checkbox, Select: Select, DatePicker: DatePicker, Calendar: Calendar, LineChart: LineChart, BarChart: BarChart, icons: icons, ltr: ltr,
+    IconButton: IconButton, AppHeader: AppHeader, QuickAction: QuickAction, QuickActions: QuickActions, Balance: Balance, ActionMenu: ActionMenu,
+    SettingsList: SettingsList, SettingsRow: SettingsRow, DetailList: DetailList, FilterChip: FilterChip, SearchField: SearchField,
+    NumberPad: NumberPad, padInput: padInput, AmountInput: AmountInput, MiniCard: MiniCard, CardPicker: CardPicker, ActionBar: ActionBar, PageDots: PageDots, Result: Result });
 })();

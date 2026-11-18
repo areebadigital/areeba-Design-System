@@ -1,0 +1,12 @@
+<!-- @dsCard group="Data display" height=200 -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>DetailList — preview</title></head>
+<body>
+<div id="root"></div>
+<script>
+  var A = window.Areeba, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h('div',{style:{padding:16,maxWidth:360}}, h(A.DetailList,{items:[{label:'Total',value:'$100.00',ltr:true,emphasis:true},{label:'From card',value:'•••• 5678',ltr:true,icon:'card'},{label:'Transaction fee',value:'Free',icon:'doc'},{label:'Status',value:h(A.Badge,{tone:'success',dot:true},'Completed')}]})));
+</script>
+</body>
+</html>

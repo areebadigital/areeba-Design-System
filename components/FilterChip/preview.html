@@ -1,0 +1,12 @@
+<!-- @dsCard group="Inputs" height=96 -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>FilterChip — preview</title></head>
+<body>
+<div id="root"></div>
+<script>
+  var A = window.Areeba, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h('div',{className:'ar-row'}, h(A.FilterChip,{label:'1–30 Nov',hasPopup:'dialog'}), h(A.FilterChip,{label:'•••• 9803',hasPopup:'listbox'}), h(A.FilterChip,{label:'Money in',selected:true}), h(A.FilterChip,{label:'Money out'})));
+</script>
+</body>
+</html>

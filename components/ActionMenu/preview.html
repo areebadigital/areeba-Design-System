@@ -1,0 +1,12 @@
+<!-- @dsCard group="Actions" height=320 -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>ActionMenu — preview</title></head>
+<body>
+<div id="root"></div>
+<script>
+  var A = window.Areeba, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h('div',{style:{padding:16,minHeight:280,display:'flex',justifyContent:'flex-end'}}, h(A.ActionMenu,{label:'Card actions',items:[{label:'Lock card',icon:'lock'},{label:'View PIN',icon:'pin'},{label:'Mark as favourite',icon:'star',disabled:true},{label:'Report stolen or missing',icon:'alert',danger:true}]})));
+</script>
+</body>
+</html>

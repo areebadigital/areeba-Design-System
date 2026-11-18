@@ -1,0 +1,12 @@
+<!-- @dsCard group="Data display" height=130 -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>Balance — preview</title></head>
+<body>
+<div id="root"></div>
+<script>
+  var A = window.Areeba, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h('div',{className:'ar-stack'}, h(A.Balance,{amount:'$1,395.72'}), h(A.Balance,{amount:'$1,395.72',defaultHidden:true})));
+</script>
+</body>
+</html>

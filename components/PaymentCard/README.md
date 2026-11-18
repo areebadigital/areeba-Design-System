@@ -8,3 +8,4 @@ A visual of a payment card for wallets, card lists and card detail screens.
 - `frozen` adds an outlined label; the parent should also dim actions that don't apply.
 - Replace the wordmark with the official logo file once uploaded.
 - Right-to-left: the card does not mirror. It reads like the physical card in every language (`dir="ltr"`); only the "Frozen" tag follows the page language.
+- `fluid` makes the card fill its container (up to 420px), as on a phone's home and card screens.

@@ -1,0 +1,12 @@
+<!-- @dsCard group="Actions" height=120 -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>QuickAction — preview</title></head>
+<body>
+<div id="root"></div>
+<script>
+  var A = window.Areeba, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h(A.QuickActions,{label:'Card actions'}, h(A.QuickAction,{icon:'plus',label:'Top up'}), h(A.QuickAction,{icon:'arrowUpRight',label:'Send'}), h(A.QuickAction,{icon:'lock',label:'Lock'}), h(A.QuickAction,{icon:'more',label:'More'})));
+</script>
+</body>
+</html>

@@ -2,3 +2,7 @@ node_modules/
 .DS_Store
 *.png
 storybook-static/
+# Screenshot test references are committed; their run output is not.
+!tests/visual/__screenshots__/*.png
+test-results/
+playwright-report/
