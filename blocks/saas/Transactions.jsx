@@ -1,11 +1,11 @@
 /**
  * Merchant dashboard, Transactions: key numbers for the period, volume over time, and the transactions table
- * with search, filters and export. For areeba's SaaS products (merchant and bank portals).
+ * with search, filters, export and pages. For areeba's SaaS products (merchant and bank portals).
  * Uses only areeba components (window.Areeba); copy in English and Arabic, chosen by <html lang>.
  */
 import { useState } from 'react';
 
-const { Sidebar, SearchField, FilterChip, Button, StatCard, LineChart, DataTable, Badge, icons } = window.Areeba;
+const { Sidebar, SearchField, FilterChip, Button, StatCard, LineChart, DataTable, Pagination, Badge, icons } = window.Areeba;
 
 const COPY = {
   en: {
@@ -29,6 +29,7 @@ const TONES = ['success', 'warning', 'danger'];
 export default function Transactions() {
   const t = COPY[document.documentElement.lang === 'ar' ? 'ar' : 'en'];
   const [only, setOnly] = useState(null);
+  const [page, setPage] = useState(1);
   const rows = ROWS.map(([id, s, amount], i) => ({ id, date: t.dates[i], customer: t.customers[i], status: t.status[s], tone: TONES[s], amount, s }))
     .filter((r) => only === null || r.s === only);
   return (
@@ -66,6 +67,7 @@ export default function Transactions() {
             { key: 'status', label: t.cols[3], render: (r) => <Badge tone={r.tone} dot>{r.status}</Badge> },
             { key: 'amount', label: t.cols[4], align: 'right', numeric: true },
           ]} />
+          <Pagination page={page} total={1284} pageSize={25} onChange={setPage} />
         </section>
       </main>
     </div>

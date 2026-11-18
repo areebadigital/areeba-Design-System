@@ -1,0 +1,12 @@
+<!-- @dsCard group="Status" height=130 -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>Meter — preview</title></head>
+<body>
+<div id="root"></div>
+<script>
+  var A = window.Areeba, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h('div',{style:{padding:16,maxWidth:420,display:'flex',flexDirection:'column',gap:16}}, h(A.Meter,{label:'Monthly limit',value:3200,max:5000,valueText:'$3,200 of $5,000',hint:'Resets on 1 December'}), h(A.Meter,{label:'Account set-up',value:3,max:5,valueText:'3 of 5 steps',tone:'success'})));
+</script>
+</body>
+</html>

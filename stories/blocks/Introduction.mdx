@@ -8,7 +8,7 @@ Whole screens built only from areeba components, ready to copy, like shadcn/ui b
 
 - **Built from the system:** every block uses `window.Areeba` components and tokens, so it follows light and dark, right-to-left and the money rules (Crimson Deep for actions, amounts in ink, declines as a badge) without extra work.
 - **Two languages:** each block carries its English and Arabic copy in a `COPY` object and picks one from `<html lang>`. Switch the toolbar to **Right to left (Arabic)** to see it.
-- **From the areeba pay app:** the mobile blocks follow the layouts and flows of areeba pay (home, cards, activity, top up, send money, notifications, profile, sign in, passcode, eStore), restyled to the design system. **SaaS** blocks are pages for the merchant and bank portals.
+- **From the areeba pay app:** the mobile blocks follow the layouts and flows of areeba pay (home, cards, activity, top up, send money, notifications, profile, sign in, passcode, eStore), restyled to the design system. **SaaS** blocks are pages for the merchant and bank portals: overview, transactions, payouts, settings and sign in.
 - **Tested:** blocks are stories, so the screenshot tests check each one in light, dark and RTL, with axe.
 
 To use one: copy the file into your app, keep the `window.Areeba` import line (or import the components from your bundle), replace the sample data with your API, and translate the `COPY` strings you need.

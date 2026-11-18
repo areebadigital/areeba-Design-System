@@ -4,7 +4,7 @@ One parserless template (`*.figma.ts`, `figma.code`) per component in the Figma 
 
 - Parents compose their children: `Tabs`, `TabBar`, `Sidebar`, `Select`, `Calendar`, `ActionMenu`, `CardPicker` and `DetailList` read their items (`TabsTab`, `TabBarItem`, `SidebarItem`, `SelectOption`, `CalendarDay`, `ActionMenuItem`, `CardPickerOption`, `DetailListRow`) through `metadata.props`, and `List`, `Dialog`, `EmptyState`, `ListItem`, `ActionBar`, `SettingsList` and `Result` render the nested `ListItem`, `Button`, `Badge` and `SettingsRow` templates.
 - Components whose `icon` prop takes a name (`IconButton`, `QuickAction`, `ActionMenu` items, `SettingsRow`) read it from the swapped icon's template (`metadata.props.name`).
-- Icons drawn inside components only (chevron-left, calendar, tick, dash, contactless) are not exported, so they have no template.
+- Icons drawn inside components only (calendar, tick, dash, contactless) are not exported, so they have no template.
 - Property names must match the Figma component exactly (case-sensitive). Every VARIANT value is mapped.
 
 Publishing needs a Figma Organization or Enterprise plan. Run it from the repo root:
