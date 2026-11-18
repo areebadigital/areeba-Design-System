@@ -15,9 +15,9 @@ const Section = (title, ...kids) => h('section', { style: { display: 'flex', fle
   h('h2', { className: 'h3', style: { margin: 0, color: 'var(--ink)' } }, title), ...kids);
 
 const transactions = () => h(A.List, null,
-  h(A.ListItem, { leading: 'س', title: 'سبينيس', subtitle: 'اليوم، 14:32 · فيزا •• 4021', amount: '−$42.00' }),
+  h(A.ListItem, { leading: 'ب', title: 'البقالة الخضراء', subtitle: 'اليوم، 14:32 · فيزا •• 4021', amount: '−$42.00' }),
   h(A.ListItem, { leading: 'ر خ', title: 'رامي خوري', subtitle: 'أمس · تحويل وارد', amount: '+$1,250.00' }),
-  h(A.ListItem, { leading: 'ن', title: 'نتفليكس', subtitle: '12 نوفمبر · اشتراك', amount: '−$15.99', trailing: h(A.Badge, { tone: 'warning' }, 'قيد الانتظار') }));
+  h(A.ListItem, { leading: 'س', title: 'ستريم بوكس', subtitle: '12 نوفمبر · اشتراك', amount: '−$15.99', trailing: h(A.Badge, { tone: 'warning' }, 'قيد الانتظار') }));
 
 export const Actions = {
   render: () => stack(
@@ -77,7 +77,7 @@ export const Dashboard = {
   name: 'SaaS screen',
   parameters: { layout: 'fullscreen' },
   render: () => h('div', { style: { display: 'flex', minHeight: 720, background: 'var(--surface-sunken)' } },
-    h(A.Sidebar, { value: 'tx', footer: 'سبينيس للتجار · بيروت', items: [{ value: 'home', label: 'نظرة عامة', icon: 'home' }, { value: 'tx', label: 'المعاملات', icon: 'list', count: '1,284' }, { value: 'cards', label: 'البطاقات', icon: 'card' }, { value: 'payouts', label: 'المدفوعات', icon: 'send' }, { value: 'stores', label: 'المتاجر', icon: 'store' }, { value: 'reports', label: 'التقارير', icon: 'chart' }, { value: 'settings', label: 'الإعدادات', icon: 'settings' }] }),
+    h(A.Sidebar, { value: 'tx', footer: 'البقالة الخضراء · الفرع الرئيسي', items: [{ value: 'home', label: 'نظرة عامة', icon: 'home' }, { value: 'tx', label: 'المعاملات', icon: 'list', count: '1,284' }, { value: 'cards', label: 'البطاقات', icon: 'card' }, { value: 'payouts', label: 'المدفوعات', icon: 'send' }, { value: 'stores', label: 'المتاجر', icon: 'store' }, { value: 'reports', label: 'التقارير', icon: 'chart' }, { value: 'settings', label: 'الإعدادات', icon: 'settings' }] }),
     h('main', { style: { flex: 1, minWidth: 0, padding: 24, display: 'flex', flexDirection: 'column', gap: 24 } },
       h('div', { className: 'h1', style: { color: 'var(--ink)' } }, 'المعاملات'),
       h(A.LineChart, { title: 'حجم المدفوعات', height: 220, series: [{ key: 'card', label: 'بطاقة' }, { key: 'qr', label: 'QR' }, { key: 'link', label: 'رابط دفع' }], format: (v) => '$' + (v >= 1000 ? v / 1000 + 'k' : v),

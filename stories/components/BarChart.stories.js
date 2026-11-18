@@ -21,4 +21,4 @@ export default {
 };
 
 export const Playground = {};
-export const SingleSeries = { args: { title: 'Payouts by store', series: [{ key: 'v', label: 'Payouts' }], data: [{ label: 'Hamra', v: 18400 }, { label: 'Achrafieh', v: 22100 }, { label: 'Jounieh', v: 9800 }, { label: 'Zahle', v: 6400 }] } };
+export const SingleSeries = { args: { title: 'Payouts by store', series: [{ key: 'v', label: 'Payouts' }], data: [{ label: 'Downtown', v: 18400 }, { label: 'Harbour', v: 22100 }, { label: 'Hillside', v: 9800 }, { label: 'Old town', v: 6400 }] } };

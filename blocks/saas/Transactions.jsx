@@ -13,14 +13,14 @@ const COPY = {
     status: ['Completed', 'Pending', 'Declined'], vol: 'Volume', count: 'Transactions', avg: 'Average ticket', refunds: 'Refunds', vsLast: 'vs October',
     chart: 'Daily volume', card: 'Card', qr: 'QR', table: 'Latest transactions', cols: ['Reference', 'Date', 'Customer', 'Status', 'Amount'], empty: 'No transactions match these filters.',
     customers: ['Rami Khoury', 'Lina Haddad', 'Omar Saad', 'Maya Nassar', 'Karim Aoun'], dates: ['30 Nov, 14:32', '30 Nov, 11:05', '29 Nov, 19:47', '29 Nov, 16:20', '29 Nov, 09:12'],
-    nav: ['Overview', 'Transactions', 'Payouts', 'Stores', 'Reports', 'Settings'], footer: 'Spinneys Merchant · Beirut', days: ['1 Nov', '8 Nov', '15 Nov', '22 Nov', '30 Nov'],
+    nav: ['Overview', 'Transactions', 'Payouts', 'Stores', 'Reports', 'Settings'], footer: 'Green Grocer · Main branch', days: ['1 Nov', '8 Nov', '15 Nov', '22 Nov', '30 Nov'],
   },
   ar: {
     title: 'المعاملات', period: '1–30 نوفمبر 2026', store: 'كل المتاجر', export: 'تصدير CSV', search: 'البحث في المعاملات', placeholder: 'المرجع أو العميل أو البطاقة',
     status: ['مكتمل', 'قيد الانتظار', 'مرفوض'], vol: 'الحجم', count: 'المعاملات', avg: 'متوسط الفاتورة', refunds: 'المبالغ المستردة', vsLast: 'مقارنة بأكتوبر',
     chart: 'الحجم اليومي', card: 'بطاقة', qr: 'QR', table: 'أحدث المعاملات', cols: ['المرجع', 'التاريخ', 'العميل', 'الحالة', 'المبلغ'], empty: 'لا توجد معاملات تطابق عوامل التصفية.',
     customers: ['رامي خوري', 'لينا حداد', 'عمر سعد', 'مايا نصار', 'كريم عون'], dates: ['30 نوفمبر، 14:32', '30 نوفمبر، 11:05', '29 نوفمبر، 19:47', '29 نوفمبر، 16:20', '29 نوفمبر، 09:12'],
-    nav: ['نظرة عامة', 'المعاملات', 'المدفوعات', 'المتاجر', 'التقارير', 'الإعدادات'], footer: 'سبينيس للتجار · بيروت', days: ['1 نوفمبر', '8 نوفمبر', '15 نوفمبر', '22 نوفمبر', '30 نوفمبر'],
+    nav: ['نظرة عامة', 'المعاملات', 'المدفوعات', 'المتاجر', 'التقارير', 'الإعدادات'], footer: 'البقالة الخضراء · الفرع الرئيسي', days: ['1 نوفمبر', '8 نوفمبر', '15 نوفمبر', '22 نوفمبر', '30 نوفمبر'],
   },
 };
 const ROWS = [['txn_7Hq2LmA9', 0, '$1,250.00'], ['txn_3Kd8PwQ1', 1, '$89.90'], ['txn_9Zr4TbE6', 2, '$420.00'], ['txn_5Ns1XcV3', 0, '$64.30'], ['txn_2Lp7WqR8', 0, '$212.75']];

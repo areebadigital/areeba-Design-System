@@ -10,14 +10,14 @@ const COPY = {
     title: 'My cards', profile: 'Profile', notifications: 'Notifications, 2 unread', topUp: 'Top up', send: 'Send', more: 'More',
     lock: 'Lock card', pin: 'View PIN', favourite: 'Mark as favourite', info: 'View card info', stolen: 'Report stolen or missing',
     today: 'Today’s activity', seeAll: 'See all activity', pending: 'Pending', actions: 'Card actions',
-    rows: [['RK', 'Rami Khoury', 'Today, 15:54 · Transfer in', '+$50.00'], ['JD', 'Jean Daw', 'Today, 12:10 · Transfer out', '−$100.00'], ['S', 'Spinneys', 'Today, 09:32 · Visa •• 1395', '−$20.90']],
+    rows: [['RK', 'Rami Khoury', 'Today, 15:54 · Transfer in', '+$50.00'], ['JD', 'Jean Daw', 'Today, 12:10 · Transfer out', '−$100.00'], ['G', 'Green Grocer', 'Today, 09:32 · Visa •• 1395', '−$20.90']],
     tabs: ['My cards', 'eStore', 'Payments', 'Profile'],
   },
   ar: {
     title: 'بطاقاتي', profile: 'الملف الشخصي', notifications: 'الإشعارات، 2 غير مقروءة', topUp: 'شحن', send: 'إرسال', more: 'المزيد',
     lock: 'قفل البطاقة', pin: 'عرض الرمز السري', favourite: 'تعيين كمفضلة', info: 'معلومات البطاقة', stolen: 'الإبلاغ عن سرقة أو فقدان',
     today: 'نشاط اليوم', seeAll: 'عرض كل النشاط', pending: 'قيد الانتظار', actions: 'إجراءات البطاقة',
-    rows: [['ر خ', 'رامي خوري', 'اليوم، 15:54 · تحويل وارد', '+$50.00'], ['ج د', 'جان ضو', 'اليوم، 12:10 · تحويل صادر', '−$100.00'], ['س', 'سبينيس', 'اليوم، 09:32 · فيزا •• 1395', '−$20.90']],
+    rows: [['ر خ', 'رامي خوري', 'اليوم، 15:54 · تحويل وارد', '+$50.00'], ['ج د', 'جان ضو', 'اليوم، 12:10 · تحويل صادر', '−$100.00'], ['ب', 'البقالة الخضراء', 'اليوم، 09:32 · فيزا •• 1395', '−$20.90']],
     tabs: ['بطاقاتي', 'المتجر', 'المدفوعات', 'الملف'],
   },
 };

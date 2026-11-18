@@ -5,7 +5,7 @@ export default {
   title: 'Components/Navigation/Sidebar',
   component: A.Sidebar,
   parameters: { ...doc(readme), layout: 'fullscreen' },
-  args: { value: 'tx', footer: 'Spinneys Merchant · Beirut', items: [{ value: 'home', label: 'Overview', icon: 'home' }, { value: 'tx', label: 'Transactions', icon: 'list', count: '1,284' }, { value: 'cards', label: 'Cards', icon: 'card' }, { value: 'payouts', label: 'Payouts', icon: 'send' }, { value: 'stores', label: 'Stores', icon: 'store' }, { value: 'reports', label: 'Reports', icon: 'chart' }, { value: 'settings', label: 'Settings', icon: 'settings' }] },
+  args: { value: 'tx', footer: 'Green Grocer · Main branch', items: [{ value: 'home', label: 'Overview', icon: 'home' }, { value: 'tx', label: 'Transactions', icon: 'list', count: '1,284' }, { value: 'cards', label: 'Cards', icon: 'card' }, { value: 'payouts', label: 'Payouts', icon: 'send' }, { value: 'stores', label: 'Stores', icon: 'store' }, { value: 'reports', label: 'Reports', icon: 'chart' }, { value: 'settings', label: 'Settings', icon: 'settings' }] },
   argTypes: {
     items: { control: 'object', description: '`{ value, label, icon, href?, count? }[]`. icon: home · list · card · send · store · chart · settings · user.' },
     value: { control: 'text', description: 'Current page (aria-current="page").' },

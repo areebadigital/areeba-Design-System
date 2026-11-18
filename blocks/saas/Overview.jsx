@@ -7,30 +7,30 @@ const { Sidebar, FilterChip, Button, Alert, StatCard, LineChart, BarChart, Panel
 
 const COPY = {
   en: {
-    title: 'Overview', lead: 'Spinneys Lebanon · all stores', period: '1–30 Nov 2026', export: 'Download report',
+    title: 'Overview', lead: 'Green Grocer · all stores', period: '1–30 Nov 2026', export: 'Download report',
     alertTitle: 'Verify your business documents', alert: 'Upload your commercial register by 5 December to keep payouts on schedule.', upload: 'Upload documents',
     vol: 'Volume', count: 'Transactions', avg: 'Average ticket', refunds: 'Refunds', vsLast: 'vs October',
     chart: 'Daily volume', card: 'Card', qr: 'QR', days: ['1 Nov', '8 Nov', '15 Nov', '22 Nov', '30 Nov'],
-    stores: 'Sales by store', storeNames: ['Hamra', 'Achrafieh', 'Jounieh', 'Zahle'], sales: 'Sales',
+    stores: 'Sales by store', storeNames: ['Downtown', 'Harbour', 'Hillside', 'Old town'], sales: 'Sales',
     latest: 'Latest transactions', viewAll: 'View all', cols: ['Reference', 'Customer', 'Status', 'Amount'], status: ['Completed', 'Pending', 'Declined'],
     customers: ['Rami Khoury', 'Lina Haddad', 'Omar Saad', 'Maya Nassar'],
     next: 'Next payout', nextDesc: 'Sent every business day at 18:00.', amount: 'Amount', date: 'Date', dateValue: '1 Dec 2026', to: 'To', viewPayouts: 'View payouts',
     limit: 'Monthly card limit', limitText: '$186,420 of $250,000', limitHint: 'Resets on 1 December. Ask your bank to raise it.',
     setup: 'Account set-up', setupText: '4 of 5 steps', setupHint: 'Left: verify your business documents.',
-    nav: ['Overview', 'Transactions', 'Payouts', 'Stores', 'Reports', 'Settings'], footer: 'Spinneys Merchant · Beirut',
+    nav: ['Overview', 'Transactions', 'Payouts', 'Stores', 'Reports', 'Settings'], footer: 'Green Grocer · Main branch',
   },
   ar: {
-    title: 'نظرة عامة', lead: 'سبينيس لبنان · كل المتاجر', period: '1–30 نوفمبر 2026', export: 'تنزيل التقرير',
+    title: 'نظرة عامة', lead: 'البقالة الخضراء · كل المتاجر', period: '1–30 نوفمبر 2026', export: 'تنزيل التقرير',
     alertTitle: 'وثّق مستندات نشاطك التجاري', alert: 'حمّل السجل التجاري قبل 5 ديسمبر لتبقى المدفوعات في موعدها.', upload: 'تحميل المستندات',
     vol: 'الحجم', count: 'المعاملات', avg: 'متوسط الفاتورة', refunds: 'المبالغ المستردة', vsLast: 'مقارنة بأكتوبر',
     chart: 'الحجم اليومي', card: 'بطاقة', qr: 'QR', days: ['1 نوفمبر', '8 نوفمبر', '15 نوفمبر', '22 نوفمبر', '30 نوفمبر'],
-    stores: 'المبيعات حسب المتجر', storeNames: ['الحمرا', 'الأشرفية', 'جونية', 'زحلة'], sales: 'المبيعات',
+    stores: 'المبيعات حسب المتجر', storeNames: ['وسط المدينة', 'المرفأ', 'التلة', 'البلدة القديمة'], sales: 'المبيعات',
     latest: 'أحدث المعاملات', viewAll: 'عرض الكل', cols: ['المرجع', 'العميل', 'الحالة', 'المبلغ'], status: ['مكتمل', 'قيد الانتظار', 'مرفوض'],
     customers: ['رامي خوري', 'لينا حداد', 'عمر سعد', 'مايا نصار'],
     next: 'الدفعة التالية', nextDesc: 'تُرسل كل يوم عمل الساعة 18:00.', amount: 'المبلغ', date: 'التاريخ', dateValue: '1 ديسمبر 2026', to: 'إلى', viewPayouts: 'عرض المدفوعات',
     limit: 'الحد الشهري للبطاقات', limitText: '$186,420 من $250,000', limitHint: 'يُعاد ضبطه في 1 ديسمبر. اطلب من مصرفك رفعه.',
     setup: 'إعداد الحساب', setupText: '4 من 5 خطوات', setupHint: 'المتبقي: توثيق مستندات نشاطك التجاري.',
-    nav: ['نظرة عامة', 'المعاملات', 'المدفوعات', 'المتاجر', 'التقارير', 'الإعدادات'], footer: 'سبينيس للتجار · بيروت',
+    nav: ['نظرة عامة', 'المعاملات', 'المدفوعات', 'المتاجر', 'التقارير', 'الإعدادات'], footer: 'البقالة الخضراء · الفرع الرئيسي',
   },
 };
 const ROWS = [['txn_7Hq2LmA9', 0, '$1,250.00'], ['txn_3Kd8PwQ1', 1, '$89.90'], ['txn_9Zr4TbE6', 2, '$420.00'], ['txn_5Ns1XcV3', 0, '$64.30']];

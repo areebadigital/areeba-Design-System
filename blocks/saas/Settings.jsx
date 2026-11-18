@@ -13,30 +13,30 @@ const COPY = {
     business: 'Business details', businessDesc: 'Shown on receipts, invoices and payment links.', name: 'Business name', legal: 'Legal name', country: 'Country', currency: 'Settlement currency',
     email: 'Support email', phone: 'Support phone', address: 'Address', countries: ['Lebanon', 'Jordan', 'United Arab Emirates'], currencies: ['USD · US dollar', 'LBP · Lebanese pound'],
     cancel: 'Cancel', save: 'Save changes',
-    settlement: 'Settlement account', settlementDesc: 'Payouts go to this account. Changing it needs a second approver.', bank: 'Bank', bankName: 'Bank Audi', holder: 'Account holder', change: 'Change account',
+    settlement: 'Settlement account', settlementDesc: 'Payouts go to this account. Changing it needs a second approver.', bank: 'Bank', bankName: 'Example Bank', holder: 'Account holder', change: 'Change account',
     team: 'Team', teamDesc: '4 people can sign in to this portal.', invite: 'Invite member', cols: ['Name', 'Role', 'Last active', 'Actions'],
     roles: { owner: 'Owner', admin: 'Admin', finance: 'Finance', viewer: 'Viewer' }, actionsFor: 'Actions for', changeRole: 'Change role', resend: 'Resend invite', remove: 'Remove from team',
-    people: [['Rami Khoury', 'rami@spinneys.com.lb', 'owner', 'Now'], ['Lina Haddad', 'lina@spinneys.com.lb', 'admin', 'Today'], ['Omar Saad', 'omar@spinneys.com.lb', 'finance', 'Yesterday'], ['Maya Nassar', 'maya@spinneys.com.lb', 'viewer', 'Invited']],
+    people: [['Rami Khoury', 'rami@example.com', 'owner', 'Now'], ['Lina Haddad', 'lina@example.com', 'admin', 'Today'], ['Omar Saad', 'omar@example.com', 'finance', 'Yesterday'], ['Maya Nassar', 'maya@example.com', 'viewer', 'Invited']],
     initials: ['RK', 'LH', 'OS', 'MN'],
     inviteTitle: 'Invite a team member', inviteBody: 'They get an email with a link to set a password. The link works for 7 days.', inviteEmail: 'Work email', role: 'Role', send: 'Send invite',
     payments: 'Payments', payouts: 'Payouts', declined: 'Declined payments', declinedDesc: 'An email for each declined card payment', refund: 'Refund requests', daily: 'Daily summary', dailyDesc: 'Sales and refunds, every morning at 8:00',
     sent: 'Payout sent', failed: 'Payout failed', failedDesc: 'Also sent by text message to the owner',
-    nav: ['Overview', 'Transactions', 'Payouts', 'Stores', 'Reports', 'Settings'], footer: 'Spinneys Merchant · Beirut',
+    nav: ['Overview', 'Transactions', 'Payouts', 'Stores', 'Reports', 'Settings'], footer: 'Green Grocer · Main branch',
   },
   ar: {
     title: 'الإعدادات', tabs: ['النشاط التجاري', 'الفريق', 'الإشعارات'],
     business: 'تفاصيل النشاط التجاري', businessDesc: 'تظهر على الإيصالات والفواتير وروابط الدفع.', name: 'اسم النشاط التجاري', legal: 'الاسم القانوني', country: 'البلد', currency: 'عملة التسوية',
     email: 'بريد الدعم', phone: 'هاتف الدعم', address: 'العنوان', countries: ['لبنان', 'الأردن', 'الإمارات العربية المتحدة'], currencies: ['USD · دولار أمريكي', 'LBP · ليرة لبنانية'],
     cancel: 'إلغاء', save: 'حفظ التغييرات',
-    settlement: 'حساب التسوية', settlementDesc: 'تُحوَّل المدفوعات إلى هذا الحساب. يحتاج تغييره إلى موافقة شخص ثانٍ.', bank: 'المصرف', bankName: 'بنك عودة', holder: 'صاحب الحساب', change: 'تغيير الحساب',
+    settlement: 'حساب التسوية', settlementDesc: 'تُحوَّل المدفوعات إلى هذا الحساب. يحتاج تغييره إلى موافقة شخص ثانٍ.', bank: 'المصرف', bankName: 'مصرف المثال', holder: 'صاحب الحساب', change: 'تغيير الحساب',
     team: 'الفريق', teamDesc: '4 أشخاص يمكنهم تسجيل الدخول إلى هذه البوابة.', invite: 'دعوة عضو', cols: ['الاسم', 'الدور', 'آخر نشاط', 'الإجراءات'],
     roles: { owner: 'المالك', admin: 'مشرف', finance: 'المالية', viewer: 'مشاهد' }, actionsFor: 'إجراءات لـ', changeRole: 'تغيير الدور', resend: 'إعادة إرسال الدعوة', remove: 'إزالة من الفريق',
-    people: [['رامي خوري', 'rami@spinneys.com.lb', 'owner', 'الآن'], ['لينا حداد', 'lina@spinneys.com.lb', 'admin', 'اليوم'], ['عمر سعد', 'omar@spinneys.com.lb', 'finance', 'أمس'], ['مايا نصار', 'maya@spinneys.com.lb', 'viewer', 'مدعوة']],
+    people: [['رامي خوري', 'rami@example.com', 'owner', 'الآن'], ['لينا حداد', 'lina@example.com', 'admin', 'اليوم'], ['عمر سعد', 'omar@example.com', 'finance', 'أمس'], ['مايا نصار', 'maya@example.com', 'viewer', 'مدعوة']],
     initials: ['ر خ', 'ل ح', 'ع س', 'م ن'],
     inviteTitle: 'دعوة عضو إلى الفريق', inviteBody: 'يصله بريد برابط لتعيين كلمة المرور. يعمل الرابط لمدة 7 أيام.', inviteEmail: 'بريد العمل', role: 'الدور', send: 'إرسال الدعوة',
     payments: 'المدفوعات', payouts: 'الدفعات', declined: 'المدفوعات المرفوضة', declinedDesc: 'بريد لكل دفعة بطاقة مرفوضة', refund: 'طلبات الاسترداد', daily: 'ملخص يومي', dailyDesc: 'المبيعات والمبالغ المستردة، كل صباح الساعة 8:00',
     sent: 'تم إرسال الدفعة', failed: 'فشل الدفعة', failedDesc: 'تُرسل أيضًا برسالة نصية إلى المالك',
-    nav: ['نظرة عامة', 'المعاملات', 'المدفوعات', 'المتاجر', 'التقارير', 'الإعدادات'], footer: 'سبينيس للتجار · بيروت',
+    nav: ['نظرة عامة', 'المعاملات', 'المدفوعات', 'المتاجر', 'التقارير', 'الإعدادات'], footer: 'البقالة الخضراء · الفرع الرئيسي',
   },
 };
 
@@ -61,18 +61,18 @@ export default function Settings({ tab = 'business' }) {
             <TabPanel tabs="settings" value="business">
               <Panel title={t.business} description={t.businessDesc} footer={<><Button variant="secondary">{t.cancel}</Button><Button type="submit" form="business-form">{t.save}</Button></>}>
                 <form id="business-form" className="ar-app-form" onSubmit={(e) => e.preventDefault()}>
-                  <TextField label={t.name} defaultValue={lang === 'ar' ? 'سبينيس لبنان' : 'Spinneys Lebanon'} autoComplete="organization" />
-                  <TextField label={t.legal} defaultValue={lang === 'ar' ? 'شركة سبينيس لبنان ش.م.ل.' : 'Spinneys Lebanon SAL'} />
+                  <TextField label={t.name} defaultValue={lang === 'ar' ? 'البقالة الخضراء' : 'Green Grocer'} autoComplete="organization" />
+                  <TextField label={t.legal} defaultValue={lang === 'ar' ? 'شركة البقالة الخضراء ش.م.ل.' : 'Green Grocer SAL'} />
                   <Select label={t.country} name="country" defaultValue="lb" options={[{ value: 'lb', label: t.countries[0] }, { value: 'jo', label: t.countries[1] }, { value: 'ae', label: t.countries[2] }]} />
                   <Select label={t.currency} name="currency" defaultValue="usd" options={[{ value: 'usd', label: t.currencies[0] }, { value: 'lbp', label: t.currencies[1] }]} />
-                  <TextField label={t.email} type="email" defaultValue="support@spinneys.com.lb" autoComplete="email" dir="ltr" />
+                  <TextField label={t.email} type="email" defaultValue="support@example.com" autoComplete="email" dir="ltr" />
                   <TextField label={t.phone} type="tel" prefix="+961" defaultValue="1 123 456" autoComplete="tel-national" dir="ltr" />
-                  <TextField className="ar-app-form-wide" label={t.address} defaultValue={lang === 'ar' ? 'شارع الحمرا، بيروت' : 'Hamra Street, Beirut'} autoComplete="street-address" />
+                  <TextField className="ar-app-form-wide" label={t.address} defaultValue={lang === 'ar' ? '12 شارع السوق' : '12 Market Street'} autoComplete="street-address" />
                 </form>
               </Panel>
               <Panel title={t.settlement} description={t.settlementDesc} actions={<Button variant="secondary" size="sm">{t.change}</Button>}>
                 <DetailList items={[
-                  { label: t.bank, value: t.bankName }, { label: t.holder, value: lang === 'ar' ? 'شركة سبينيس لبنان ش.م.ل.' : 'Spinneys Lebanon SAL' },
+                  { label: t.bank, value: t.bankName }, { label: t.holder, value: lang === 'ar' ? 'شركة البقالة الخضراء ش.م.ل.' : 'Green Grocer SAL' },
                   { label: 'IBAN', value: 'LB62 0999 0000 0001 0019 0122 4821', ltr: true },
                 ]} />
               </Panel>

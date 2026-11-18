@@ -15,4 +15,4 @@ export default {
 };
 
 export const Playground = {};
-export const NoResults = { name: 'No search results', args: { title: 'No matches for “Hamra”', children: 'Check the spelling or clear the filters.' }, render: (args) => h(A.EmptyState, { ...args, action: h(A.Button, { variant: 'secondary' }, 'Clear filters') }) };
+export const NoResults = { name: 'No search results', args: { title: 'No matches for “Downtown”', children: 'Check the spelling or clear the filters.' }, render: (args) => h(A.EmptyState, { ...args, action: h(A.Button, { variant: 'secondary' }, 'Clear filters') }) };
