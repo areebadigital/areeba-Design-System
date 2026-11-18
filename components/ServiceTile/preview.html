@@ -1,0 +1,12 @@
+<!-- @dsCard group="Actions" height=170 -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>ServiceTile — preview</title></head>
+<body>
+<div id="root"></div>
+<script>
+  var A = window.Areeba, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h('div',{className:'ar-tiles',style:{padding:16}}, h(A.ServiceTile,{initials:'A',label:'Alfa',description:'Recharge vouchers',tone:'brand'}), h(A.ServiceTile,{initials:'O',label:'Ogero',description:'Internet and landline',tone:'success'})));
+</script>
+</body>
+</html>

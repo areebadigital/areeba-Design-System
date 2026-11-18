@@ -38,7 +38,7 @@ export default {
     backgrounds: { disable: true },
     controls: { expanded: true, sort: 'requiredFirst' },
     a11y: { test: 'error' },
-    options: { storySort: { order: ['Introduction', 'Foundations', ['Colour', 'Typography', 'Spacing and shape', 'Logos', 'Icons'], 'Components', ['Actions', 'Inputs', 'Status', 'Data display', 'Charts', 'Navigation', 'Overlays'], 'Blocks', ['Introduction', 'Mobile'], 'Guides'] } },
+    options: { storySort: { order: ['Introduction', 'Foundations', ['Colour', 'Typography', 'Spacing and shape', 'Logos', 'Icons'], 'Components', ['Actions', 'Inputs', 'Status', 'Data display', 'Charts', 'Navigation', 'Overlays'], 'Blocks', ['Introduction', 'Mobile', 'SaaS'], 'Guides'] } },
   },
   tags: ['autodocs'],
 };

@@ -199,5 +199,23 @@ export declare function PageDots(props: { count: number; current: number; label?
 /** End of a flow: success or failure. */
 export declare function Result(props: { title: React.ReactNode; tone?: 'success' | 'danger'; action?: React.ReactNode; className?: string; children?: React.ReactNode }): React.ReactElement;
 
+
+/* ---- Round 2 app components ---- */
+export interface AvatarProps { initials?: string; src?: string; size?: 'sm' | 'md' | 'lg'; /** Accessible name when the avatar stands alone. */ label?: string; /** Small success dot (can receive, online). */ status?: boolean; className?: string }
+export declare function Avatar(props: AvatarProps): React.ReactElement;
+/** One-time code: one real input drawn as boxes (paste and SMS autofill work). Digits 0–9 only. */
+export interface CodeInputProps { length?: number; value?: string; defaultValue?: string; onChange?: (code: string) => void; onComplete?: (code: string) => void; label?: React.ReactNode; hint?: React.ReactNode; error?: React.ReactNode; autoFocus?: boolean; id?: string; className?: string }
+export declare function CodeInput(props: CodeInputProps): React.ReactElement;
+export declare function PasscodeDots(props: { length?: number; filled: number; error?: React.ReactNode; className?: string }): React.ReactElement;
+export interface NotificationItemProps { title: React.ReactNode; time?: React.ReactNode; dateTime?: string; unread?: boolean; avatar?: React.ReactNode; icon?: string; actions?: React.ReactNode;
+  /** How a request ended: a word and an icon. */ status?: { tone?: 'success' | 'danger' | 'warning' | 'neutral'; label: React.ReactNode }; className?: string; children?: React.ReactNode }
+export declare function NotificationItem(props: NotificationItemProps): React.ReactElement;
+export interface ServiceTileProps { label: React.ReactNode; description?: React.ReactNode; initials?: string; icon?: string; tone?: 'brand' | 'info' | 'success' | 'warning'; href?: string; onClick?: () => void; disabled?: boolean; className?: string }
+export declare function ServiceTile(props: ServiceTileProps): React.ReactElement;
+export interface StatCardProps { label: React.ReactNode; value: React.ReactNode; icon?: string; change?: { direction: 'up' | 'down' | 'flat'; value: string; label?: React.ReactNode; /** true: success colour, false: danger, undefined: neutral. */ good?: boolean }; className?: string }
+export declare function StatCard(props: StatCardProps): React.ReactElement;
+export declare function CopyCode(props: { code: string; label?: React.ReactNode; onCopy?: (code: string) => void; className?: string }): React.ReactElement;
+
 declare global { interface Window { Areeba: { Button: typeof Button; TextField: typeof TextField; Switch: typeof Switch; Badge: typeof Badge; Alert: typeof Alert; Tabs: typeof Tabs; ListItem: typeof ListItem; List: typeof List; TabBar: typeof TabBar; Sidebar: typeof Sidebar; DataTable: typeof DataTable; Dialog: typeof Dialog; Toast: typeof Toast; PaymentCard: typeof PaymentCard; EmptyState: typeof EmptyState; Checkbox: typeof Checkbox; Select: typeof Select; Calendar: typeof Calendar; DatePicker: typeof DatePicker; LineChart: typeof LineChart; BarChart: typeof BarChart; ltr: typeof ltr;
-  icons: typeof icons; IconButton: typeof IconButton; AppHeader: typeof AppHeader; QuickAction: typeof QuickAction; QuickActions: typeof QuickActions; Balance: typeof Balance; ActionMenu: typeof ActionMenu; SettingsList: typeof SettingsList; SettingsRow: typeof SettingsRow; DetailList: typeof DetailList; FilterChip: typeof FilterChip; SearchField: typeof SearchField; NumberPad: typeof NumberPad; padInput: typeof padInput; AmountInput: typeof AmountInput; MiniCard: typeof MiniCard; CardPicker: typeof CardPicker; ActionBar: typeof ActionBar; PageDots: typeof PageDots; Result: typeof Result } } }
+  icons: typeof icons; IconButton: typeof IconButton; AppHeader: typeof AppHeader; QuickAction: typeof QuickAction; QuickActions: typeof QuickActions; Balance: typeof Balance; ActionMenu: typeof ActionMenu; SettingsList: typeof SettingsList; SettingsRow: typeof SettingsRow; DetailList: typeof DetailList; FilterChip: typeof FilterChip; SearchField: typeof SearchField; NumberPad: typeof NumberPad; padInput: typeof padInput; AmountInput: typeof AmountInput; MiniCard: typeof MiniCard; CardPicker: typeof CardPicker; ActionBar: typeof ActionBar; PageDots: typeof PageDots; Result: typeof Result;
+  Avatar: typeof Avatar; CodeInput: typeof CodeInput; PasscodeDots: typeof PasscodeDots; NotificationItem: typeof NotificationItem; ServiceTile: typeof ServiceTile; StatCard: typeof StatCard; CopyCode: typeof CopyCode } } }
