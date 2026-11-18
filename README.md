@@ -205,10 +205,10 @@ The design library is [areeba Design System 4.0](https://www.figma.com/design/HU
 | Logos & Icons | The four logo files and the icon set |
 | Actions | Button, IconButton, QuickAction, ActionMenu, ActionBar, ServiceTile |
 | Inputs | TextField, Select, Checkbox, Switch, DatePicker (Calendar), SearchField, FilterChip, AmountInput, NumberPad, CardPicker (MiniCard), CodeInput, PasscodeDots |
-| Status | Badge, Alert, Toast, EmptyState, Result, NotificationItem |
-| Data display | ListItem and List, DataTable, PaymentCard, Balance, DetailList, SettingsList (SettingsRow), PageDots, Avatar, StatCard, CopyCode |
+| Status | Badge, Alert, Toast, EmptyState, Result, NotificationItem, Meter |
+| Data display | ListItem and List, DataTable, PaymentCard, Balance, DetailList, SettingsList (SettingsRow), PageDots, Avatar, StatCard, CopyCode, Panel |
 | Charts | LineChart, BarChart |
-| Navigation | Tabs, TabBar, Sidebar, AppHeader |
+| Navigation | Tabs, TabBar, Sidebar, AppHeader, Pagination |
 | Overlays | Dialog (dialog and bottom sheet) |
 
 When a token or component changes here, change the Figma library to match and publish it.
