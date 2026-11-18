@@ -5,9 +5,9 @@ export default {
   title: 'Components/Actions/ServiceTile',
   component: A.ServiceTile,
   parameters: doc(readme),
-  args: { initials: 'A', label: 'Alfa', description: 'Recharge vouchers', tone: 'brand' },
+  args: { initials: 'M1', label: 'Mobile One', description: 'Recharge vouchers', tone: 'brand' },
   render: (args) => h('div', { style: { maxWidth: 200 } }, h(A.ServiceTile, args)),
 };
 
 export const Playground = {};
-export const Grid = { render: () => h('div', { className: 'ar-tiles', style: { maxWidth: 380 } }, h(A.ServiceTile, { initials: 'A', label: 'Alfa', description: 'Recharge vouchers', tone: 'brand' }), h(A.ServiceTile, { initials: 'T', label: 'touch', description: 'Recharge vouchers', tone: 'info' }), h(A.ServiceTile, { initials: 'O', label: 'Ogero', description: 'Internet and landline', tone: 'success' }), h(A.ServiceTile, { icon: 'store', label: 'Gift cards', description: 'Streaming and games', tone: 'warning' })) };
+export const Grid = { render: () => h('div', { className: 'ar-tiles', style: { maxWidth: 380 } }, h(A.ServiceTile, { initials: 'M1', label: 'Mobile One', description: 'Recharge vouchers', tone: 'brand' }), h(A.ServiceTile, { initials: 'M2', label: 'Mobile Two', description: 'Recharge vouchers', tone: 'info' }), h(A.ServiceTile, { initials: 'H', label: 'Home internet', description: 'Internet and landline', tone: 'success' }), h(A.ServiceTile, { icon: 'store', label: 'Gift cards', description: 'Streaming and games', tone: 'warning' })) };

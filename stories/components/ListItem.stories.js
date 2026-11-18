@@ -6,7 +6,7 @@ export default {
   component: A.ListItem,
   subcomponents: { List: A.List },
   parameters: doc(readme),
-  args: { leading: 'S', title: 'Spinneys', subtitle: 'Today, 14:32 · Visa •• 4021', amount: '−$42.00' },
+  args: { leading: 'G', title: 'Green Grocer', subtitle: 'Today, 14:32 · Visa •• 4021', amount: '−$42.00' },
   argTypes: {
     title: { control: 'text' }, subtitle: { control: 'text' },
     leading: { control: 'text', description: 'Initials or an icon in a 40px circle.' },
@@ -18,6 +18,6 @@ export default {
 
 export const Playground = {};
 export const Transactions = { render: () => h(A.List, null,
-  h(A.ListItem, { leading: 'S', title: 'Spinneys', subtitle: 'Today, 14:32 · Visa •• 4021', amount: '−$42.00' }),
+  h(A.ListItem, { leading: 'G', title: 'Green Grocer', subtitle: 'Today, 14:32 · Visa •• 4021', amount: '−$42.00' }),
   h(A.ListItem, { leading: 'RK', title: 'Rami Khoury', subtitle: 'Yesterday · Transfer in', amount: '+$1,250.00' }),
-  h(A.ListItem, { leading: 'N', title: 'Netflix', subtitle: '12 Nov · Subscription', amount: '−$15.99', trailing: h(A.Badge, { tone: 'warning' }, 'Pending') })) };
+  h(A.ListItem, { leading: 'S', title: 'StreamBox', subtitle: '12 Nov · Subscription', amount: '−$15.99', trailing: h(A.Badge, { tone: 'warning' }, 'Pending') })) };

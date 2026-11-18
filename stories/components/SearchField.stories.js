@@ -10,4 +10,4 @@ export default {
 };
 
 export const Playground = {};
-export const WithText = { name: 'With text', args: { defaultValue: 'Spinneys' } };
+export const WithText = { name: 'With text', args: { defaultValue: 'Green Grocer' } };

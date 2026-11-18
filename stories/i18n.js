@@ -7,7 +7,7 @@ const L = (s) => '⁦' + s + '⁩';
 
 export const AR = {
   // SaaS components (round 3)
-  'Business details': 'تفاصيل النشاط التجاري', 'Shown on receipts and invoices.': 'تظهر على الإيصالات والفواتير.', 'Edit': 'تعديل', 'Save changes': 'حفظ التغييرات', 'Business name': 'اسم النشاط التجاري', 'Spinneys Lebanon': 'سبينيس لبنان', 'Country': 'البلد', 'Lebanon': 'لبنان', 'Settlement currency': 'عملة التسوية', 'Recent payouts': 'أحدث المدفوعات', 'View all': 'عرض الكل', '28 Nov': '28 نوفمبر', '21 Nov': '21 نوفمبر', 'Monthly limit': 'الحد الشهري', 'Resets on 1 December': 'يُعاد ضبطه في 1 ديسمبر', 'Close to your limit': 'قاربت الحد', 'Account set-up': 'إعداد الحساب', '3 of 5 steps': '3 من 5 خطوات', 'Business': 'النشاط التجاري', 'Team': 'الفريق', 'Business name, address and settlement account.': 'اسم النشاط التجاري وعنوانه وحساب التسوية.', 'People who can sign in to this portal.': 'الأشخاص الذين يمكنهم تسجيل الدخول إلى هذه البوابة.', 'Emails and texts about payments and payouts.': 'رسائل البريد والرسائل النصية عن المدفوعات والدفعات.', '$3,200 of $5,000': L('$3,200') + ' من ' + L('$5,000'), '$4,100 of $5,000': L('$4,100') + ' من ' + L('$5,000'), '$4,800 of $5,000': L('$4,800') + ' من ' + L('$5,000'), 'Payments stop at $5,000': 'تتوقف المدفوعات عند ' + L('$5,000'),
+  'Business details': 'تفاصيل النشاط التجاري', 'Shown on receipts and invoices.': 'تظهر على الإيصالات والفواتير.', 'Edit': 'تعديل', 'Save changes': 'حفظ التغييرات', 'Business name': 'اسم النشاط التجاري', 'Green Grocer': 'البقالة الخضراء', 'Country': 'البلد', 'Lebanon': 'لبنان', 'Settlement currency': 'عملة التسوية', 'Recent payouts': 'أحدث المدفوعات', 'View all': 'عرض الكل', '28 Nov': '28 نوفمبر', '21 Nov': '21 نوفمبر', 'Monthly limit': 'الحد الشهري', 'Resets on 1 December': 'يُعاد ضبطه في 1 ديسمبر', 'Close to your limit': 'قاربت الحد', 'Account set-up': 'إعداد الحساب', '3 of 5 steps': '3 من 5 خطوات', 'Business': 'النشاط التجاري', 'Team': 'الفريق', 'Business name, address and settlement account.': 'اسم النشاط التجاري وعنوانه وحساب التسوية.', 'People who can sign in to this portal.': 'الأشخاص الذين يمكنهم تسجيل الدخول إلى هذه البوابة.', 'Emails and texts about payments and payouts.': 'رسائل البريد والرسائل النصية عن المدفوعات والدفعات.', '$3,200 of $5,000': L('$3,200') + ' من ' + L('$5,000'), '$4,100 of $5,000': L('$4,100') + ' من ' + L('$5,000'), '$4,800 of $5,000': L('$4,800') + ' من ' + L('$5,000'), 'Payments stop at $5,000': 'تتوقف المدفوعات عند ' + L('$5,000'),
   // Actions
   'Send money': 'إرسال الأموال', 'Pay $42.00': 'ادفع ' + L('$42.00'), 'Export CSV': 'تصدير CSV', 'Cancel': 'إلغاء',
   'Freeze card': 'تجميد البطاقة', 'Disabled': 'غير متاح', 'Continue': 'متابعة', 'Refund': 'استرداد', 'Request': 'طلب',
@@ -17,7 +17,7 @@ export const AR = {
   'Reference': 'المرجع', 'Currency': 'العملة', 'Choose a currency': 'اختر عملة', 'Choose a currency to continue.': 'اختر عملة للمتابعة.',
   'Store': 'المتجر', 'Choose a store': 'اختر متجرًا', 'Payouts go to this store’s account': 'تُحوَّل المدفوعات إلى حساب هذا المتجر',
   'USD · US dollar': 'USD · دولار أمريكي', 'LBP · Lebanese pound': 'LBP · ليرة لبنانية', 'EUR · Euro': 'EUR · يورو', 'GBP · Pound sterling': 'GBP · جنيه إسترليني',
-  'Hamra': 'الحمرا', 'Achrafieh': 'الأشرفية', 'Jounieh': 'جونية', 'Zahle': 'زحلة',
+  'Downtown': 'وسط المدينة', 'Harbour': 'المرفأ', 'Hillside': 'التلة', 'Old town': 'البلدة القديمة',
   'Email me a monthly statement': 'أرسل لي كشف حساب شهري', 'Sent on the 1st of each month': 'يُرسل في الأول من كل شهر',
   'Select all transactions': 'تحديد كل المعاملات', 'Accept international payments': 'قبول المدفوعات الدولية', 'Accept your first payment': 'استقبل أول دفعة',
   'Managed by your bank': 'يديرها مصرفك', 'Online payments': 'المدفوعات عبر الإنترنت', 'Contactless (set by your bank)': 'الدفع بدون تلامس (يحدده مصرفك)',
@@ -31,10 +31,10 @@ export const AR = {
   'Card expires soon': 'البطاقة تنتهي قريبًا', 'Your Visa ending 4021 expires on 30 Nov. A replacement is on its way.': 'تنتهي بطاقة فيزا المنتهية بـ 4021 في 30 نوفمبر. البطاقة البديلة في الطريق.',
   'Card frozen': 'تم تجميد البطاقة', 'Undo': 'تراجع', 'Transfer sent to Rami Khoury': 'تم إرسال التحويل إلى رامي خوري', 'Couldn’t export. Try again.': 'تعذّر التصدير. حاول مجددًا.',
   'No transactions yet': 'لا توجد معاملات بعد', 'When customers pay with areeba, their payments show up here in real time.': 'عندما يدفع العملاء عبر areeba، تظهر مدفوعاتهم هنا فورًا.',
-  'No matches for “Hamra”': 'لا نتائج لـ «الحمرا»', 'Check the spelling or clear the filters.': 'تحقق من الإملاء أو امسح عوامل التصفية.', 'Clear filters': 'مسح عوامل التصفية',
+  'No matches for “Downtown”': 'لا نتائج لـ «وسط المدينة»', 'Check the spelling or clear the filters.': 'تحقق من الإملاء أو امسح عوامل التصفية.', 'Clear filters': 'مسح عوامل التصفية',
   // Data display
-  'Spinneys': 'سبينيس', 'S': 'س', 'Today, 14:32 · Visa •• 4021': 'اليوم، 14:32 · فيزا •• 4021', 'Rami Khoury': 'رامي خوري', 'RK': 'ر خ',
-  'Yesterday · Transfer in': 'أمس · تحويل وارد', 'Netflix': 'نتفليكس', 'N': 'ن', '12 Nov · Subscription': '12 نوفمبر · اشتراك',
+  'Green Grocer': 'البقالة الخضراء', 'G': 'ب', 'S': 'س', 'Today, 14:32 · Visa •• 4021': 'اليوم، 14:32 · فيزا •• 4021', 'Rami Khoury': 'رامي خوري', 'RK': 'ر خ',
+  'Yesterday · Transfer in': 'أمس · تحويل وارد', 'StreamBox': 'ستريم بوكس', 'N': 'ن', '12 Nov · Subscription': '12 نوفمبر · اشتراك',
   'Recent transactions': 'أحدث المعاملات', 'Date': 'التاريخ', 'Customer': 'العميل', 'Status': 'الحالة',
   'Lina Haddad': 'لينا حداد', 'Omar Saad': 'عمر سعد', '16 Nov, 14:32': '16 نوفمبر، 14:32', '16 Nov, 11:05': '16 نوفمبر، 11:05', '15 Nov, 19:47': '15 نوفمبر، 19:47',
   'No transactions in this period': 'لا توجد معاملات في هذه الفترة',
@@ -47,7 +47,7 @@ export const AR = {
   'Period': 'الفترة', 'Day': 'يوم', 'Week': 'أسبوع', 'Month': 'شهر', 'Year': 'سنة', 'All': 'الكل', 'In': 'وارد', 'Out': 'صادر',
   'Main': 'الرئيسية', 'Home': 'الرئيسية', 'Cards': 'البطاقات', 'Pay': 'الدفع', 'Insights': 'التحليلات', 'Profile': 'الملف',
   'Overview': 'نظرة عامة', 'Transactions': 'المعاملات', 'Stores': 'المتاجر', 'Reports': 'التقارير', 'Settings': 'الإعدادات',
-  'Spinneys Merchant · Beirut': 'سبينيس للتجار · بيروت',
+  'Green Grocer · Main branch': 'البقالة الخضراء · الفرع الرئيسي',
   // Overlays
   'Freeze this card?': 'تجميد هذه البطاقة؟', 'Payments will be declined until you unfreeze it.': 'سيتم رفض المدفوعات حتى تقوم بإلغاء التجميد.',
   'Payments with Visa ending 4021 will be declined until you unfreeze it. You can do this anytime.': 'سيتم رفض المدفوعات ببطاقة فيزا المنتهية بـ 4021 حتى تقوم بإلغاء التجميد. يمكنك ذلك في أي وقت.',
@@ -58,9 +58,9 @@ export const AR = {
   'O': 'أ',
   'LH': 'ل ح',
   'FM': 'ف م',
-  'Alfa': 'ألفا',
-  'touch': 'تاتش',
-  'Ogero': 'أوجيرو',
+  'Mobile One': 'موبايل 1', 'M1': 'م1',
+  'Mobile Two': 'موبايل 2', 'M2': 'م2',
+  'Home internet': 'إنترنت المنزل', 'H': 'إ',
   'Recharge vouchers': 'قسائم شحن',
   'Internet and landline': 'الإنترنت والهاتف الثابت',
   'Gift cards': 'بطاقات هدايا',

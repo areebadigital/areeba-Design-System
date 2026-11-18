@@ -6,7 +6,7 @@
 <div id="root"></div>
 <script>
   var A = window.Areeba, h = React.createElement;
-  ReactDOM.createRoot(document.getElementById('root')).render(h('div',{className:'ar-row',style:{alignItems:'flex-start'}}, h(A.Select,{label:'Currency',defaultValue:'usd',defaultOpen:true,options:[{value:'usd',label:'USD · US dollar'},{value:'lbp',label:'LBP · Lebanese pound'},{value:'eur',label:'EUR · Euro'},{value:'gbp',label:'GBP · Pound sterling',disabled:true}]}), h(A.Select,{label:'Store',placeholder:'Choose a store',hint:'Payouts go to this store\u2019s account',options:[{value:'1',label:'Hamra'},{value:'2',label:'Achrafieh'}]})));
+  ReactDOM.createRoot(document.getElementById('root')).render(h('div',{className:'ar-row',style:{alignItems:'flex-start'}}, h(A.Select,{label:'Currency',defaultValue:'usd',defaultOpen:true,options:[{value:'usd',label:'USD · US dollar'},{value:'lbp',label:'LBP · Lebanese pound'},{value:'eur',label:'EUR · Euro'},{value:'gbp',label:'GBP · Pound sterling',disabled:true}]}), h(A.Select,{label:'Store',placeholder:'Choose a store',hint:'Payouts go to this store\u2019s account',options:[{value:'1',label:'Downtown'},{value:'2',label:'Harbour'}]})));
 </script>
 </body>
 </html>

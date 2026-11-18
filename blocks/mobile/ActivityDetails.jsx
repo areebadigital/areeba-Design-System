@@ -6,13 +6,13 @@ const { AppHeader, IconButton, DetailList, Badge, Button, ActionBar, Alert, icon
 
 const COPY = {
   en: {
-    title: 'Activity details', close: 'Close', merchant: 'Netflix, US', date: '21 Nov 2026, 12:04', card: 'Card', original: 'Original amount',
+    title: 'Activity details', close: 'Close', merchant: 'StreamBox, online', date: '21 Nov 2026, 12:04', card: 'Card', original: 'Original amount',
     status: 'Status', category: 'Category', type: 'Type', reason: 'Reason', share: 'Share receipt', claim: 'Report a problem',
     pending: 'Pending', declined: 'Declined', entertainment: 'Entertainment', online: 'Online', insufficient: 'Insufficient balance',
     declinedTitle: 'Payment declined', declinedBody: 'Top up your card or use another card, then try again.',
   },
   ar: {
-    title: 'تفاصيل المعاملة', close: 'إغلاق', merchant: 'نتفليكس، الولايات المتحدة', date: '21 نوفمبر 2026، 12:04', card: 'البطاقة', original: 'المبلغ الأصلي',
+    title: 'تفاصيل المعاملة', close: 'إغلاق', merchant: 'ستريم بوكس، عبر الإنترنت', date: '21 نوفمبر 2026، 12:04', card: 'البطاقة', original: 'المبلغ الأصلي',
     status: 'الحالة', category: 'الفئة', type: 'النوع', reason: 'السبب', share: 'مشاركة الإيصال', claim: 'الإبلاغ عن مشكلة',
     pending: 'قيد الانتظار', declined: 'مرفوض', entertainment: 'ترفيه', online: 'عبر الإنترنت', insufficient: 'رصيد غير كافٍ',
     declinedTitle: 'تم رفض الدفع', declinedBody: 'اشحن بطاقتك أو استخدم بطاقة أخرى، ثم حاول مجددًا.',

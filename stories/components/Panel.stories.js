@@ -14,7 +14,7 @@ export default {
   render: (args) => h('div', { style: { maxWidth: 560 } }, h(A.Panel, Object.assign({}, args, {
     actions: h(A.Button, { variant: 'ghost', size: 'sm' }, 'Edit'),
     footer: [h(A.Button, { key: 'c', variant: 'secondary' }, 'Cancel'), h(A.Button, { key: 's' }, 'Save changes')],
-  }), h(A.DetailList, { items: [{ label: 'Business name', value: 'Spinneys Lebanon' }, { label: 'Country', value: 'Lebanon' }, { label: 'Settlement currency', value: 'USD' }] }))),
+  }), h(A.DetailList, { items: [{ label: 'Business name', value: 'Green Grocer' }, { label: 'Country', value: 'Lebanon' }, { label: 'Settlement currency', value: 'USD' }] }))),
 };
 
 export const Playground = {};

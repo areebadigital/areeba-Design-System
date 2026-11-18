@@ -26,5 +26,5 @@ export default {
 
 export const Playground = {};
 export const Open = { args: { defaultOpen: true } };
-export const Placeholder = { args: { defaultValue: undefined, label: 'Store', placeholder: 'Choose a store', hint: 'Payouts go to this store’s account', options: [{ value: '1', label: 'Hamra' }, { value: '2', label: 'Achrafieh' }] } };
+export const Placeholder = { args: { defaultValue: undefined, label: 'Store', placeholder: 'Choose a store', hint: 'Payouts go to this store’s account', options: [{ value: '1', label: 'Downtown' }, { value: '2', label: 'Harbour' }] } };
 export const WithError = { name: 'Error', args: { defaultValue: undefined, error: 'Choose a currency to continue.' } };
