@@ -14,7 +14,7 @@ Stories come from the built Storybook, so a new story is tested automatically. I
 The **Screenshot tests** workflow runs on every pull request and on `main`. When it fails, download the `screenshot-report` artifact: `playwright-report/index.html` shows each failing story with the reference, the new screenshot and a diff.
 
 - **The change is a regression:** fix the code.
-- **The change is intended** (or a story is new): add the label **`update-screenshots`** to the pull request. The workflow regenerates the references and commits them to the PR branch, then removes the label. You can also open Actions → Screenshot tests → Run workflow, choose the branch and tick **Update the reference screenshots**. Check the new images in the PR's file diff. A commit made by the workflow doesn't start new checks, so push your next commit (or close and reopen the PR) to run the comparison on it.
+- **The change is intended** (or a story is new): add the label **`update-screenshots`** to the pull request. The workflow regenerates the references and commits them to the PR branch, then removes the label. You can also open Actions → Screenshot tests → Run workflow, choose the branch and tick **Update the reference screenshots**. Check the new images in the PR's file diff. GitHub holds checks on the workflow's own commit for approval ("action_required"), so approve that run in the Actions tab or push your next commit to run the comparison.
 
 References are made in CI, in the `mcr.microsoft.com/playwright:v1.63.0-noble` container, because fonts and anti-aliasing differ between machines. Keep the image tag and `@playwright/test` in `package.json` on the same version.
 
