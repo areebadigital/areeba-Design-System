@@ -1,0 +1,11 @@
+/* Motion: shared animations. Durations and curves come only from the motion tokens (tokens.css), so the whole
+   system's feel changes in one place, and with prefers-reduced-motion every duration is 0ms and nothing moves.
+   Components animate what arrives (enter); things that leave are removed at once, which keeps flows fast. */
+@keyframes ar-fade-in { from { opacity: 0; } }
+@keyframes ar-rise-in { from { opacity: 0; transform: translateY(var(--motion-distance)); } }
+@keyframes ar-drop-in { from { opacity: 0; transform: translateY(calc(var(--motion-distance) * -1)); } }
+@keyframes ar-scale-in { from { opacity: 0; transform: scale(0.96); } }
+@keyframes ar-sheet-up { from { transform: translateY(100%); } }
+@keyframes ar-pop-in { 0% { opacity: 0; transform: scale(0.6); } 70% { opacity: 1; transform: scale(1.06); } 100% { transform: scale(1); } }
+@keyframes ar-tick-in { from { opacity: 0; transform: scale(0.5); } }
+@keyframes ar-shake { 25% { transform: translateX(calc(var(--motion-distance) * -0.75)); } 75% { transform: translateX(calc(var(--motion-distance) * 0.75)); } }

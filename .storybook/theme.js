@@ -1,10 +1,9 @@
 import { create } from 'storybook/theming';
 
-/** areeba branding for the Storybook UI and docs pages (values from tokens.json, light theme). */
+/** areeba Asterisk 4 branding for the Storybook UI and docs pages (values from tokens.json, light theme). */
 export default create({
   base: 'light',
-  brandTitle: 'areeba design system',
-  brandImage: 'assets/Logos/areeba-logo.svg',
+  brandTitle: '<span style="display:inline-flex;align-items:center;gap:10px;font-weight:600;font-size:15px;color:#131210"><img src="assets/Logos/asterisk-mark.svg" width="28" height="28" alt="">areeba Asterisk 4</span>',
   brandTarget: '_self',
   colorPrimary: '#630c0c',
   colorSecondary: '#630c0c',

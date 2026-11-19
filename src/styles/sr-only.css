@@ -1,0 +1,8 @@
+/* Text for screen readers only. */
+.ar-sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+.ar-screen-body-center { justify-content: center; }
+.ar-screen-pad { padding: 0 var(--space-4); }
+.ar-screen-title { margin: 0; font-size: 24px; line-height: 32px; font-weight: 400; color: var(--ink); }
+.ar-screen-title-center { text-align: center; }
+.ar-screen-lead { margin: var(--space-1) 0 0; font-size: 16px; line-height: 24px; color: var(--ink-muted); }
+.ar-screen-meta { font-size: 13px; line-height: 18px; color: var(--ink-muted); }

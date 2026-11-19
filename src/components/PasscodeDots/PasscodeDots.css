@@ -1,0 +1,11 @@
+/* PasscodeDots */
+.ar-passdots { display: flex; flex-direction: column; align-items: center; gap: var(--space-3); }
+.ar-passdots-row { display: flex; gap: var(--space-4); }
+.ar-passdot { width: 14px; height: 14px; border-radius: var(--radius-full); box-sizing: border-box; border: 1.5px solid var(--line-strong); }
+.ar-passdot-on { background: var(--ink); border-color: var(--ink); }
+.ar-passdots-error .ar-passdot { border-color: var(--danger); }
+.ar-passdots-error .ar-passdot-on { background: var(--danger); }
+.ar-passdots-error .ar-passdots-row { animation: ar-shake var(--duration-base) var(--ease-standard); }
+.ar-passdots-msg { font-size: 14px; line-height: 20px; color: var(--danger); font-weight: 500; text-align: center; }
+/* Motion (tokens only; see styles/motion.css) */
+.ar-passdot { transition: background-color var(--duration-instant) var(--ease-standard), border-color var(--duration-instant) var(--ease-standard); }

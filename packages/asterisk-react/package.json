@@ -1,0 +1,21 @@
+{
+  "name": "@areebadigital/asterisk-react",
+  "version": "4.0.0",
+  "description": "areeba Asterisk 4 React components for web apps and SaaS portals: tokens only, right-to-left and Arabic, WAI-ARIA, motion and analytics built in.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": { "types": "./dist/index.d.ts", "import": "./dist/index.js" },
+    "./styles.css": "./dist/asterisk.css",
+    "./components.json": "./dist/components.json",
+    "./global": "./dist/asterisk.global.js"
+  },
+  "files": ["dist", "README.md", "AGENTS.md", "llms.txt"],
+  "sideEffects": ["*.css", "./dist/asterisk.global.js"],
+  "peerDependencies": { "react": ">=18", "react-dom": ">=18" },
+  "dependencies": { "@areebadigital/asterisk-tokens": "4.0.0" },
+  "license": "UNLICENSED",
+  "repository": { "type": "git", "url": "https://github.com/areebadigital/areeba-Design-System.git", "directory": "packages/asterisk-react" },
+  "publishConfig": { "registry": "https://npm.pkg.github.com" }
+}

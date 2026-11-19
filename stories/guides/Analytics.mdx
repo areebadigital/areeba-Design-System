@@ -1,0 +1,67 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Guides/Analytics" />
+
+# Analytics
+
+Components describe what happened; the app decides where it goes. Every interactive component sends a standard event, nothing is sent until the app connects a provider, and no event ever contains what people typed or see.
+
+## Connect it once
+
+```jsx
+const { AsteriskProvider } = window.Areeba; // or import from the package
+
+<AsteriskProvider analytics={(event) => segment.track(event.name, event)} screen="topup">
+  <App />
+</AsteriskProvider>
+```
+
+The function can send to Segment, GA4, Mixpanel, Amplitude or areeba's own pipeline. Nest providers to set `screen` per page; an inner provider keeps the outer one's `analytics`. Errors thrown by the function are swallowed: analytics never breaks the product.
+
+## Name what matters
+
+```jsx
+<Button analyticsId="topup.confirm">Confirm and top up</Button>
+<Select analyticsId="payouts.schedule" options={…} />
+```
+
+`analyticsId` travels in every event from that component and is also set as `data-analytics-id` (with `data-analytics-component`) on the element, so tag managers can track it without code. Use `area.action` names in English, stable across languages. `analyticsData` adds context you know is safe: `analyticsData={{ currency: 'USD' }}`.
+
+## The event
+
+```js
+{
+  name: 'asterisk.select.change',   // asterisk.<component or group>.<action>
+  component: 'Select', action: 'change',
+  analyticsId: 'payouts.schedule', screen: 'payouts',
+  value: 'weekly',                  // safe details only
+  time: 1795078149000
+}
+```
+
+| Event | Sent by | Details |
+| --- | --- | --- |
+| `button.press` | Button, IconButton, QuickAction, ServiceTile, FilterChip | variant, selected (chips) |
+| `switch.change`, `checkbox.change` | Switch, Checkbox | checked |
+| `select.change`, `radiogroup.change`, `tabs.change` | Select, RadioGroup, Tabs | value (the option value you set) |
+| `cardpicker.change` | CardPicker | position, never the card |
+| `datepicker.change` | DatePicker | none (dates can be personal) |
+| `pagination.change` | Pagination | page, pageCount |
+| `navigation.change` | Sidebar, TabBar | value |
+| `dialog.open`, `dialog.close` | Dialog and sheets | sheet, tone; how it closed (escape, backdrop) |
+| `actionmenu.open`, `actionmenu.select` | ActionMenu | position, the item's `analyticsId`, danger |
+| `field.error_shown` | TextField, TextArea, AmountInput, CodeInput, PasscodeDots, Select, RadioGroup, DatePicker, FileUpload | none: name the field with `analyticsId` |
+| `fileupload.file_added`, `file_rejected`, `file_removed` | FileUpload | count and file types; the rejection reason (type, size) |
+| `balance.toggle` | Balance | hidden |
+| `copycode.copy` | CopyCode | none, never the code |
+| `toast.shown`, `toast.action` | Toast | tone |
+| `alert.shown`, `result.shown` | Alert, Result | tone |
+
+The full list is `Areeba.ANALYTICS_EVENTS`.
+
+## Privacy
+
+- **Never sent:** amounts, balances, IBANs, card numbers, names, phone numbers, emails, codes, messages, search text, file names, dates people pick.
+- **Sent:** the component, the action, your `analyticsId`, option values you chose as a developer (`weekly`, `bank`), positions, counts and reasons.
+- `analyticsData` accepts only short strings, numbers and booleans; anything else is dropped. Do not put personal data in it.
+- Respect consent: pass `analytics` only after people agree, or have your function check consent before sending.

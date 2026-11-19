@@ -1,0 +1,9 @@
+/* StatCard */
+.ar-stat { display: flex; flex-direction: column; gap: var(--space-1); padding: var(--space-4) var(--space-5); background: var(--surface-raised); border: 1px solid var(--line); border-radius: var(--radius-lg); box-shadow: var(--shadow-1); min-width: 0; }
+.ar-stat-label { display: flex; align-items: center; gap: var(--space-2); font-size: 14px; line-height: 20px; font-weight: 500; color: var(--ink-muted); }
+.ar-stat-icon { width: 18px; height: 18px; }
+.ar-stat-value { font-size: 28px; line-height: 36px; font-weight: 700; color: var(--ink); font-variant-numeric: tabular-nums; text-align: start; }
+.ar-stat-change { font-size: 13px; line-height: 18px; color: var(--ink-muted); }
+.ar-stat-good > span:first-child, .ar-stat-good > span:nth-child(2) { color: var(--success); font-weight: 600; }
+.ar-stat-bad > span:first-child, .ar-stat-bad > span:nth-child(2) { color: var(--danger); font-weight: 600; }
+.ar-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: var(--space-4); }

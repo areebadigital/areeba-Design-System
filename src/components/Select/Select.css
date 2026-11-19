@@ -1,0 +1,22 @@
+/* Select (custom listbox, no native <select>) */
+.ar-select { position: relative; }
+.ar-select-trigger { font: inherit; font-size: 16px; line-height: 24px; color: var(--ink); cursor: pointer; justify-content: space-between; text-align: start; width: 100%; }
+.ar-select-trigger:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.ar-select-trigger[aria-expanded="true"] { border-color: var(--brand); }
+.ar-select-value { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ar-select-ph { color: var(--ink-muted); }
+.ar-select-chev { flex: none; width: 20px; height: 20px; fill: none; stroke: var(--ink-muted); stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; transition: transform var(--duration-fast) var(--ease-standard); }
+.ar-select-trigger[aria-expanded="true"] .ar-select-chev { transform: rotate(180deg); }
+.ar-pop { position: absolute; inset-inline: 0; top: calc(100% + var(--space-1)); z-index: 40; box-sizing: border-box; background: var(--surface-raised); border: 1px solid var(--line); border-radius: var(--radius-sm); box-shadow: var(--shadow-2); }
+.ar-listbox { margin: 0; padding: var(--space-1); list-style: none; max-height: 264px; overflow-y: auto; outline: 0; }
+.ar-option { display: flex; align-items: center; gap: var(--space-2); min-height: 40px; padding: 0 var(--space-3); border-radius: var(--radius-xs); font-size: 16px; line-height: 24px; color: var(--ink); cursor: pointer; }
+.ar-option[data-active="true"] { background: var(--surface-sunken); }
+.ar-option[aria-selected="true"] { color: var(--brand); font-weight: 600; }
+.ar-option[aria-disabled="true"] { color: var(--ink-disabled); cursor: not-allowed; }
+.ar-option-label { flex: 1; min-width: 0; }
+.ar-option-tick { flex: none; width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.ar-listbox:focus-visible { box-shadow: inset 0 0 0 2px var(--focus); border-radius: var(--radius-sm); }
+/* Motion (tokens only; see styles/motion.css) */
+.ar-select-trigger { transition: border-color var(--duration-fast) var(--ease-standard), box-shadow var(--duration-fast) var(--ease-standard); }
+.ar-option { transition: background-color var(--duration-instant) var(--ease-standard); }
+.ar-pop { animation: ar-drop-in var(--duration-base) var(--ease-enter); transform-origin: top; }

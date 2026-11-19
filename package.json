@@ -2,24 +2,41 @@
   "name": "areeba-design-system",
   "private": true,
   "version": "2.0.0",
-  "description": "areeba design system: tokens, React components and Storybook documentation.",
+  "description": "areeba Asterisk 4: areeba's design system. Tokens, web, React Native and Kotlin components, Storybook documentation.",
   "type": "module",
   "scripts": {
+    "build": "node scripts/build.mjs",
+    "check": "node scripts/build.mjs --check",
     "tokens": "python3 scripts/build-tokens.py",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build -o storybook-static",
+    "storybook": "npm run build && storybook dev -p 6006",
+    "build-storybook": "npm run build && storybook build -o storybook-static",
     "test:visual": "playwright test",
-    "test:visual:update": "playwright test --update-snapshots=all"
+    "test:visual:update": "playwright test --update-snapshots=all",
+    "build:tokens": "python3 scripts/build-tokens.py && node scripts/build-platform-tokens.mjs",
+    "build:packages": "npm run build && node scripts/build-platform-tokens.mjs && node scripts/build-packages.mjs",
+    "changeset": "changeset",
+    "release": "npm run build:packages && changeset publish",
+    "test:native": "node scripts/build-native-demo.mjs && playwright test -c playwright.native.config.mjs"
   },
   "devDependencies": {
+    "@changesets/cli": "2.29.7",
     "@playwright/test": "1.63.0",
     "@storybook/addon-a11y": "10.6.5",
     "@storybook/addon-docs": "10.6.5",
     "@storybook/react-vite": "10.6.5",
     "axe-core": "4.14.1",
+    "esbuild": "0.28.2",
     "react": "18.3.1",
     "react-dom": "18.3.1",
+    "react-native-web": "0.19.13",
     "storybook": "10.6.5",
     "vite": "7.3.7"
-  }
+  },
+  "workspaces": [
+    "packages/asterisk-tokens",
+    "packages/asterisk-react",
+    "packages/asterisk-cli",
+    "packages/asterisk-lint",
+    "packages/asterisk-native"
+  ]
 }

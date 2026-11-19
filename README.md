@@ -1,8 +1,12 @@
-# areeba
+<img src="assets/Logos/asterisk-mark.svg" width="56" height="56" alt="">
 
-One design language for every areeba product: consumer and merchant **mobile apps**, **SaaS dashboards** for banks and merchants, and the marketing surfaces around them. It is built for money: calm, legible, precise, with the areeba red reserved for the moments that matter.
+# areeba Asterisk 4
 
-> Status: v2. Aligned with the official brand guidelines and page designs in Figma (Areeba x magier client file, Nov 2026): palette, type scale, logos, Checkbox, Input field and Button. Dark theme values are derived; Figma defines light only.
+areeba's design system, fourth generation. One design language for every areeba product: consumer and merchant **mobile apps** (web and React Native), **SaaS dashboards** for banks and merchants, **card machines** (Kotlin Compose, including the customer display), and the marketing surfaces around them. It is built for money: calm, legible, precise, with the areeba red reserved for the moments that matter.
+
+The name comes from the asterisk: the small mark that says "there is more to know". The system is the detail behind every areeba screen.
+
+> Status: 4.0. Aligned with the official brand guidelines and page designs in Figma (Areeba x magier client file, Nov 2026): palette, type scale, logos, Checkbox, Input field and Button. Dark theme values are derived; Figma defines light only.
 
 **Where it lives:** [Figma library: areeba Design System 4.0](https://www.figma.com/design/HUoG7rGPlAR8cQAaV4fswZ) · [Storybook](https://areebadigital.github.io/areeba-Design-System/) · `tokens.json` in this repo (the source of truth for both).
 
@@ -71,11 +75,54 @@ Outline icons on a 24px grid, 20px live area, 1.75px stroke, round caps and join
 
 ## Logo
 
+The areeba wordmark is the brand's logo (`assets/Logos/`, never redrawn). **Asterisk** is the design system's own mark: six rounded petals around an open centre, one of them in Signal Red. Use it only for the design system itself (Storybook, the Figma library, package pages, internal tools), never in place of the areeba logo in a product.
+
+| File | Use |
+| --- | --- |
+| `asterisk-mark.svg` | Light backgrounds |
+| `asterisk-mark-chalk.svg` | Dark backgrounds |
+| `asterisk-mark-mono.svg` | One colour (Crimson Deep), small sizes and print |
+| `asterisk-icon.svg` | App and favicon tile |
+
 The official marks are in `assets/Logos`, exported from Figma: the Signal Red wordmark for light backgrounds, the Chalk wordmark for dark or saturated ones, the contained version next to other brands, and the "a" logomark for tight spaces. Clear space equals the logo's height on every side. Never redraw, recolour or approximate the logo. There is no favicon yet (the Figma frames are empty placeholders).
 
 ## Motion
 
-Fast and functional: 150ms for hover and press, 250ms ease-out for sheets and page transitions, respect `prefers-reduced-motion`. Success confirmations may use one 400ms check animation; nothing loops.
+Fast and functional, and only from tokens: `--duration-instant` (100ms: hover, press, a checkbox tick), `--duration-fast` (150ms: switches, chips, focus, colour changes), `--duration-base` (250ms: menus, popovers, toasts, tab panels), `--duration-slow` (400ms: sheets, dialogs, the success check), with `--ease-standard`, `--ease-enter` and `--ease-exit`. Components animate what enters, never what leaves, and move only opacity, transform, colours and borders. Under `prefers-reduced-motion` every duration becomes 0ms, so no component needs its own rule. Shared keyframes live in `src/styles/motion.css`; `npm run check` fails on a raw `ms` or `cubic-bezier()` in component CSS. Nothing loops. See Storybook: Foundations / Motion.
+
+## Analytics
+
+Every interactive component sends a standard event when wrapped in `AsteriskProvider`:
+
+```jsx
+<AsteriskProvider analytics={(e) => segment.track(e.name, e)} screen="topup">
+  <Button analyticsId="topup.continue">Continue</Button>
+</AsteriskProvider>
+```
+
+Events are named `asterisk.<component>.<action>` (for example `asterisk.button.press`, `asterisk.field.error_shown`) and carry the component, `analyticsId`, screen and safe details such as the chosen option value. They never carry what people type or see: amounts, IBANs, card numbers, names, codes, messages or file names. `analyticsId` also becomes `data-analytics-id` for tag managers. The full list is `ANALYTICS_EVENTS` and Storybook: Guides / Analytics.
+
+## Packages
+
+areeba Asterisk 4 ships as packages on GitHub Packages (scope `@areebadigital`, private to the organisation):
+
+| Package | For |
+| --- | --- |
+| `@areebadigital/asterisk-tokens` | Tokens as CSS variables, JavaScript, React Native themes and JSON; Kotlin `com.areeba.asterisk:asterisk-tokens` |
+| `@areebadigital/asterisk-react` | Web and SaaS components (this repo's `src/`) |
+| `@areebadigital/asterisk-native` | React Native components (`packages/asterisk-native`) |
+| `@areebadigital/asterisk-cli` | `npx @areebadigital/asterisk-cli add <block>` copies a screen into your app |
+| `@areebadigital/asterisk-lint` | Stylelint and ESLint presets |
+| `com.areeba.asterisk:asterisk-compose` | Jetpack Compose components for card machines, including the customer display ([packages/asterisk-kotlin](packages/asterisk-kotlin/README.md)) |
+
+To install, point the scope at GitHub Packages in `.npmrc` with a token that can read packages:
+
+```
+@areebadigital:registry=https://npm.pkg.github.com
+//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}
+```
+
+Releases use [Changesets](.changeset/README.md): run `npm run changeset`, describe the change, and merge; the Release workflow versions all packages together and publishes them. `npm run build:packages` builds them locally. Coding agents start from [`llms.txt`](llms.txt) and [`docs/agents/AGENTS.md`](docs/agents/AGENTS.md).
 
 ## Components
 

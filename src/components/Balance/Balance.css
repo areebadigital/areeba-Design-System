@@ -1,0 +1,5 @@
+/* Balance */
+.ar-balance { text-align: center; }
+.ar-balance-label { display: inline-flex; align-items: center; gap: var(--space-1); font-size: 14px; line-height: 20px; color: var(--ink-muted); }
+.ar-balance-amount { font-size: 40px; line-height: 48px; font-weight: 700; letter-spacing: -0.02em; color: var(--ink); font-variant-numeric: tabular-nums; }
+:lang(ar) .ar-balance-amount { letter-spacing: 0; }

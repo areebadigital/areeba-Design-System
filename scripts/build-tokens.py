@@ -11,8 +11,10 @@ themed = t['color']['tokens'] + t['shadow']['tokens']
 for th, sel in [('light', ':root, [data-theme="light"]'), ('dark', '[data-theme="dark"]')]:
     out += [sel + ' {'] + [f"  --{c['name']}: {val(c['value'], th)};" for c in themed] + ['}']
 out += ['@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {'] + [f"  --{c['name']}: {val(c['value'], 'dark')};" for c in themed] + ['} }']
-out += [':root {'] + [f"  --{c['name']}: {c['value']};" for f in ['spacing', 'radius', 'size', 'breakpoint'] for c in t[f]['tokens']]
+out += [':root {'] + [f"  --{c['name']}: {c['value']};" for f in ['spacing', 'radius', 'size', 'breakpoint', 'motion'] for c in t[f]['tokens']]
 out += [f"  --font-{k}: {v};" for k, v in t['type']['families'].items()] + ['}']
+# Reduced motion: every duration becomes 0ms, so components need no checks of their own.
+out += ['@media (prefers-reduced-motion: reduce) { :root {'] + [f"  --{c['name']}: 0ms;" for c in t['motion']['tokens'] if c['name'].startswith('duration-')] + ['} }']
 for g in t['type']['groups']:
     for s in g['styles']:
         fam = s.get('family', g['family'])

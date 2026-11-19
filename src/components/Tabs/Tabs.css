@@ -1,0 +1,8 @@
+/* Tabs (segmented) */
+.ar-tabs { display: inline-flex; padding: 4px; gap: 4px; background: var(--surface-sunken); border-radius: var(--radius-full); border: 1px solid var(--line); }
+.ar-tab { font: inherit; font-size: 14px; line-height: 20px; font-weight: 600; height: 36px; padding: 0 var(--space-4); border: 0; border-radius: var(--radius-full); background: transparent; color: var(--ink-muted); cursor: pointer; }
+.ar-tab:hover { color: var(--ink); }
+.ar-tab[aria-selected="true"] { background: var(--surface-raised); color: var(--ink); box-shadow: var(--shadow-1); }
+.ar-tab:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+/* Motion (tokens only; see styles/motion.css) */
+.ar-tab { transition: background-color var(--duration-fast) var(--ease-standard), color var(--duration-fast) var(--ease-standard), box-shadow var(--duration-fast) var(--ease-standard); }

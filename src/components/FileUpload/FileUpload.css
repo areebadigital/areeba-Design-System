@@ -1,0 +1,22 @@
+/* FileUpload */
+.ar-upload { display: flex; flex-direction: column; gap: var(--space-2); }
+.ar-upload-zone { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--space-2); padding: var(--space-6) var(--space-4); border: 1.5px dashed var(--line-strong); border-radius: var(--radius-md); background: var(--surface-field); text-align: center; transition: background-color var(--duration-fast) var(--ease-standard), border-color var(--duration-fast) var(--ease-standard); }
+.ar-upload-over { border-color: var(--brand); background: var(--brand-soft); }
+.ar-upload-invalid .ar-upload-zone { border-color: var(--danger); }
+.ar-upload-invalid > .ar-field-hint { color: var(--danger); }
+.ar-upload-disabled { opacity: .6; }
+.ar-upload-icon { width: 28px; height: 28px; color: var(--ink-muted); }
+.ar-upload-text { font-size: 14px; line-height: 20px; color: var(--ink-muted); }
+.ar-upload-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: var(--space-2); }
+.ar-upload-file { display: flex; align-items: center; gap: var(--space-3); padding: var(--space-2) var(--space-2) var(--space-2) var(--space-3); border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--surface-raised); }
+.ar-upload-file-icon { flex: none; width: 20px; height: 20px; color: var(--ink-muted); }
+.ar-upload-file-error { border-color: var(--danger); }
+.ar-upload-file-error .ar-upload-file-icon, .ar-upload-file-error .ar-upload-file-meta { color: var(--danger); }
+.ar-upload-file-main { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.ar-upload-file-name { font-size: 14px; line-height: 20px; font-weight: 500; color: var(--ink); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ar-upload-file-meta { font-size: 13px; line-height: 18px; color: var(--ink-muted); font-variant-numeric: tabular-nums; }
+.ar-upload-bar { display: block; height: 4px; margin-top: 4px; border-radius: var(--radius-full); background: var(--surface-sunken); overflow: hidden; }
+.ar-upload-bar > span { display: block; height: 100%; background: var(--brand); border-radius: var(--radius-full); }
+/* Motion (tokens only; see styles/motion.css) */
+.ar-upload-file { animation: ar-rise-in var(--duration-base) var(--ease-enter); }
+.ar-upload-bar > span { transition: width var(--duration-base) var(--ease-standard); }

@@ -1,0 +1,8 @@
+/* Badge */
+.ar-badge { display: inline-flex; align-items: center; gap: var(--space-1); font-size: 12px; line-height: 16px; font-weight: 600; padding: 4px var(--space-2); border-radius: var(--radius-full); background: var(--surface-sunken); color: var(--ink-muted); }
+.ar-badge-dot { width: 6px; height: 6px; border-radius: var(--radius-full); background: currentColor; }
+.ar-badge-brand { background: var(--brand-soft); color: var(--brand); }
+.ar-badge-success { background: var(--success-soft); color: var(--success); }
+.ar-badge-warning { background: var(--warning-soft); color: var(--warning); }
+.ar-badge-danger { background: var(--danger-soft); color: var(--danger); }
+.ar-badge-info { background: var(--info-soft); color: var(--info); }

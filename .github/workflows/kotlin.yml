@@ -1,0 +1,31 @@
+# Kotlin: tokens and the Compose components for card machines.
+# Builds the Android library (the runner has an Android SDK) and the JVM build, runs the tests and renders
+# every card-machine screen in light, dark and Arabic. The screenshots are kept as an artifact to review.
+name: Kotlin
+on:
+  pull_request:
+    paths: ['packages/asterisk-kotlin/**', 'tokens.json', 'scripts/build-platform-tokens.mjs', 'scripts/build-native-icons.mjs', 'fonts/**', '.github/workflows/kotlin.yml']
+  push:
+    branches: [main]
+    paths: ['packages/asterisk-kotlin/**', 'tokens.json']
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: packages/asterisk-kotlin
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+          cache: gradle
+      - name: Tests, Android library and screenshots
+        run: ./gradlew :tokens:test :compose:jvmTest :compose:assembleRelease --console=plain
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: card-machine-screenshots
+          path: packages/asterisk-kotlin/compose/build/shots

@@ -1,0 +1,13 @@
+/* Sidebar (SaaS) */
+.ar-sidebar { width: 240px; box-sizing: border-box; display: flex; flex-direction: column; gap: var(--space-6); padding: var(--space-6) var(--space-3); background: var(--night); color: var(--on-night); }
+.ar-sidebar-brand { padding: 0 var(--space-3); font-size: 22px; line-height: 28px; font-weight: 700; letter-spacing: -0.02em; }
+.ar-sidebar nav { display: flex; flex-direction: column; gap: var(--space-1); }
+.ar-sidebar-item { display: flex; align-items: center; gap: var(--space-3); height: var(--size-control-md); padding: 0 var(--space-3); border-radius: var(--radius-md); color: var(--on-night); opacity: .78; text-decoration: none; font-size: 14px; font-weight: 600; }
+.ar-sidebar-item svg { width: 20px; height: 20px; flex: none; }
+.ar-sidebar-item:hover { opacity: 1; background: rgba(255, 255, 255, 0.08); }
+.ar-sidebar-item[aria-current="page"] { opacity: 1; background: var(--brand); color: var(--on-brand); }
+.ar-sidebar-item:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; opacity: 1; }
+.ar-sidebar-count { margin-inline-start: auto; font-size: 12px; font-variant-numeric: tabular-nums; }
+.ar-sidebar-footer { margin-top: auto; padding: 0 var(--space-3); font-size: 13px; opacity: .78; }
+/* Motion (tokens only; see styles/motion.css) */
+.ar-sidebar-item { transition: background-color var(--duration-fast) var(--ease-standard), color var(--duration-fast) var(--ease-standard), opacity var(--duration-fast) var(--ease-standard); }

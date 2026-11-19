@@ -1,0 +1,3 @@
+/* ---- App building blocks (patterns from the areeba pay app) ---- */
+.ar-icon-flip:dir(rtl) { transform: scaleX(-1); }
+.ar-badge-icon { width: 14px; height: 14px; flex: none; }

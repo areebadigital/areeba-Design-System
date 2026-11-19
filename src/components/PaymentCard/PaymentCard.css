@@ -1,0 +1,12 @@
+/* PaymentCard */
+.ar-pcard { position: relative; width: 320px; aspect-ratio: 1.586; box-sizing: border-box; padding: var(--space-5); border-radius: var(--radius-lg); display: flex; flex-direction: column; justify-content: space-between; overflow: hidden; box-shadow: var(--shadow-2); }
+.ar-pcard-fluid { width: 100%; max-width: 420px; }
+.ar-pcard-night { background: var(--night); color: var(--on-night); }
+.ar-pcard-brand { background: var(--brand); color: var(--on-brand); }
+.ar-pcard-top { display: flex; justify-content: space-between; align-items: center; }
+.ar-pcard-logo { font-size: 20px; font-weight: 700; letter-spacing: -0.02em; }
+.ar-pcard-frozen { font-size: 12px; font-weight: 700; padding: 2px var(--space-2); border-radius: var(--radius-full); border: 1px solid currentColor; }
+.ar-pcard-chip { width: 28px; height: 28px; opacity: .9; }
+.ar-pcard-num { font-size: 18px; letter-spacing: .08em; font-weight: 600; }
+.ar-pcard-bottom { display: flex; justify-content: space-between; align-items: flex-end; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: .04em; }
+.ar-pcard-meta b { font-size: 15px; margin-inline-start: var(--space-2); }

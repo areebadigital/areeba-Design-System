@@ -1,0 +1,99 @@
+# areeba Asterisk 4
+
+> areeba's design system for web apps, SaaS portals, React Native apps and Kotlin card machines. React package: @areebadigital/asterisk-react. Tokens: @areebadigital/asterisk-tokens.
+
+## Rules (follow these in every product)
+
+1. **Use the components.** Import from `@areebadigital/asterisk-react`; do not rebuild buttons, fields, selects, dialogs or menus. Never use native `<select>`, date inputs or pickers: use `Select`, `DatePicker`, `RadioGroup`, `Checkbox`, `Switch`. Text entry uses `TextField`, `TextArea`, `AmountInput`, `CodeInput`, `SearchField`.
+2. **Tokens only.** Colours, spacing, radius, type, shadows and motion come from CSS variables (`var(--brand)`, `var(--space-4)`, `var(--duration-fast)`). No hex values, no raw `ms`, no `cubic-bezier()` in product code.
+3. **Crimson acts, Signal Red signs.** Actions and selection use `brand` (Crimson Deep). `accent` (Signal Red) is only the logo and large headline highlights, never a button, link or status.
+4. **Money is never ambiguous.** Amounts use the currency symbol, two decimals, the minus sign `−` for debits and tabular digits; spending is ink, not red; credits are `success` with `+`. Never truncate an amount.
+5. **Arabic is first-class.** Set `dir="rtl"` and `lang="ar"` on `<html>`. Use logical CSS (`margin-inline-start`, `inset-inline-end`, `text-align: start`), never left/right. Keep amounts, IBANs, card and reference numbers left-to-right (`dir="ltr"` or `ltr()`). Digits are 0–9 in every language. Every string needs an Arabic translation.
+6. **Accessible by default.** Every control has a visible label (or `label` on icon-only buttons). Status is a word or icon plus colour, never colour alone. Errors say what happened and what to do.
+7. **Analytics through the provider.** Wrap the app in `AsteriskProvider` with your analytics function; give important controls an `analyticsId` (`area.action`). Never put what people type or see (amounts, IBANs, names, codes) in `analyticsData`.
+8. **Start from a block.** For a whole screen, copy a block (`npx @areebadigital/asterisk-cli add mobile-send-money`) and replace its sample data; blocks add no styles beyond the `ar-screen-*` and `ar-app-*` layout classes.
+
+## Components
+
+### Actions
+- **ActionBar**: The sticky bottom area of a flow step that holds its actions: Continue, Confirm and top up, Share. Props: stacked?, className?.
+- **ActionMenu**: A button that opens a short list of actions: the card "More" menu, row overflow menus. Props: items, label?, button?, align?.
+- **Button**: Buttons trigger actions; use exactly one `primary` per screen for the thing the screen is for. Props: variant?, size?, block?.
+- **IconButton**: A round button with only an icon: back, close, notifications, download. Props: icon, label, badge?.
+- **QuickAction**: A labelled round action, the row under the balance in a card app: Top up, Send, More. Props: icon.
+- **ServiceTile**: A tile in a grid of services or categories: mobile recharge, bills, gift cards. Props: label, description?, initials?, icon?, tone?, href?, onClick?, disabled?.
+
+### Status
+- **Alert**: An inline message about the state of the system or the user's last action. Props: tone?, title?, className?.
+- **Badge**: A small pill that labels status on transactions, accounts and records. Props: tone?, dot?, icon?, className?.
+- **EmptyState**: What a screen shows when there is nothing yet: first run, no results, or cleared lists. Props: title, action?, level?, className?.
+- **Meter**: How much of something is used: a monthly limit, a payout threshold, onboarding steps. Props: value, max?, label?, valueText?, hint?, tone?, aria-label?.
+- **NotificationItem**: A notification or a money request in the notification centre. Props: title, time?, dateTime?, unread?, avatar?, icon?, actions?, status?, label, className?.
+- **Result**: The last step of a flow: it worked, or it did not. Props: title, tone?, action?, className?.
+- **Toast**: A short, temporary confirmation after an action, shown on a `night` surface. Props: tone?, action?, onAction?, className?.
+
+### Inputs
+- **AmountInput**: The big amount on top up, send and request screens, with the fee and the limits under it. Props: value?, defaultValue?, onChange?, label?, currency?, fee?, feeLabel?, hint?, error?, readOnly?, id?.
+- **CardPicker**: Choose one card: where money comes from or goes to. Props: cards, value?, defaultValue?, onChange?, label?, name?.
+- **Checkbox**: Lets people pick any number of options, or confirm a single statement, with changes applied on Save. Props: label, hint?, indeterminate?, checked?, defaultChecked?, onChange?, name?, value?, required?.
+- **CodeInput**: Enter a one-time code from an SMS or email. Props: length?, value?, defaultValue?, onChange?, onComplete?, label?, hint?, error?, autoFocus?, id?.
+- **DatePicker**: A field that opens a month calendar for choosing one date. `Calendar` is exported on its own for inline use. Props: label?, hint?, error?, placeholder?, defaultValue?, defaultOpen?, id?.
+- **FileUpload**: Add files: business documents, an ID, a receipt for a dispute. Props: label?, hint?, error?, accept?, maxSize?, multiple?, files?, defaultFiles?, onChange?, onRemove?, name?, disabled?, id?.
+- **FilterChip**: A pill that filters a list: a period, a card, money in or out. Props: label, selected?, hasPopup?.
+- **NumberPad**: A number pad for amounts and passcodes on phone screens. Props: onKey?, decimal?, label?, disabled?.
+- **PasscodeDots**: Shows how many passcode digits are entered, above a NumberPad. Props: length?, filled, error?.
+- **RadioGroup**: Choose one of a few options you can see at once: a transfer type, a document type, a payout schedule. Props: options, value?, defaultValue?, onChange?, label?, hint?, error?, name?, required?, disabled?, orientation?, variant?, id?, aria-label?.
+- **SearchField**: A search box for lists: transactions, merchants, beneficiaries. Props: label?, placeholder?, value?, defaultValue?, onChange?.
+- **Select**: A dropdown for choosing one option from a list of 4–15 known values. Props: label?, hint?, error?, placeholder?, options, value?, defaultValue?, onChange?, name?, id?, disabled?, required?, defaultOpen?, aria-label?, className?.
+- **Switch**: An on/off toggle for settings that take effect immediately. Props: label?, checked?, defaultChecked?, onChange?, name?, value?.
+- **TextArea**: Several lines of text: a note to the recipient, the reason for a refund, an address. Props: label?, hint?.
+- **TextField**: A labelled single-line input with optional prefix, hint and error message. Props: label?, hint?, error?, prefix?.
+
+### Navigation
+- **AppHeader**: The top bar of an app screen: a start action, the screen title, end actions. Props: title, subtitle?, start?, end?, variant?.
+- **Pagination**: Page numbers under a long table: transactions, payouts, customers. Props: page, pageCount?, total?, pageSize?, onChange?, label?.
+- **Sidebar**: The SaaS app's primary navigation: a 240px `night` column fixed on the left from `bp-lg` up. Props: items, label, icon, href?, count?, value?, onChange?, brand?, footer?, label?.
+- **TabBar**: The mobile app's bottom navigation between 3–5 top-level destinations. Props: items, label, icon, value?, onChange?, label?.
+- **Tabs**: A segmented control that switches between views of the same content. Props: items, label, value?, defaultValue?, onChange?, label?, id?.
+
+### Data display
+- **Avatar**: A person or merchant: a photo, or initials on a tinted circle. Props: initials?, src?, size?, label?, status?.
+- **Balance**: The balance at the top of a card or wallet screen, with a show/hide toggle. Props: amount, label?, hidden?, defaultHidden?, onToggle?.
+- **CopyCode**: A code to copy: a voucher code, a reference, an IBAN. Props: code, label?, onCopy?.
+- **DataTable**: A compact table for transactions, payouts, merchants and logs in SaaS products. Props: columns, rows, caption?, empty?.
+- **DetailList**: Label and value rows: a receipt, a transfer summary, transaction details. Props: items.
+- **ListItem**: A row for transactions, accounts, contacts and settings, grouped inside `List`. Props: title, subtitle?, leading?, amount?, trailing?, className?.
+- **PageDots**: Where you are in a carousel: cards on the home screen, onboarding steps. Props: count, current, label?.
+- **Panel**: A titled surface for a part of a page: a form section, a summary, a short list, a table. Props: title?, description?, actions?, footer?, flush?, className?.
+- **PaymentCard**: A visual of a payment card for wallets, card lists and card detail screens. Props: holder, expiry, network?, variant?, frozen?, fluid?.
+- **SettingsList**: Grouped rows for settings, profile and "More" screens. `SettingsList` is the titled group; `SettingsRow` is one row. Props: title?, className?.
+- **StatCard**: A key number on a dashboard: volume, transactions, refunds. Props: label, value, icon?, change?, value, label?, good?.
+
+### Charts
+- **BarChart**: Compares amounts across categories (days, stores, channels), single or grouped, with a tooltip per group on hover.
+- **LineChart**: Shows change over time for one to four series, with a crosshair tooltip on hover.
+
+### Overlays
+- **Dialog**: A modal that asks for a decision or a short focused task. On mobile pass `sheet` to render it as a bottom sheet. Props: open, onClose?, title, actions?, tone?, sheet?, className?.
+
+## Blocks (copy with `npx @areebadigital/asterisk-cli add <name>`)
+
+- `mobile-activity`: Activity: search, filters, and transactions grouped by day with each day's total.
+- `mobile-activity-details`: Activity details: one transaction as a bottom sheet: amount, merchant, the facts, and what you can do.
+- `mobile-add-beneficiary`: Add beneficiary: choose a bank account or an areeba wallet, enter the details (IBAN or phone number), an optional note,
+- `mobile-card-details`: Card details: the card, its four actions, card settings and the card's recent activity.
+- `mobile-home`: Home: balance, card carousel, quick actions and today's activity.
+- `mobile-notifications`: Notifications: money requests to accept or decline, and how earlier ones ended.
+- `mobile-passcode`: Passcode: unlock the app with six digits on the number pad, or Face ID.
+- `mobile-profile`: Profile: who you are, then grouped settings (account, notifications, security, help) and sign out.
+- `mobile-send-money`: Send money: choose who, how much and why, confirm, done.
+- `mobile-sign-in`: Sign in: phone number and password, with forgotten password and sign up.
+- `mobile-top-up`: Top up: choose how, pick the card, enter the amount, confirm, done.
+- `mobile-verify-code`: Verify code: the one-time code sent by SMS before a transfer or a new device.
+- `mobile-vouchers`: eStore vouchers: browse services, pick a recharge voucher, confirm with your card, get the code.
+- `saas-documents`: Merchant portal, Business documents: what is still needed (a meter and a deadline), one panel per document with
+- `saas-overview`: Merchant dashboard, Overview: what needs attention, the month's key numbers, volume and sales by store,
+- `saas-payouts`: Merchant dashboard, Payouts: the next payout and where it goes, the payout schedule (change it in a dialog),
+- `saas-settings`: Merchant dashboard, Settings: business details (a form), the settlement account, the team (invite people in a dialog)
+- `saas-sign-in`: Merchant portal sign in: work email and password, keep me signed in, forgotten password, beside the areeba brand panel
+- `saas-transactions`: Merchant dashboard, Transactions: key numbers for the period, volume over time, and the transactions table

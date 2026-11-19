@@ -1,0 +1,3 @@
+/* Right-to-left. Layout uses logical properties (start/end), so it mirrors with dir="rtl".
+   Arrows that mean "previous/next" flip; icons that show an object (card, chart, send) do not. */
+.ar-cal-nav svg:dir(rtl) { transform: scaleX(-1); }

@@ -104,10 +104,14 @@ export function Logos() {
     ['areeba-logo-chalk.svg', 'Chalk', 'Obsidian, Crimson Deep and photography', '#131210'],
     ['areeba-logo-contained.svg', 'Contained', 'Next to other brands', '#f3f2ef'],
     ['areeba-logomark.svg', 'Logomark', 'App icons, avatars, tight spaces', '#ffffff'],
+    ['asterisk-mark.svg', 'Asterisk mark', 'The design system itself (Storybook, Figma, packages), light backgrounds', '#ffffff'],
+    ['asterisk-mark-chalk.svg', 'Asterisk mark, chalk', 'The design system on dark backgrounds', '#131210'],
+    ['asterisk-mark-mono.svg', 'Asterisk mark, one colour', 'Small sizes and print', '#f3f2ef'],
+    ['asterisk-icon.svg', 'Asterisk icon', 'Favicon and app tile for design system tools', '#ffffff'],
   ];
   return h('div', { style: { display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 16 } }, items.map(([f, name, use, bg]) =>
     h('figure', { key: f, style: { margin: 0, border: '1px solid #e0dfdd', borderRadius: 8, overflow: 'hidden' } },
-      h('div', { style: { background: bg, height: 140, display: 'grid', placeItems: 'center', padding: 24 } }, h('img', { src: `assets/Logos/${f}`, alt: `areeba ${name.toLowerCase()} logo`, style: { maxWidth: '80%', maxHeight: 72 } })),
+      h('div', { style: { background: bg, height: 140, display: 'grid', placeItems: 'center', padding: 24 } }, h('img', { src: `assets/Logos/${f}`, alt: f.startsWith('asterisk') ? `areeba ${name}` : `areeba ${name.toLowerCase()} logo`, style: { maxWidth: '80%', maxHeight: 72 } })),
       h('figcaption', { style: { padding: 12, fontSize: 14 } }, h('b', null, name), h('div', { style: { color: '#131210cc' } }, use), h('code', { style: { fontSize: 12 } }, `assets/Logos/${f}`)))));
 }
 

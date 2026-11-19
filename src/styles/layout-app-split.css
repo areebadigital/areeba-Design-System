@@ -1,0 +1,4 @@
+/* Two columns on wide screens: the main column and a narrower side column. One column below 1024px. */
+.ar-app-split { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-6); align-items: start; }
+.ar-app-col { display: flex; flex-direction: column; gap: var(--space-6); min-width: 0; }
+@media (min-width: 1024px) { .ar-app-split { grid-template-columns: minmax(0, 2fr) minmax(280px, 1fr); } }

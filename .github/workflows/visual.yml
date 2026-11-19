@@ -41,6 +41,8 @@ jobs:
       - run: npm ci
       - run: npm run build-storybook
       - run: npm run test:visual
+      - name: React Native components on react-native-web (errors, overflow, RTL, analytics)
+        run: npm run test:native
       - name: Upload the report and the before/after/diff images
         if: failure()
         uses: actions/upload-artifact@v4

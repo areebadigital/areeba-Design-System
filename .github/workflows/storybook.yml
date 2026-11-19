@@ -29,6 +29,11 @@ jobs:
         run: |
           python3 scripts/build-tokens.py
           git diff --exit-code tokens.css
+      - name: Check generated files (bundle, platform tokens, native icons) and the 1000-line limit
+        run: |
+          npm run check
+          node scripts/build-platform-tokens.mjs --check
+          node scripts/build-native-icons.mjs --check
       - run: npm run build-storybook
       - uses: actions/upload-pages-artifact@v3
         with:

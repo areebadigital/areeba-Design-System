@@ -1,0 +1,4 @@
+body { margin: 0; font-family: var(--font-sans); background: var(--surface); color: var(--ink); -webkit-font-smoothing: antialiased; }
+.ar-num { font-variant-numeric: tabular-nums; }
+.ar-row { display: flex; flex-wrap: wrap; gap: var(--space-3); align-items: center; padding: var(--space-4); }
+.ar-stack { display: flex; flex-direction: column; gap: var(--space-4); padding: var(--space-4); }

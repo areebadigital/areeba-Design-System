@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>areeba</title>
+<title>areeba Asterisk 4</title>
 <style>
   html, body { margin:0; height:100%; }
   body { background:var(--surface-sunken); color:var(--ink); font-family:var(--font-sans); overflow:hidden; }
@@ -18,8 +18,12 @@
   .pill-brand { fill:var(--brand); }
   .wave { fill:none; stroke:var(--on-brand); stroke-width:6; stroke-linecap:round; }
   .words { position:absolute; left:var(--space-6); bottom:var(--space-6); max-width:440px; }
-  .name { margin:0; font-size:120px; line-height:.92; font-weight:500; letter-spacing:-.04em; color:var(--ink); }
-  .tag { margin:var(--space-2) 0 0 6px; font-size:14px; line-height:20px; color:var(--ink-muted); }
+  .eyebrow { display:flex; align-items:center; gap:var(--space-3); margin:0 0 var(--space-3) 4px; font-size:16px; line-height:24px; font-weight:600; color:var(--ink); }
+  .mark { display:block; width:40px; height:40px; }
+  .mark .petal { stroke:var(--brand); stroke-width:6; stroke-linecap:round; }
+  .mark .spark { stroke:var(--accent); stroke-width:6; stroke-linecap:round; }
+  .name { margin:0; font-size:96px; line-height:.92; font-weight:500; letter-spacing:-.04em; color:var(--ink); white-space:nowrap; }
+  .tag { margin:var(--space-3) 0 0 6px; font-size:14px; line-height:20px; color:var(--ink-muted); }
   /* Dark mode: brand flips to Chalk for buttons, but the cover keeps its Crimson slab (on-brand is Crimson in dark),
      draws the contactless waves in Chalk, and outlines the Obsidian card so it reads on the dark ground. */
   [data-theme="dark"] .brand { fill:var(--on-brand); }
@@ -59,8 +63,9 @@
 </svg>
 </div>
 <div class="words">
-<h1 class="name">areeba</h1>
-<p class="tag">The infrastructure behind how money moves.</p>
+<p class="eyebrow"><svg class="mark" viewBox="0 0 48 48" aria-hidden="true"><line class="spark" x1="24" y1="14" x2="24" y2="4.5"/><line class="petal" x1="32.66" y1="19" x2="40.89" y2="14.25"/><line class="petal" x1="32.66" y1="29" x2="40.89" y2="33.75"/><line class="petal" x1="24" y1="34" x2="24" y2="43.5"/><line class="petal" x1="15.34" y1="29" x2="7.11" y2="33.75"/><line class="petal" x1="15.34" y1="19" x2="7.11" y2="14.25"/></svg>areeba</p>
+<h1 class="name">Asterisk 4</h1>
+<p class="tag">areeba's design system: web and React Native apps, SaaS portals and card machines.</p>
 </div>
 </div>
 </body>
