@@ -15,4 +15,4 @@ export default {
 };
 
 export const Playground = {};
-export const Tones = { render: () => stack(h(A.Toast, { tone: 'success' }, 'Transfer sent to Rami Khoury'), h(A.Toast, { tone: 'neutral', action: 'Undo' }, 'Card frozen'), h(A.Toast, { tone: 'danger' }, 'Couldn’t export. Try again.')) };
+export const Tones = { render: () => stack(h(A.Toast, { tone: 'success' }, 'Transfer sent to Sara Ali'), h(A.Toast, { tone: 'neutral', action: 'Undo' }, 'Card frozen'), h(A.Toast, { tone: 'danger' }, 'Couldn’t export. Try again.')) };

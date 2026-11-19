@@ -229,7 +229,24 @@ export declare function Pagination(props: PaginationProps): React.ReactElement;
 export interface MeterProps { value: number; max?: number; label?: React.ReactNode; valueText?: string; hint?: React.ReactNode; tone?: 'brand' | 'success' | 'warning' | 'danger'; 'aria-label'?: string; className?: string }
 export declare function Meter(props: MeterProps): React.ReactElement;
 
+/** Choose one of a few visible options (WAI-ARIA radio group, no native inputs). `variant="card"` draws bordered tiles. */
+export interface RadioOption { value: string; label: React.ReactNode; hint?: React.ReactNode; disabled?: boolean }
+export interface RadioGroupProps { options: RadioOption[]; value?: string | null; defaultValue?: string | null; onChange?: (value: string, option: RadioOption) => void;
+  label?: React.ReactNode; hint?: React.ReactNode; error?: React.ReactNode; name?: string; required?: boolean; disabled?: boolean;
+  orientation?: 'vertical' | 'horizontal'; variant?: 'default' | 'card'; id?: string; 'aria-label'?: string; className?: string }
+export declare function RadioGroup(props: RadioGroupProps): React.ReactElement;
+/** Several lines of text. `maxLength` adds a live "n of m characters" counter. */
+export interface TextAreaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> { label?: React.ReactNode; hint?: React.ReactNode; error?: React.ReactNode }
+export declare function TextArea(props: TextAreaProps): React.ReactElement;
+/** A file in a FileUpload. `status` "uploading" shows `progress` (0–100). */
+export interface UploadFile { name: string; size?: number; file?: File; status?: 'uploading' | 'done' | 'error'; progress?: number; error?: React.ReactNode }
+/** Drop zone and button for files; checks `accept` and `maxSize` (bytes). Controlled with `files`, or uncontrolled with `defaultFiles`. */
+export interface FileUploadProps { label?: React.ReactNode; hint?: React.ReactNode; error?: React.ReactNode; accept?: string; maxSize?: number; multiple?: boolean;
+  files?: UploadFile[]; defaultFiles?: UploadFile[]; onChange?: (files: UploadFile[]) => void; onRemove?: (file: UploadFile, index: number) => void; name?: string; disabled?: boolean; id?: string; className?: string }
+export declare function FileUpload(props: FileUploadProps): React.ReactElement;
+
 declare global { interface Window { Areeba: { Button: typeof Button; TextField: typeof TextField; Switch: typeof Switch; Badge: typeof Badge; Alert: typeof Alert; Tabs: typeof Tabs; ListItem: typeof ListItem; List: typeof List; TabBar: typeof TabBar; Sidebar: typeof Sidebar; DataTable: typeof DataTable; Dialog: typeof Dialog; Toast: typeof Toast; PaymentCard: typeof PaymentCard; EmptyState: typeof EmptyState; Checkbox: typeof Checkbox; Select: typeof Select; Calendar: typeof Calendar; DatePicker: typeof DatePicker; LineChart: typeof LineChart; BarChart: typeof BarChart; ltr: typeof ltr;
   icons: typeof icons; IconButton: typeof IconButton; AppHeader: typeof AppHeader; QuickAction: typeof QuickAction; QuickActions: typeof QuickActions; Balance: typeof Balance; ActionMenu: typeof ActionMenu; SettingsList: typeof SettingsList; SettingsRow: typeof SettingsRow; DetailList: typeof DetailList; FilterChip: typeof FilterChip; SearchField: typeof SearchField; NumberPad: typeof NumberPad; padInput: typeof padInput; AmountInput: typeof AmountInput; MiniCard: typeof MiniCard; CardPicker: typeof CardPicker; ActionBar: typeof ActionBar; PageDots: typeof PageDots; Result: typeof Result;
   Avatar: typeof Avatar; CodeInput: typeof CodeInput; PasscodeDots: typeof PasscodeDots; NotificationItem: typeof NotificationItem; ServiceTile: typeof ServiceTile; StatCard: typeof StatCard; CopyCode: typeof CopyCode;
-  TabPanel: typeof TabPanel; Panel: typeof Panel; Pagination: typeof Pagination; Meter: typeof Meter } } }
+  TabPanel: typeof TabPanel; Panel: typeof Panel; Pagination: typeof Pagination; Meter: typeof Meter;
+  RadioGroup: typeof RadioGroup; TextArea: typeof TextArea; FileUpload: typeof FileUpload } } }

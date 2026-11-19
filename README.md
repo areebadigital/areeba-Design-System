@@ -137,6 +137,14 @@ Fast and functional: 150ms for hover and press, 250ms ease-out for sheets and pa
 | Meter | How much of a limit, quota or set-up is used. |
 | TabPanel | The content of one tab, linked to its Tabs (`id`). |
 
+**Form components:**
+
+| Component | Use it for |
+| --- | --- |
+| RadioGroup | Choosing one of 2–6 visible options; `card` tiles for options that need a line of explanation. |
+| TextArea | Several lines of text (a note, a reason), with a character counter. |
+| FileUpload | Adding documents by dropping or choosing files, with type and size checks and upload states. |
+
 Every control is drawn by areeba, never the browser's native widgets (no native dropdowns, date inputs or pickers); each follows the matching WAI-ARIA pattern so keyboard and screen readers still work. React components ship in `components/bundle.js` under `window.Areeba`; all styling is in `components/bundle.css` and reads only tokens, so it works in any web stack. For native iOS/Android, map the same tokens to your platform theme.
 
 ## Blocks
@@ -153,6 +161,7 @@ Whole screens built only from areeba components, ready to copy, like shadcn/ui b
 | Mobile / Sign in | Phone number and password, forgotten password, sign up. |
 | Mobile / Passcode | Unlock with six digits or Face ID; wrong tries; locked with a reset link. |
 | Mobile / Verify code | The SMS one-time code before a transfer or on a new device. |
+| Mobile / Add beneficiary | A bank account (IBAN) or wallet (phone number), with hints, an optional note and errors summed up at the top. |
 | Mobile / Send money | Who, how much and why, confirm (3 days to accept), done. |
 | Mobile / Notifications | Money requests to accept or decline, and how earlier ones ended. |
 | Mobile / Profile | Account, notifications, security, help and sign out. |
@@ -161,6 +170,7 @@ Whole screens built only from areeba components, ready to copy, like shadcn/ui b
 | SaaS / Transactions | Key numbers, daily volume, the transactions table with filters, export and pages. |
 | SaaS / Payouts | Payout history with pages, the next payout and its account, the payout schedule changed in a dialog. |
 | SaaS / Settings | Tabs for the business details form, the settlement account, the team with an invite dialog, and notifications. |
+| SaaS / Business documents | Document uploads with progress and a deadline, the ID type as radios, notes for the reviewer; uploading and error states. |
 | SaaS / Sign in | Work email and password beside the brand panel, with the wrong-password state. |
 
 The mobile blocks follow the layouts and flows of the areeba pay app, restyled to the system: actions in Crimson Deep, spending in ink, digits 0–9 in Arabic too. The SaaS blocks use the `ar-app-*` layout classes: `ar-app-split` (main and side columns from 1024px), `ar-app-narrow` and `ar-app-form` (settings forms, two columns from 720px) and `ar-app-auth` (sign in). They are stories, so the screenshot tests check each in light, dark and right-to-left.
@@ -180,6 +190,8 @@ Storybook's **Direction** toolbar switch mirrors every story and shows Arabic co
 ## Storybook
 
 Every component, token and asset is documented in Storybook: each component's README is its docs page, every prop has a live control, and a toolbar switch flips light and dark. The accessibility addon runs axe on every story.
+
+**Guides** in Storybook cover writing amounts and errors in English and Arabic, choosing a dialog or a bottom sheet, the status colours, and right-to-left.
 
 ```bash
 npm install
@@ -204,7 +216,7 @@ The design library is [areeba Design System 4.0](https://www.figma.com/design/HU
 | Foundations | Colour, type, spacing, radius, size, elevation |
 | Logos & Icons | The four logo files and the icon set |
 | Actions | Button, IconButton, QuickAction, ActionMenu, ActionBar, ServiceTile |
-| Inputs | TextField, Select, Checkbox, Switch, DatePicker (Calendar), SearchField, FilterChip, AmountInput, NumberPad, CardPicker (MiniCard), CodeInput, PasscodeDots |
+| Inputs | TextField, Select, Checkbox, Switch, DatePicker (Calendar), SearchField, FilterChip, AmountInput, NumberPad, CardPicker (MiniCard), CodeInput, PasscodeDots, RadioGroup, TextArea, FileUpload |
 | Status | Badge, Alert, Toast, EmptyState, Result, NotificationItem, Meter |
 | Data display | ListItem and List, DataTable, PaymentCard, Balance, DetailList, SettingsList (SettingsRow), PageDots, Avatar, StatCard, CopyCode, Panel |
 | Charts | LineChart, BarChart |

@@ -1,0 +1,30 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Guides/Dialog or bottom sheet" />
+
+# Dialog or bottom sheet
+
+Both interrupt. Use them when people must decide or finish something before going on, and keep everything else on the page.
+
+## Which one
+
+| Use | When | Example |
+| --- | --- | --- |
+| **Dialog** (`Dialog`) | SaaS and desktop. A decision or a short task, up to about three fields. | "Freeze this card?", change the payout schedule, invite a team member |
+| **Bottom sheet** (`Dialog sheet`) | Mobile. Details, a short choice or a confirmation, within thumb reach. | Activity details, choose a card, confirm a top up |
+| **A full screen** | A flow with steps, or more than a few fields. | Top up, send money, add a beneficiary |
+| **ActionMenu** | A short list of actions behind a button, no question asked. | Card "More": lock, view PIN, report stolen |
+| **Inline** | Anything that does not block: errors, hints, empty states. | A field error, an Alert above a form |
+| **Toast** | Confirming something that already happened. | "Payout schedule saved" |
+
+## Rules
+
+- **The title is the question or the task**: "Freeze this card?", "Invite a team member". The body says the consequence in one or two sentences.
+- **Buttons repeat the verb**: "Freeze card" and "Cancel", never "OK" and "Yes". The primary action is last on desktop and first (top) in sheets.
+- **Destructive decisions** use `tone="danger"` (`role="alertdialog"`) and a `danger` Button. Say what cannot be undone.
+- **One at a time.** Never open a dialog from a dialog; move to a full screen instead.
+- **Do not interrupt with errors** that a field or an Alert can show.
+- **Keyboard and screen readers:** focus moves into the dialog when it opens, Tab stays inside, Escape closes, and focus returns to the button that opened it. The components do this; keep a visible close action in sheets.
+- **Right-to-left:** actions mirror (primary on the left in Arabic dialogs); sheets rise from the bottom in both directions.
+
+See the [Dialog](?path=/docs/components-overlays-dialog--docs) and [ActionMenu](?path=/docs/components-actions-actionmenu--docs) pages for the components, and the **Payouts** and **Settings** blocks for dialogs in context.

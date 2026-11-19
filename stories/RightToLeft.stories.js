@@ -16,7 +16,7 @@ const Section = (title, ...kids) => h('section', { style: { display: 'flex', fle
 
 const transactions = () => h(A.List, null,
   h(A.ListItem, { leading: 'ب', title: 'البقالة الخضراء', subtitle: 'اليوم، 14:32 · فيزا •• 4021', amount: '−$42.00' }),
-  h(A.ListItem, { leading: 'ر خ', title: 'رامي خوري', subtitle: 'أمس · تحويل وارد', amount: '+$1,250.00' }),
+  h(A.ListItem, { leading: 'س ع', title: 'سارة علي', subtitle: 'أمس · تحويل وارد', amount: '+$1,250.00' }),
   h(A.ListItem, { leading: 'س', title: 'ستريم بوكس', subtitle: '12 نوفمبر · اشتراك', amount: '−$15.99', trailing: h(A.Badge, { tone: 'warning' }, 'قيد الانتظار') }));
 
 export const Actions = {
@@ -46,7 +46,7 @@ export const Status = {
   render: () => h('div', { style: { maxWidth: 560 } }, stack(
     row(h(A.Badge, { tone: 'success', dot: true }, 'مدفوع'), h(A.Badge, { tone: 'warning', dot: true }, 'قيد الانتظار'), h(A.Badge, { tone: 'danger', dot: true }, 'مرفوض'), h(A.Badge, { tone: 'brand' }, 'جديد')),
     h(A.Alert, { tone: 'danger', title: 'تم رفض الدفع' }, 'الرصيد غير كافٍ. اشحن حسابك أو استخدم بطاقة أخرى.'),
-    h(A.Alert, { tone: 'success', title: 'تم إرسال التحويل' }, `سيصل مبلغ ${A.ltr('$250.00')} إلى رامي خوري خلال دقائق.`),
+    h(A.Alert, { tone: 'success', title: 'تم إرسال التحويل' }, `سيصل مبلغ ${A.ltr('$250.00')} إلى سارة علي خلال دقائق.`),
     h(A.Toast, { tone: 'success', action: 'تراجع' }, 'تم تجميد البطاقة'),
     h(A.EmptyState, { title: 'لا توجد معاملات بعد', action: h(A.Button, { variant: 'secondary' }, 'مسح عوامل التصفية') }, 'عندما يدفع العملاء عبر areeba، تظهر مدفوعاتهم هنا فورًا.'))),
 };
@@ -55,8 +55,8 @@ export const Mobile = {
   name: 'Mobile screen',
   render: () => h('div', { style: { width: 375, border: '1px solid var(--line)', borderRadius: 24, overflow: 'hidden', background: 'var(--surface-sunken)' } },
     h('div', { style: { padding: 16, display: 'flex', flexDirection: 'column', gap: 16 } },
-      h('div', { className: 'h2', style: { color: 'var(--ink)' } }, 'مرحبًا، رامي'),
-      h(A.PaymentCard, { last4: '4021', holder: 'Rami Khoury', expiry: '09/29', network: 'VISA' }),
+      h('div', { className: 'h2', style: { color: 'var(--ink)' } }, 'مرحبًا، سارة'),
+      h(A.PaymentCard, { last4: '4021', holder: 'Sara Ali', expiry: '09/29', network: 'VISA' }),
       h(A.Tabs, { label: 'الفترة', defaultValue: 'w', items: [{ value: 'd', label: 'يوم' }, { value: 'w', label: 'أسبوع' }, { value: 'm', label: 'شهر' }, { value: 'y', label: 'سنة' }] }),
       transactions()),
     h(A.TabBar, { value: 'home', items: [{ value: 'home', label: 'الرئيسية', icon: 'home' }, { value: 'cards', label: 'البطاقات', icon: 'card' }, { value: 'pay', label: 'الدفع', icon: 'send' }, { value: 'insights', label: 'التحليلات', icon: 'chart' }, { value: 'me', label: 'الملف', icon: 'user' }] })),
@@ -68,9 +68,9 @@ const columns = [
   { key: 'amount', label: 'المبلغ', align: 'right', numeric: true },
 ];
 const rows = [
-  { id: 'txn_7Hq2LmA9', date: '16 نوفمبر، 14:32', customer: 'رامي خوري', status: 'مكتمل', tone: 'success', amount: '$1,250.00' },
-  { id: 'txn_3Kd8PwQ1', date: '16 نوفمبر، 11:05', customer: 'لينا حداد', status: 'قيد الانتظار', tone: 'warning', amount: '$89.90' },
-  { id: 'txn_9Zr4TbE6', date: '15 نوفمبر، 19:47', customer: 'عمر سعد', status: 'مرفوض', tone: 'danger', amount: '$420.00' },
+  { id: 'txn_7Hq2LmA9', date: '16 نوفمبر، 14:32', customer: 'سارة علي', status: 'مكتمل', tone: 'success', amount: '$1,250.00' },
+  { id: 'txn_3Kd8PwQ1', date: '16 نوفمبر، 11:05', customer: 'كريم حسن', status: 'قيد الانتظار', tone: 'warning', amount: '$89.90' },
+  { id: 'txn_9Zr4TbE6', date: '15 نوفمبر، 19:47', customer: 'نور صالح', status: 'مرفوض', tone: 'danger', amount: '$420.00' },
 ];
 
 export const Dashboard = {

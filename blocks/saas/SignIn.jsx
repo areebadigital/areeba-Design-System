@@ -36,7 +36,7 @@ export default function SignIn({ error = false }) {
             <p className="ar-app-lead">{t.lead}</p>
           </div>
           {error && <Alert tone="danger" title={t.errorTitle}>{t.error}</Alert>}
-          <TextField label={t.email} type="email" autoComplete="username" defaultValue="rami@example.com" dir="ltr" />
+          <TextField label={t.email} type="email" autoComplete="username" defaultValue="sara@example.com" dir="ltr" />
           <TextField label={t.password} type="password" autoComplete="current-password" defaultValue={error ? '12345678' : ''} />
           <div className="ar-app-auth-row">
             <Checkbox label={t.keep} defaultChecked />

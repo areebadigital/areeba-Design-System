@@ -6,14 +6,14 @@ const { AppHeader, IconButton, Avatar, SettingsList, SettingsRow, TabBar } = win
 
 const COPY = {
   en: {
-    title: 'My profile', notifications: 'Notifications', edit: 'Edit photo', name: 'Rami Khoury', ini: 'RK', id: 'areeba ID', password: 'Change password', email: 'Update email',
+    title: 'My profile', notifications: 'Notifications', edit: 'Edit photo', name: 'Sara Ali', ini: 'SA', id: 'areeba ID', password: 'Change password', email: 'Update email',
     account: 'Account', cards: 'My areeba cards', saved: 'Saved cards', newTag: 'New', beneficiaries: 'My beneficiaries',
     notif: 'Notifications', emailN: 'Email notifications', smsN: 'SMS notifications', txN: 'Every transaction', txNSub: 'Payments, transfers and top ups',
     security: 'Security', passcode: 'Passcode', faceId: 'Unlock with Face ID', help: 'Help', support: 'Customer support', report: 'Report a problem',
     more: 'More', about: 'About areeba pay', signOut: 'Sign out', tabs: ['My cards', 'eStore', 'Payments', 'Profile'],
   },
   ar: {
-    title: 'ملفي الشخصي', notifications: 'الإشعارات', edit: 'تعديل الصورة', name: 'رامي خوري', ini: 'ر خ', id: 'حساب areeba ID', password: 'تغيير كلمة المرور', email: 'تحديث البريد الإلكتروني',
+    title: 'ملفي الشخصي', notifications: 'الإشعارات', edit: 'تعديل الصورة', name: 'سارة علي', ini: 'س ع', id: 'حساب areeba ID', password: 'تغيير كلمة المرور', email: 'تحديث البريد الإلكتروني',
     account: 'الحساب', cards: 'بطاقات areeba الخاصة بي', saved: 'البطاقات المحفوظة', newTag: 'جديد', beneficiaries: 'المستفيدون',
     notif: 'الإشعارات', emailN: 'إشعارات البريد الإلكتروني', smsN: 'الرسائل النصية', txN: 'كل معاملة', txNSub: 'المدفوعات والتحويلات والشحن',
     security: 'الأمان', passcode: 'رمز الدخول', faceId: 'الفتح ببصمة الوجه', help: 'المساعدة', support: 'خدمة العملاء', report: 'الإبلاغ عن مشكلة',

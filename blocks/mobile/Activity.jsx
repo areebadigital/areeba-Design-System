@@ -11,7 +11,7 @@ const COPY = {
     title: 'Activity', back: 'Back', download: 'Download statement', search: 'Search transactions', placeholder: 'Search by merchant or name',
     period: '1–30 Nov', card: '•••• 9803', moneyIn: 'Money in', declined: 'Declined', none: 'No transactions yet', noneBody: 'Activate your card to see your latest transactions here.',
     days: [
-      { name: 'Today', total: '−$28.50', rows: [['G', 'Green Grocer', '15:54 · Visa •• 9803', '−$20.90'], ['RK', 'Rami Khoury', '12:10 · Transfer in', '+$12.40'], ['F', 'Food Delivery', '09:02 · Online', '−$20.00']] },
+      { name: 'Today', total: '−$28.50', rows: [['G', 'Green Grocer', '15:54 · Visa •• 9803', '−$20.90'], ['SA', 'Sara Ali', '12:10 · Transfer in', '+$12.40'], ['F', 'Food Delivery', '09:02 · Online', '−$20.00']] },
       { name: 'Yesterday', total: '−$73.99', rows: [['S', 'StreamBox', '21:04 · Subscription', '−$73.99', 'declined']] },
       { name: '15 November', total: '+$1,180.00', rows: [['A', 'areeba', '08:00 · Salary', '+$1,250.00'], ['F', 'Fuel station', '07:41 · Visa •• 9803', '−$70.00']] },
     ],
@@ -20,7 +20,7 @@ const COPY = {
     title: 'النشاط', back: 'رجوع', download: 'تنزيل كشف الحساب', search: 'البحث في المعاملات', placeholder: 'ابحث باسم التاجر أو الشخص',
     period: '1–30 نوفمبر', card: '•••• 9803', moneyIn: 'الوارد', declined: 'مرفوض', none: 'لا توجد معاملات بعد', noneBody: 'فعّل بطاقتك لترى آخر معاملاتك هنا.',
     days: [
-      { name: 'اليوم', total: '−$28.50', rows: [['ب', 'البقالة الخضراء', '15:54 · فيزا •• 9803', '−$20.90'], ['ر خ', 'رامي خوري', '12:10 · تحويل وارد', '+$12.40'], ['ت', 'توصيل الطعام', '09:02 · عبر الإنترنت', '−$20.00']] },
+      { name: 'اليوم', total: '−$28.50', rows: [['ب', 'البقالة الخضراء', '15:54 · فيزا •• 9803', '−$20.90'], ['س ع', 'سارة علي', '12:10 · تحويل وارد', '+$12.40'], ['ت', 'توصيل الطعام', '09:02 · عبر الإنترنت', '−$20.00']] },
       { name: 'أمس', total: '−$73.99', rows: [['س', 'ستريم بوكس', '21:04 · اشتراك', '−$73.99', 'declined']] },
       { name: '15 نوفمبر', total: '+$1,180.00', rows: [['ع', 'areeba', '08:00 · راتب', '+$1,250.00'], ['م', 'محطة وقود', '07:41 · فيزا •• 9803', '−$70.00']] },
     ],
