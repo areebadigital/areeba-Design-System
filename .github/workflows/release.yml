@@ -44,10 +44,10 @@ jobs:
         with:
           distribution: temurin
           java-version: 21
-      - name: Publish Kotlin tokens to GitHub Packages (Maven)
+      - name: Publish Kotlin tokens and Compose components to GitHub Packages (Maven)
         if: steps.changesets.outputs.published == 'true'
         working-directory: packages/asterisk-kotlin
-        run: ./gradlew :tokens:publish -PasteriskVersion=$(node -p "require('../asterisk-tokens/package.json').version")
+        run: ./gradlew :tokens:publish :compose:publish -PasteriskVersion=$(node -p "require('../asterisk-tokens/package.json').version")
         env:
           GITHUB_ACTOR: ${{ github.actor }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

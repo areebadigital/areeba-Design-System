@@ -15,7 +15,8 @@ import { AsteriskProvider, Button, TextField, Select } from '@areebadigital/aste
 ```
 
 - Theme: `data-theme="light"` or `"dark"` on `<html>` (or follow the system). Direction and language: `dir` and `lang` on `<html>`.
-- React Native: `import { light, dark } from '@areebadigital/asterisk-tokens/native'`. Kotlin: `com.areeba.asterisk:asterisk-tokens` (`AsteriskTokens.Light.brand`, `AsteriskTokens.Space.S4`).
+- React Native: `@areebadigital/asterisk-native` (same component names and props, `onPress`/`onChangeText`; wrap the app in its `AsteriskProvider`). Tokens: `import { light, dark } from '@areebadigital/asterisk-tokens/native'`.
+- Kotlin card machines: `com.areeba.asterisk:asterisk-compose` (wrap screens in `AsteriskTheme`; `Keypad`, `AmountDisplay`, `CardPrompt`, `PaymentResult`, `CustomerDisplay` for the second screen). Tokens: `com.areeba.asterisk:asterisk-tokens` (`AsteriskTokens.Light.brand`, `AsteriskTokens.Space.S4`).
 
 ## Where to look
 

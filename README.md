@@ -100,6 +100,7 @@ areeba Asterisk 4 ships as packages on GitHub Packages (scope `@areebadigital`, 
 | `@areebadigital/asterisk-native` | React Native components (`packages/asterisk-native`) |
 | `@areebadigital/asterisk-cli` | `npx @areebadigital/asterisk-cli add <block>` copies a screen into your app |
 | `@areebadigital/asterisk-lint` | Stylelint and ESLint presets |
+| `com.areeba.asterisk:asterisk-compose` | Jetpack Compose components for card machines, including the customer display ([packages/asterisk-kotlin](packages/asterisk-kotlin/README.md)) |
 
 To install, point the scope at GitHub Packages in `.npmrc` with a token that can read packages:
 

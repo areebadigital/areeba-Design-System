@@ -315,6 +315,23 @@ export const ICON_PATHS = {
   ],
   "flip": false
  },
+ "wifi": {
+  "paths": [
+   "M2.5 9a14 14 0 0 1 19 0",
+   "M5.5 12.5a9.5 9.5 0 0 1 13 0",
+   "M8.5 16a5 5 0 0 1 7 0",
+   "M12 19.5h.01"
+  ],
+  "flip": false
+ },
+ "printer": {
+  "paths": [
+   "M7 9V3h10v6",
+   "M7 17H5a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2",
+   "M7 14h10v7H7z"
+  ],
+  "flip": false
+ },
  "contactless": {
   "paths": [
    "M8 8a6 6 0 0 1 0 8",
