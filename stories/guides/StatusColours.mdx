@@ -1,0 +1,43 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { A } from '../areeba.js';
+
+<Meta title="Guides/Status colours" />
+
+# Status colours
+
+Status is always **a word, an icon or a dot, and a colour**, in that order of importance. Colour alone fails people who cannot see it, and screen readers do not announce it.
+
+## The four status colours
+
+| Tone | Means | Words to use | Never for |
+| --- | --- | --- | --- |
+| `success` | Done, money arrived, safe to move on | Completed, Paid, Accepted, Verified, Live | Decoration, brand moments |
+| `warning` | Waiting, or needs attention soon | Pending, Expires soon, Close to your limit | Errors that block |
+| `danger` | Failed, declined, or blocks the next step | Declined, Failed, Not accepted, Locked | Spending, debits, the brand |
+| `info` | Neutral news, in progress | In transit, Scheduled, New | Anything people must act on |
+| `neutral` | Finished but not good or bad | Refunded, Expired, Archived, Draft | — |
+
+<div className="ar-row" style={{ padding: 0 }}>
+  <A.Badge tone="success" dot>Paid</A.Badge>
+  <A.Badge tone="warning" dot>Pending</A.Badge>
+  <A.Badge tone="danger" dot>Declined</A.Badge>
+  <A.Badge tone="info" dot>In transit</A.Badge>
+  <A.Badge tone="neutral">Refunded</A.Badge>
+</div>
+
+## Rules
+
+- **Brand is not a status.** Crimson Deep (`brand`) is for actions and selection; Signal Red (`accent`) is only the logo and headline highlights. Neither ever marks a status.
+- **Spending is ink.** A debit is normal, so it stays `ink` with its `−`. Only credits use `success`, with their `+`.
+- **Soft backgrounds for surfaces, solid colour for marks.** Alerts and badges sit on the `-soft` tint with the tone's text colour (all pass 4.5:1 in light and dark); dots, icons and meter fills use the solid tone.
+- **Pick the strongest true tone, once.** A declined payment is `danger` in the list badge, the details sheet and the Result screen, not `warning` in one place and `danger` in another.
+- **Charts never use status colours** for series; they use `chart-1` to `chart-4`.
+- **Meters** turn `warning` from 75% and `danger` from 90% of a limit; set `success` for progress people want to finish.
+
+## Where status appears
+
+- **Badge** in lists and tables: one or two words.
+- **Alert** above content: a title and what to do.
+- **Toast** after an action: what happened, with undo where possible.
+- **Result** at the end of a flow: success or failure, with the facts.
+- **NotificationItem status**: how a request ended (Accepted, Declined, Expired).

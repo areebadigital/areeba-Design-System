@@ -24,7 +24,7 @@ const MODES = [{ name: 'light', theme: 'light', dir: 'ltr' }, { name: 'dark', th
 const modesFor = (id) => (id.startsWith('guides-') ? [{ name: 'light', theme: 'light', dir: 'rtl' }, { name: 'dark', theme: 'dark', dir: 'rtl' }] : MODES);
 
 /* Latin words allowed on an Arabic screen: brand and currency codes, card faces (which stay Latin by design), IDs. */
-const LATIN_OK = /^(areeba|pay|ID|v\d+|CSV|PDF|QR|USD|LBP|EUR|GBP|VISA|Visa|MC|IBAN|LB\d+|txn_\w+|k|M|Lina|Haddad|Rami|Khoury|RAMI|KHOURY)$/;
+const LATIN_OK = /^(areeba|pay|ID|v\d+|CSV|PDF|JPG|PNG|pdf|jpg|png|heic|QR|USD|LBP|EUR|GBP|VISA|Visa|MC|IBAN|LB\d*|txn_\w+|k|M|Sara|Ali|SARA|ALI|Karim|Hassan|KARIM|HASSAN)$/;
 
 test.beforeEach(async ({ context }) => {
   await context.route('http://sb.local/**', (route) => {

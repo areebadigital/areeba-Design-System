@@ -20,6 +20,16 @@
   .words { position:absolute; left:var(--space-6); bottom:var(--space-6); max-width:440px; }
   .name { margin:0; font-size:120px; line-height:.92; font-weight:500; letter-spacing:-.04em; color:var(--ink); }
   .tag { margin:var(--space-2) 0 0 6px; font-size:14px; line-height:20px; color:var(--ink-muted); }
+  /* Dark mode: brand flips to Chalk for buttons, but the cover keeps its Crimson slab (on-brand is Crimson in dark),
+     draws the contactless waves in Chalk, and outlines the Obsidian card so it reads on the dark ground. */
+  [data-theme="dark"] .brand { fill:var(--on-brand); }
+  [data-theme="dark"] .wave { stroke:var(--brand); }
+  [data-theme="dark"] .night { stroke:var(--line-strong); stroke-width:1; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .brand { fill:var(--on-brand); }
+    :root:not([data-theme="light"]) .wave { stroke:var(--brand); }
+    :root:not([data-theme="light"]) .night { stroke:var(--line-strong); stroke-width:1; }
+  }
 </style>
 </head>
 <body>

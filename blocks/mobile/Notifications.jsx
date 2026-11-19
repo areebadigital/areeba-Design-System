@@ -9,19 +9,19 @@ const { AppHeader, IconButton, Tabs, NotificationItem, Avatar, Button, EmptyStat
 const COPY = {
   en: {
     title: 'Notifications', back: 'Back', readAll: 'Mark all as read', tabs: 'Notification type', activity: 'Activity', updates: 'Updates', today: 'Today', earlier: 'Earlier',
-    request: `Fouad El Mir sent you ${ltr('$100.00')}`, requestBody: 'Note: Dinner on Friday', accept: 'Accept', decline: 'Decline',
-    limit: `Transfer of ${ltr('$300.00')} to John Daw returned`, limitBody: 'It passed your 3-day limit, so it was declined and the money is back on your card.', expired: 'Expired',
+    request: `Maya Amin sent you ${ltr('$100.00')}`, requestBody: 'Note: Dinner on Friday', accept: 'Accept', decline: 'Decline',
+    limit: `Transfer of ${ltr('$300.00')} to Ziad Khalil returned`, limitBody: 'It passed your 3-day limit, so it was declined and the money is back on your card.', expired: 'Expired',
     declined: `Jenny declined your ${ltr('$100.00')}`, declinedBody: 'The money is back on your card.', declinedTag: 'Declined',
-    accepted: `You accepted ${ltr('$100.00')} from Fouad El Mir`, acceptedTag: 'Accepted',
-    statement: 'Your November statement is ready', mon: 'Mon', sun: 'Sun', fm: 'FM', j: 'J', statementBody: 'Download it from Activity.', none: 'No updates yet', noneBody: 'News about your cards and the app shows up here.',
+    accepted: `You accepted ${ltr('$100.00')} from Maya Amin`, acceptedTag: 'Accepted',
+    statement: 'Your November statement is ready', mon: 'Mon', sun: 'Sun', fm: 'MA', j: 'J', statementBody: 'Download it from Activity.', none: 'No updates yet', noneBody: 'News about your cards and the app shows up here.',
   },
   ar: {
     title: 'الإشعارات', back: 'رجوع', readAll: 'تعيين الكل كمقروء', tabs: 'نوع الإشعار', activity: 'النشاط', updates: 'التحديثات', today: 'اليوم', earlier: 'سابقًا',
-    request: `أرسل لك فؤاد المير ${ltr('$100.00')}`, requestBody: 'ملاحظة: عشاء يوم الجمعة', accept: 'قبول', decline: 'رفض',
-    limit: `أُعيد تحويل ${ltr('$300.00')} إلى جان ضو`, limitBody: 'تجاوز حدّك لثلاثة أيام، لذا رُفض وأُعيد المبلغ إلى بطاقتك.', expired: 'منتهي',
+    request: `أرسل لك مايا أمين ${ltr('$100.00')}`, requestBody: 'ملاحظة: عشاء يوم الجمعة', accept: 'قبول', decline: 'رفض',
+    limit: `أُعيد تحويل ${ltr('$300.00')} إلى زياد خليل`, limitBody: 'تجاوز حدّك لثلاثة أيام، لذا رُفض وأُعيد المبلغ إلى بطاقتك.', expired: 'منتهي',
     declined: `رفضت جيني تحويلك بقيمة ${ltr('$100.00')}`, declinedBody: 'أُعيد المبلغ إلى بطاقتك.', declinedTag: 'مرفوض',
-    accepted: `قبلت ${ltr('$100.00')} من فؤاد المير`, acceptedTag: 'مقبول',
-    statement: 'كشف حساب نوفمبر جاهز', mon: 'الاثنين', sun: 'الأحد', fm: 'ف م', j: 'ج', statementBody: 'نزّله من صفحة النشاط.', none: 'لا توجد تحديثات بعد', noneBody: 'تظهر هنا أخبار بطاقاتك والتطبيق.',
+    accepted: `قبلت ${ltr('$100.00')} من مايا أمين`, acceptedTag: 'مقبول',
+    statement: 'كشف حساب نوفمبر جاهز', mon: 'الاثنين', sun: 'الأحد', fm: 'م أ', j: 'ج', statementBody: 'نزّله من صفحة النشاط.', none: 'لا توجد تحديثات بعد', noneBody: 'تظهر هنا أخبار بطاقاتك والتطبيق.',
   },
 };
 

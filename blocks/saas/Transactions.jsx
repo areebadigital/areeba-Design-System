@@ -12,14 +12,14 @@ const COPY = {
     title: 'Transactions', period: '1–30 Nov 2026', store: 'All stores', export: 'Export CSV', search: 'Search transactions', placeholder: 'Reference, customer or card',
     status: ['Completed', 'Pending', 'Declined'], vol: 'Volume', count: 'Transactions', avg: 'Average ticket', refunds: 'Refunds', vsLast: 'vs October',
     chart: 'Daily volume', card: 'Card', qr: 'QR', table: 'Latest transactions', cols: ['Reference', 'Date', 'Customer', 'Status', 'Amount'], empty: 'No transactions match these filters.',
-    customers: ['Rami Khoury', 'Lina Haddad', 'Omar Saad', 'Maya Nassar', 'Karim Aoun'], dates: ['30 Nov, 14:32', '30 Nov, 11:05', '29 Nov, 19:47', '29 Nov, 16:20', '29 Nov, 09:12'],
+    customers: ['Sara Ali', 'Karim Hassan', 'Nour Saleh', 'Jad Youssef', 'Hadi Fares'], dates: ['30 Nov, 14:32', '30 Nov, 11:05', '29 Nov, 19:47', '29 Nov, 16:20', '29 Nov, 09:12'],
     nav: ['Overview', 'Transactions', 'Payouts', 'Stores', 'Reports', 'Settings'], footer: 'Green Grocer · Main branch', days: ['1 Nov', '8 Nov', '15 Nov', '22 Nov', '30 Nov'],
   },
   ar: {
     title: 'المعاملات', period: '1–30 نوفمبر 2026', store: 'كل المتاجر', export: 'تصدير CSV', search: 'البحث في المعاملات', placeholder: 'المرجع أو العميل أو البطاقة',
     status: ['مكتمل', 'قيد الانتظار', 'مرفوض'], vol: 'الحجم', count: 'المعاملات', avg: 'متوسط الفاتورة', refunds: 'المبالغ المستردة', vsLast: 'مقارنة بأكتوبر',
     chart: 'الحجم اليومي', card: 'بطاقة', qr: 'QR', table: 'أحدث المعاملات', cols: ['المرجع', 'التاريخ', 'العميل', 'الحالة', 'المبلغ'], empty: 'لا توجد معاملات تطابق عوامل التصفية.',
-    customers: ['رامي خوري', 'لينا حداد', 'عمر سعد', 'مايا نصار', 'كريم عون'], dates: ['30 نوفمبر، 14:32', '30 نوفمبر، 11:05', '29 نوفمبر، 19:47', '29 نوفمبر، 16:20', '29 نوفمبر، 09:12'],
+    customers: ['سارة علي', 'كريم حسن', 'نور صالح', 'جاد يوسف', 'هادي فارس'], dates: ['30 نوفمبر، 14:32', '30 نوفمبر، 11:05', '29 نوفمبر، 19:47', '29 نوفمبر، 16:20', '29 نوفمبر، 09:12'],
     nav: ['نظرة عامة', 'المعاملات', 'المدفوعات', 'المتاجر', 'التقارير', 'الإعدادات'], footer: 'البقالة الخضراء · الفرع الرئيسي', days: ['1 نوفمبر', '8 نوفمبر', '15 نوفمبر', '22 نوفمبر', '30 نوفمبر'],
   },
 };

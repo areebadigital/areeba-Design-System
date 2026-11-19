@@ -19,5 +19,5 @@ export default {
 export const Playground = {};
 export const Transactions = { render: () => h(A.List, null,
   h(A.ListItem, { leading: 'G', title: 'Green Grocer', subtitle: 'Today, 14:32 · Visa •• 4021', amount: '−$42.00' }),
-  h(A.ListItem, { leading: 'RK', title: 'Rami Khoury', subtitle: 'Yesterday · Transfer in', amount: '+$1,250.00' }),
+  h(A.ListItem, { leading: 'SA', title: 'Sara Ali', subtitle: 'Yesterday · Transfer in', amount: '+$1,250.00' }),
   h(A.ListItem, { leading: 'S', title: 'StreamBox', subtitle: '12 Nov · Subscription', amount: '−$15.99', trailing: h(A.Badge, { tone: 'warning' }, 'Pending') })) };

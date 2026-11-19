@@ -1,4 +1,4 @@
-/* @ds-bundle: {"format":4,"namespace":"Areeba","components":[{"name":"Button"},{"name":"TextField"},{"name":"Switch"},{"name":"Badge"},{"name":"Alert"},{"name":"Tabs"},{"name":"ListItem"},{"name":"TabBar"},{"name":"Sidebar"},{"name":"DataTable"},{"name":"Dialog"},{"name":"Toast"},{"name":"PaymentCard"},{"name":"EmptyState"},{"name":"Checkbox"},{"name":"Select"},{"name":"DatePicker"},{"name":"LineChart"},{"name":"BarChart"},{"name":"AppHeader"},{"name":"IconButton"},{"name":"QuickAction"},{"name":"Balance"},{"name":"ActionMenu"},{"name":"SettingsList"},{"name":"DetailList"},{"name":"FilterChip"},{"name":"SearchField"},{"name":"NumberPad"},{"name":"AmountInput"},{"name":"CardPicker"},{"name":"ActionBar"},{"name":"PageDots"},{"name":"Result"},{"name":"Avatar"},{"name":"CodeInput"},{"name":"PasscodeDots"},{"name":"NotificationItem"},{"name":"ServiceTile"},{"name":"StatCard"},{"name":"CopyCode"},{"name":"Panel"},{"name":"Pagination"},{"name":"Meter"}]} */
+/* @ds-bundle: {"format":4,"namespace":"Areeba","components":[{"name":"Button"},{"name":"TextField"},{"name":"Switch"},{"name":"Badge"},{"name":"Alert"},{"name":"Tabs"},{"name":"ListItem"},{"name":"TabBar"},{"name":"Sidebar"},{"name":"DataTable"},{"name":"Dialog"},{"name":"Toast"},{"name":"PaymentCard"},{"name":"EmptyState"},{"name":"Checkbox"},{"name":"Select"},{"name":"DatePicker"},{"name":"LineChart"},{"name":"BarChart"},{"name":"AppHeader"},{"name":"IconButton"},{"name":"QuickAction"},{"name":"Balance"},{"name":"ActionMenu"},{"name":"SettingsList"},{"name":"DetailList"},{"name":"FilterChip"},{"name":"SearchField"},{"name":"NumberPad"},{"name":"AmountInput"},{"name":"CardPicker"},{"name":"ActionBar"},{"name":"PageDots"},{"name":"Result"},{"name":"Avatar"},{"name":"CodeInput"},{"name":"PasscodeDots"},{"name":"NotificationItem"},{"name":"ServiceTile"},{"name":"StatCard"},{"name":"CopyCode"},{"name":"Panel"},{"name":"Pagination"},{"name":"Meter"},{"name":"RadioGroup"},{"name":"TextArea"},{"name":"FileUpload"}]} */
 (function () {
   var React = window.React, h = React.createElement;
   function cx() { return Array.prototype.filter.call(arguments, Boolean).join(" "); }
@@ -42,6 +42,7 @@
     download: Icon(["M12 4v11", "M7 10l5 5 5-5", "M5 20h14"]),
     share: Icon(["M12 15V4", "M8 8l4-4 4 4", "M5 12v8h14v-8"]),
     doc: Icon(["M7 3h7l5 5v13H7z", "M14 3v5h5", "M10 13h6", "M10 17h6"]),
+    upload: Icon(["M12 15V4", "M7 9l5-5 5 5", "M4 15v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4"]),
     backspace: Icon(["M9 5h11v14H9l-6-7z", "M12 9l5 6", "M17 9l-5 6"], true),
     phone: Icon(["M8 3h8v18H8z", "M11 18h2"]),
     mail: Icon(["M3 6h18v12H3z", "M3 7l9 6 9-6"]),
@@ -59,13 +60,19 @@
       balance: "Available balance", showBalance: "Show balance", hideBalance: "Hide balance", balanceHidden: "Balance hidden", more: "More actions",
       search: "Search", clear: "Clear search", keypad: "Number pad", del: "Delete", fee: "Transaction fee", free: "Free", position: function (c, n) { return c + " of " + n; },
       digits: function (c, n) { return c + " of " + n + " digits entered"; }, unread: "Unread", copy: "Copy", copied: "Copied",
-      pages: "Pages", prevPage: "Previous page", nextPage: "Next page", page: function (n) { return "Page " + n; }, range: function (a, b, n) { return a + "–" + b + " of " + n; } },
+      pages: "Pages", prevPage: "Previous page", nextPage: "Next page", page: function (n) { return "Page " + n; }, range: function (a, b, n) { return a + "–" + b + " of " + n; },
+      chars: function (n, m) { return n + " of " + m + " characters"; }, drop: "Drag a file here or", dropMany: "Drag files here or", choose: "Choose file", chooseMany: "Choose files",
+      remove: function (n) { return "Remove " + n; }, tooBig: function (m) { return "Too large. The limit is " + m + "."; }, badType: "This file type is not accepted.",
+      uploading: "Uploading", uploaded: "Uploaded", kb: "KB", mb: "MB", files: "Files" },
     ar: { nav: "التنقل الرئيسي", empty: "لا توجد نتائج", select: "اختر", frozen: "مجمّدة", card: function (n, l4, fz) { return "بطاقة " + (n || "") + " تنتهي بـ " + l4 + (fz ? "، مجمّدة" : ""); },
       prev: "الشهر السابق", next: "الشهر التالي", pick: "اختر تاريخًا",
       balance: "الرصيد المتاح", showBalance: "إظهار الرصيد", hideBalance: "إخفاء الرصيد", balanceHidden: "الرصيد مخفي", more: "إجراءات إضافية",
       search: "بحث", clear: "مسح البحث", keypad: "لوحة الأرقام", del: "حذف", fee: "رسوم المعاملة", free: "مجاني", position: function (c, n) { return c + " من " + n; },
       digits: function (c, n) { return "أُدخل " + c + " من " + n + " أرقام"; }, unread: "غير مقروء", copy: "نسخ", copied: "تم النسخ",
-      pages: "الصفحات", prevPage: "الصفحة السابقة", nextPage: "الصفحة التالية", page: function (n) { return "الصفحة " + n; }, range: function (a, b, n) { return a + "–" + b + " من " + n; } },
+      pages: "الصفحات", prevPage: "الصفحة السابقة", nextPage: "الصفحة التالية", page: function (n) { return "الصفحة " + n; }, range: function (a, b, n) { return a + "–" + b + " من " + n; },
+      chars: function (n, m) { return n + " من " + m + " حرفًا"; }, drop: "اسحب ملفًا إلى هنا أو", dropMany: "اسحب الملفات إلى هنا أو", choose: "اختر ملفًا", chooseMany: "اختر ملفات",
+      remove: function (n) { return "إزالة " + n; }, tooBig: function (m) { return "الملف كبير جدًا. الحد الأقصى " + m + "."; }, badType: "نوع الملف هذا غير مقبول.",
+      uploading: "جارٍ التحميل", uploaded: "تم التحميل", kb: "كيلوبايت", mb: "ميغابايت", files: "الملفات" },
   };
   function ui(lang) { var l = String(lang || (typeof document !== "undefined" && document.documentElement.lang) || "en").slice(0, 2).toLowerCase(); return UI_TEXT[l] || UI_TEXT.en; }
 
@@ -879,10 +886,103 @@
       p.hint && h("span", { className: "ar-meter-hint" }, p.hint));
   }
 
+  /* ---- round 4: form components ---- */
+
+  /* Choose one of a few options you can see at once. WAI-ARIA radio group: one tab stop, arrows move and choose, Space chooses.
+     variant "card" draws each option as a bordered tile (with a hint line). The value travels in a hidden input when `name` is set. */
+  function RadioGroup(p) {
+    var opts = p.options || [], id = useId(p.id), labelId = id + "-label", hintId = id + "-hint", refs = React.useRef([]);
+    var st = React.useState(p.defaultValue !== undefined ? p.defaultValue : null), cur = p.value !== undefined ? p.value : st[0];
+    var enabled = opts.map(function (o, i) { return o.disabled || p.disabled ? -1 : i; }).filter(function (i) { return i >= 0; });
+    var sel = opts.findIndex(function (o) { return o.value === cur; }), stop = sel >= 0 && enabled.indexOf(sel) >= 0 ? sel : enabled[0];
+    function choose(i, focus) { var o = opts[i]; if (!o || o.disabled || p.disabled) return; st[1](o.value); if (p.onChange) p.onChange(o.value, o); if (focus && refs.current[i]) refs.current[i].focus(); }
+    function onKey(e, i) {
+      var k = e.key, d = 0, rtl = getComputedStyle(e.currentTarget).direction === "rtl";
+      if (k === "ArrowDown") d = 1; else if (k === "ArrowUp") d = -1; else if (k === "ArrowRight") d = rtl ? -1 : 1; else if (k === "ArrowLeft") d = rtl ? 1 : -1;
+      else if (k === " ") { e.preventDefault(); choose(i, false); return; } else return;
+      e.preventDefault(); var at = enabled.indexOf(i); choose(enabled[(at + d + enabled.length) % enabled.length], true);
+    }
+    var described = p.error || p.hint ? hintId : undefined;
+    return h("div", { className: cx("ar-radios", p.variant === "card" && "ar-radios-card", p.orientation === "horizontal" && "ar-radios-row", p.error && "ar-radios-invalid", p.className) },
+      p.label && h("span", { className: "ar-field-label", id: labelId }, p.label),
+      h("div", { role: "radiogroup", "aria-labelledby": p.label ? labelId : undefined, "aria-label": p.label ? undefined : p["aria-label"], "aria-describedby": described,
+        "aria-required": p.required ? "true" : undefined, "aria-invalid": p.error ? "true" : undefined, className: "ar-radios-list" },
+        opts.map(function (o, i) {
+          var on = i === sel, dis = o.disabled || p.disabled, oid = id + "-" + i;
+          return h("div", { key: o.value, ref: function (el) { refs.current[i] = el; }, role: "radio", id: oid, "aria-checked": on ? "true" : "false", "aria-disabled": dis ? "true" : undefined,
+            "aria-describedby": o.hint ? oid + "-hint" : undefined, tabIndex: i === stop ? 0 : -1, className: cx("ar-radio", on && "ar-radio-on"),
+            onClick: function () { choose(i, true); }, onKeyDown: function (e) { onKey(e, i); } },
+            h("span", { className: "ar-radio-dot", "aria-hidden": "true" }),
+            h("span", { className: "ar-radio-text" }, h("span", { className: "ar-radio-label" }, o.label), o.hint && h("span", { className: "ar-radio-hint", id: oid + "-hint" }, o.hint)));
+        })),
+      (p.error || p.hint) && h("span", { className: "ar-field-hint", id: hintId, role: p.error ? "alert" : undefined }, p.error || p.hint),
+      p.name && cur != null && h("input", { type: "hidden", name: p.name, value: cur }));
+  }
+
+  /* Several lines of text: a note, a reason, an address. A real textarea (text entry is the one native control we keep). `maxLength` adds a counter. */
+  function TextArea(p) {
+    var id = useId(p.id), hintId = id + "-hint", countId = id + "-count", t = ui();
+    var st = React.useState(p.defaultValue || ""), val = p.value !== undefined ? p.value : st[0];
+    var desc = [(p.error || p.hint) && hintId, p.maxLength && countId].filter(Boolean).join(" ") || undefined;
+    return h("div", { className: cx("ar-field", "ar-textarea", p.error && "ar-field-invalid", p.className) },
+      p.label && h("label", { className: "ar-field-label", htmlFor: id }, p.label),
+      h("textarea", Object.assign({ rows: 4 }, rest(p, ["label", "hint", "error", "className", "id", "value", "defaultValue", "onChange"]), {
+        id: id, value: val, "aria-invalid": p.error ? "true" : undefined, "aria-describedby": desc,
+        onChange: function (e) { st[1](e.target.value); if (p.onChange) p.onChange(e); } })),
+      (p.error || p.hint || p.maxLength) && h("div", { className: "ar-textarea-foot" },
+        (p.error || p.hint) ? h("span", { className: "ar-field-hint", id: hintId }, p.error || p.hint) : h("span", null),
+        p.maxLength && h("span", { className: cx("ar-textarea-count", val.length >= p.maxLength && "ar-textarea-full"), id: countId, "aria-live": "polite" }, t.chars(val.length, p.maxLength))));
+  }
+
+  /* Add files by dropping them or with a button. The browser's file input stays hidden: it is the only way to open the system file picker.
+     Files are checked against `accept` and `maxSize`; each row shows its state (uploading with progress, uploaded, error) and can be removed. */
+  function fileSize(n, t) { return n < 1024 * 1024 ? Math.max(1, Math.round(n / 1024)) + " " + t.kb : (Math.round(n / 1024 / 1024 * 10) / 10) + " " + t.mb; }
+  function fileOk(f, accept) {
+    if (!accept) return true; var name = (f.name || "").toLowerCase(), type = f.type || "";
+    return accept.split(",").some(function (a) { a = a.trim().toLowerCase(); return a.charAt(0) === "." ? name.slice(-a.length) === a : a.slice(-2) === "/*" ? type.indexOf(a.slice(0, -1)) === 0 : type === a; });
+  }
+  function FileUpload(p) {
+    var id = useId(p.id), labelId = id + "-label", hintId = id + "-hint", input = React.useRef(null), t = ui();
+    var st = React.useState(p.defaultFiles || []), files = p.files !== undefined ? p.files : st[0], ds = React.useState(false), over = ds[0];
+    function set(list) { st[1](list); if (p.onChange) p.onChange(list); }
+    function add(list) {
+      var items = Array.prototype.slice.call(list || []).map(function (f) {
+        var err = !fileOk(f, p.accept) ? t.badType : p.maxSize && f.size > p.maxSize ? t.tooBig(fileSize(p.maxSize, t)) : null;
+        return { name: f.name, size: f.size, file: f, status: err ? "error" : "done", error: err || undefined };
+      });
+      if (items.length) set(p.multiple ? files.concat(items) : items.slice(0, 1));
+    }
+    function remove(i) { var next = files.filter(function (_, j) { return j !== i; }); set(next); if (p.onRemove) p.onRemove(files[i], i); }
+    var many = !!p.multiple;
+    return h("div", { className: cx("ar-upload", p.error && "ar-upload-invalid", p.className) },
+      p.label && h("span", { className: "ar-field-label", id: labelId }, p.label),
+      h("div", { className: cx("ar-upload-zone", over && "ar-upload-over", p.disabled && "ar-upload-disabled"),
+        onDragOver: function (e) { if (p.disabled) return; e.preventDefault(); ds[1](true); }, onDragLeave: function () { ds[1](false); },
+        onDrop: function (e) { e.preventDefault(); ds[1](false); if (!p.disabled) add(e.dataTransfer.files); } },
+        h(icons.upload, { className: "ar-upload-icon" }),
+        h("span", { className: "ar-upload-text" }, many ? t.dropMany : t.drop),
+        h("button", { type: "button", className: "ar-btn ar-btn-secondary ar-btn-sm", disabled: p.disabled, "aria-describedby": (p.error || p.hint) ? hintId : undefined,
+          "aria-labelledby": p.label ? labelId + " " + id + "-btn" : undefined, id: id + "-btn", onClick: function () { if (input.current) input.current.click(); } }, many ? t.chooseMany : t.choose),
+        h("input", { ref: input, type: "file", className: "ar-sr-only", tabIndex: -1, "aria-hidden": "true", accept: p.accept, multiple: many, name: p.name, disabled: p.disabled,
+          onChange: function (e) { add(e.target.files); e.target.value = ""; } })),
+      (p.error || p.hint) && h("span", { className: "ar-field-hint", id: hintId, role: p.error ? "alert" : undefined }, p.error || p.hint),
+      files.length > 0 && h("ul", { className: "ar-upload-list", "aria-label": p.label ? undefined : t.files, "aria-labelledby": p.label ? labelId : undefined }, files.map(function (f, i) {
+        var bad = f.status === "error", busy = f.status === "uploading";
+        return h("li", { key: f.name + i, className: cx("ar-upload-file", bad && "ar-upload-file-error") },
+          h(bad ? icons.alert : icons.doc, { className: "ar-upload-file-icon" }),
+          h("span", { className: "ar-upload-file-main" },
+            h("span", { className: "ar-upload-file-name", dir: "auto" }, f.name),
+            h("span", { className: "ar-upload-file-meta" }, bad ? f.error : busy ? t.uploading + " · " + (f.progress || 0) + "%" : [f.size != null && fileSize(f.size, t), t.uploaded].filter(Boolean).join(" · ")),
+            busy && h("span", { className: "ar-upload-bar", role: "progressbar", "aria-label": f.name, "aria-valuemin": 0, "aria-valuemax": 100, "aria-valuenow": f.progress || 0 }, h("span", { style: { width: (f.progress || 0) + "%" } }))),
+          h(IconButton, { icon: "close", variant: "plain", label: t.remove(f.name), onClick: function () { remove(i); } }));
+      })));
+  }
+
   window.Areeba = Object.assign(window.Areeba || {}, { Button: Button, TextField: TextField, Switch: Switch, Badge: Badge, Alert: Alert, Tabs: Tabs, ListItem: ListItem, List: List, TabBar: TabBar, Sidebar: Sidebar, DataTable: DataTable, Dialog: Dialog, Toast: Toast, PaymentCard: PaymentCard, EmptyState: EmptyState, Checkbox: Checkbox, Select: Select, DatePicker: DatePicker, Calendar: Calendar, LineChart: LineChart, BarChart: BarChart, icons: icons, ltr: ltr,
     IconButton: IconButton, AppHeader: AppHeader, QuickAction: QuickAction, QuickActions: QuickActions, Balance: Balance, ActionMenu: ActionMenu,
     SettingsList: SettingsList, SettingsRow: SettingsRow, DetailList: DetailList, FilterChip: FilterChip, SearchField: SearchField,
     NumberPad: NumberPad, padInput: padInput, AmountInput: AmountInput, MiniCard: MiniCard, CardPicker: CardPicker, ActionBar: ActionBar, PageDots: PageDots, Result: Result,
     Avatar: Avatar, CodeInput: CodeInput, PasscodeDots: PasscodeDots, NotificationItem: NotificationItem, ServiceTile: ServiceTile, StatCard: StatCard, CopyCode: CopyCode,
-    TabPanel: TabPanel, Panel: Panel, Pagination: Pagination, Meter: Meter });
+    TabPanel: TabPanel, Panel: Panel, Pagination: Pagination, Meter: Meter,
+    RadioGroup: RadioGroup, TextArea: TextArea, FileUpload: FileUpload });
 })();

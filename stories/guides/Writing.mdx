@@ -1,0 +1,67 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { A } from '../areeba.js';
+
+<Meta title="Guides/Writing amounts and errors" />
+
+# Writing amounts and errors
+
+People act on money, so every amount must be impossible to misread and every error must say what to do next. These rules apply in English and Arabic; the Arabic column is what ships, not a translation afterthought.
+
+## Amounts
+
+| Rule | English | Arabic |
+| --- | --- | --- |
+| Currency symbol or code before the number, no space for symbols | `$12,480.50` · `LBP 1,500,000` | `$12,480.50` · `LBP 1,500,000` (kept left-to-right) |
+| Two decimals for USD and EUR; none for LBP | `$42.00`, not `$42` | same digits |
+| Debits use the minus sign `−` (U+2212), credits `+` | `−$20.90` · `+$1,250.00` | `−$20.90` · `+$1,250.00` |
+| Digits are always 0–9 | `14:32`, `30 Nov` | `14:32`، `30 نوفمبر` (never ١٤:٣٢) |
+| Thousands with commas, decimal point | `$186,420` | `$186,420` |
+| An amount inside a sentence is isolated | `Transfer sent: $250.00` | ``` `تم إرسال ${ltr('$250.00')}` ``` |
+
+- **Never truncate an amount.** Shorten the label instead, or wrap.
+- **Spending is ink, not red.** Red means something went wrong; a payment is not an error. Only credits get `success` green, with their `+`.
+- **Amounts, IBANs, card and reference numbers stay left-to-right in Arabic.** Components that show amounts do this for you (ListItem, DataTable, DetailList with `ltr`, AmountInput). For text you write, wrap the amount with `Areeba.ltr()`; without it the browser shows `12,480.50$`.
+- **Big numbers in dashboards** may use `k` and `M` (`$1.24M`), never in balances, receipts or confirmations.
+- **Dates:** "Today, 14:32", "12 Nov", "12 Nov 2025" when not this year. 24-hour time. Arabic month names come from `Intl`; the digits stay 0–9.
+
+<div className="ar-stack" style={{ padding: 0 }}>
+  <A.List>
+    <A.ListItem leading="G" title="Green Grocer" subtitle="Today, 14:32 · Visa •• 4021" amount="−$42.00" />
+    <A.ListItem leading="SA" title="Sara Ali" subtitle="Yesterday · Transfer in" amount="+$1,250.00" />
+  </A.List>
+</div>
+
+## Errors
+
+An error has two parts: **what happened**, then **what to do**. Write it for the person, not the system.
+
+| Situation | English | Arabic |
+| --- | --- | --- |
+| Card declined | Your bank declined the payment. Try another card or contact your bank. | رفض مصرفك الدفع. جرّب بطاقة أخرى أو تواصل مع مصرفك. |
+| Field too short | This IBAN is too short. Check the 28 characters and try again. | رقم الآيبان قصير جدًا. تحقق من الخانات الـ 28 وحاول مجددًا. |
+| Over a limit | More than your daily limit of $5,000.00. Enter a smaller amount. | أكثر من حدّك اليومي البالغ $5,000.00. أدخل مبلغًا أقل. |
+| Wrong code | That code is not right. Check it and try again. | الرمز غير صحيح. تحقق منه وحاول مجددًا. |
+| No connection | We couldn’t reach areeba. Check your connection; nothing was charged. | تعذّر الوصول إلى areeba. تحقق من اتصالك؛ لم يُخصم أي مبلغ. |
+| Missing choice | Choose the type of document you are uploading. | اختر نوع المستند الذي تحمّله. |
+
+- **Say whether money moved.** After a failed payment, always say if anything was charged: "No money was taken."
+- **No blame, no codes first.** "Something went wrong (E1042)" helps no one. Put a reference after the fix, if support needs it: "Reference TXN-2026-118204".
+- **No "please", "sorry" or "oops".** Be direct and calm. "Invalid" and "error" are not explanations.
+- **Use the same words as the UI.** If the button says "Top up", the error says "top up", not "recharge".
+
+### Where errors go
+
+- **Under the field** (`error` on TextField, TextArea, Select, RadioGroup, FileUpload): for one field. It replaces the hint, turns the field `danger` and is announced.
+- **An Alert at the top of the form**: when several fields fail, say how many ("Check 3 fields") and mark each field.
+- **A Result screen**: when a whole flow fails (payment declined).
+- **A Toast**: only for something that failed in the background, with a retry action.
+- **Never colour alone.** Every error has words; every status has a word and an icon.
+
+<div className="ar-stack" style={{ padding: 0, maxWidth: 420 }}>
+  <A.Alert tone="danger" title="Check 3 fields">Some details are missing or not right. They are marked below.</A.Alert>
+  <A.TextField label="IBAN" dir="ltr" defaultValue="LB62 0999 0000" error="This IBAN is too short. Check the 28 characters and try again." />
+</div>
+
+## Hints
+
+Put the rules in the hint **before** people type or upload, so the error rarely appears: "28 characters, starts with LB", "PDF, JPG or PNG, up to 10 MB". The placeholder is an example, never the label or the rule.

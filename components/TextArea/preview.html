@@ -1,0 +1,12 @@
+<!-- @dsCard group="Inputs" height=190 -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>TextArea — preview</title></head>
+<body>
+<div id="root"></div>
+<script>
+  var A = window.Areeba, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h('div',{style:{padding:16,maxWidth:420}}, h(A.TextArea,{label:'Note to recipient',hint:'They see this with the transfer.',maxLength:140,defaultValue:'Dinner on Friday'})));
+</script>
+</body>
+</html>

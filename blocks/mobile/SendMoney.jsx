@@ -12,7 +12,7 @@ const FEE = 1, MIN = 1, MAX = 2000;
 const COPY = {
   en: {
     title: 'Send money', back: 'Back', close: 'Close', search: 'Search contacts', placeholder: 'Name or phone number', recent: 'Recent', contacts: 'Contacts',
-    people: [['FM', 'Fouad El Mir', '+961 71 123 456'], ['LH', 'Lina Haddad', '+961 3 555 012'], ['RK', 'Rami Khoury', '+961 70 900 311'], ['OS', 'Omar Saad', '+961 76 410 220']],
+    people: [['MA', 'Maya Amin', '+961 71 123 456'], ['KH', 'Karim Hassan', '+961 3 555 012'], ['SA', 'Sara Ali', '+961 70 900 311'], ['NS', 'Nour Saleh', '+961 76 410 220']],
     amount: 'Amount', limits: `Min ${ltr('$1')} · Max ${ltr('$2,000')} a day`, tooHigh: `You can send up to ${ltr('$2,000')} a day.`, fee: 'Transaction fee',
     reason: 'What’s it for?', reasonHint: 'They see this with the money.', reasonExample: 'Dinner on Friday', cont: 'Continue',
     confirmTitle: 'Confirm the transfer', total: 'Total', from: 'From card', to: 'To', sent: 'Amount', theyGet: 'They receive', note: 'Note',
@@ -21,7 +21,7 @@ const COPY = {
   },
   ar: {
     title: 'إرسال الأموال', back: 'رجوع', close: 'إغلاق', search: 'البحث في جهات الاتصال', placeholder: 'الاسم أو رقم الهاتف', recent: 'الأخيرة', contacts: 'جهات الاتصال',
-    people: [['ف م', 'فؤاد المير', '+961 71 123 456'], ['ل ح', 'لينا حداد', '+961 3 555 012'], ['ر خ', 'رامي خوري', '+961 70 900 311'], ['ع س', 'عمر سعد', '+961 76 410 220']],
+    people: [['م أ', 'مايا أمين', '+961 71 123 456'], ['ك ح', 'كريم حسن', '+961 3 555 012'], ['س ع', 'سارة علي', '+961 70 900 311'], ['ن ص', 'نور صالح', '+961 76 410 220']],
     amount: 'المبلغ', limits: `الحد الأدنى ${ltr('$1')} · الحد الأقصى ${ltr('$2,000')} يوميًا`, tooHigh: `يمكنك إرسال ${ltr('$2,000')} كحد أقصى يوميًا.`, fee: 'رسوم المعاملة',
     reason: 'ما سبب التحويل؟', reasonHint: 'يرى المستلم هذه الملاحظة مع المبلغ.', reasonExample: 'عشاء يوم الجمعة', cont: 'متابعة',
     confirmTitle: 'تأكيد التحويل', total: 'المجموع', from: 'من البطاقة', to: 'إلى', sent: 'المبلغ', theyGet: 'يستلم', note: 'ملاحظة',
