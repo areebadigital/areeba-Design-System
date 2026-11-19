@@ -5,3 +5,6 @@
 .ar-pad-key:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
 .ar-pad-back { background: transparent; box-shadow: none; }
 .ar-pad-back svg { width: 26px; height: 26px; }
+/* Motion (tokens only; see styles/motion.css) */
+.ar-pad-key { transition: background-color var(--duration-instant) var(--ease-standard), transform var(--duration-instant) var(--ease-standard); }
+.ar-pad-key:active:not(:disabled) { transform: scale(0.96); }

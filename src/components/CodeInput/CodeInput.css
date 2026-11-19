@@ -9,3 +9,5 @@
 .ar-code-invalid .ar-code-box { border-color: var(--danger); }
 .ar-code .ar-field-hint { text-align: center; }
 .ar-code-invalid .ar-field-hint { color: var(--danger); }
+/* Motion (tokens only; see styles/motion.css) */
+.ar-code-box { transition: border-color var(--duration-fast) var(--ease-standard), box-shadow var(--duration-fast) var(--ease-standard); }

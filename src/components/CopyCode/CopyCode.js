@@ -1,13 +1,14 @@
 import React from 'react';
+import { useTrack } from '../../core/analytics.js';
 import { ui } from '../../core/i18n.js';
 import { cx } from '../../core/util.js';
 const h = React.createElement;
 
 /* A code to copy: voucher codes, references, IBANs. The button copies it and announces "Copied". */
 function CopyCode(p) {
-  var cs = React.useState(false), copied = cs[0], t = ui(), codeRef = React.useRef(null);
+  var cs = React.useState(false), copied = cs[0], t = ui(), codeRef = React.useRef(null), track = useTrack("CopyCode", p);
   /* Says "Copied" only after the copy worked: the clipboard API, else select-and-copy; if both fail the code is left selected. */
-  function done() { cs[1](true); setTimeout(function () { cs[1](false); }, 2000); if (p.onCopy) p.onCopy(p.code); }
+  function done() { track("copy"); cs[1](true); setTimeout(function () { cs[1](false); }, 2000); if (p.onCopy) p.onCopy(p.code); }
   function selectCode() { var el = codeRef.current, sel = window.getSelection && window.getSelection(); if (!el || !sel) return false; var r = document.createRange(); r.selectNodeContents(el); sel.removeAllRanges(); sel.addRange(r); return true; }
   function fallback() { var ok = false; try { ok = selectCode() && document.execCommand && document.execCommand("copy"); } catch (e) { ok = false; } if (ok) done(); else selectCode(); }
   function copy() {

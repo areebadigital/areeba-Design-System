@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTrack, useErrorShown } from '../../core/analytics.js';
 import { cx, useId } from '../../core/util.js';
 const h = React.createElement;
 
@@ -9,7 +10,8 @@ function RadioGroup(p) {
   var st = React.useState(p.defaultValue !== undefined ? p.defaultValue : null), cur = p.value !== undefined ? p.value : st[0];
   var enabled = opts.map(function (o, i) { return o.disabled || p.disabled ? -1 : i; }).filter(function (i) { return i >= 0; });
   var sel = opts.findIndex(function (o) { return o.value === cur; }), stop = sel >= 0 && enabled.indexOf(sel) >= 0 ? sel : enabled[0];
-  function choose(i, focus) { var o = opts[i]; if (!o || o.disabled || p.disabled) return; st[1](o.value); if (p.onChange) p.onChange(o.value, o); if (focus && refs.current[i]) refs.current[i].focus(); }
+  var track = useTrack("RadioGroup", p); useErrorShown("RadioGroup", p);
+  function choose(i, focus) { var o = opts[i]; if (!o || o.disabled || p.disabled) return; if (o.value !== cur) track("change", { value: o.value }); st[1](o.value); if (p.onChange) p.onChange(o.value, o); if (focus && refs.current[i]) refs.current[i].focus(); }
   function onKey(e, i) {
     var k = e.key, d = 0, rtl = getComputedStyle(e.currentTarget).direction === "rtl";
     if (k === "ArrowDown") d = 1; else if (k === "ArrowUp") d = -1; else if (k === "ArrowRight") d = rtl ? -1 : 1; else if (k === "ArrowLeft") d = rtl ? 1 : -1;

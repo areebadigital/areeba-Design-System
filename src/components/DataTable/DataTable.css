@@ -9,3 +9,5 @@
 .ar-table .ar-right { text-align: end; }
 .ar-mono { font-family: var(--font-mono); font-size: 13px; color: var(--ink-muted); }
 .ar-table-empty { text-align: center; color: var(--ink-muted); padding: var(--space-8) var(--space-4); }
+/* Motion (tokens only; see styles/motion.css) */
+.ar-table tbody td { transition: background-color var(--duration-instant) var(--ease-standard); }

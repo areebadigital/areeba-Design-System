@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTrack, useErrorShown } from '../../core/analytics.js';
 import { ui } from '../../core/i18n.js';
 import { cx, useId } from '../../core/util.js';
 const h = React.createElement;
@@ -16,9 +17,10 @@ function Select(p) {
   function enabled(i) { return opts[i] && !opts[i].disabled; }
   function step(from, dir) { for (var i = from + dir; i >= 0 && i < opts.length; i += dir) if (enabled(i)) return i; return from; }
   function first() { return step(-1, 1); } function last() { return step(opts.length, -1); }
+  var track = useTrack("Select", p); useErrorShown("Select", p);
   function openAt(i) { if (p.disabled) return; os[1](true); as[1](i >= 0 ? i : (selIdx >= 0 ? selIdx : first())); }
   function close() { os[1](false); }
-  function choose(i) { if (!enabled(i)) return; var o = opts[i]; vs[1](o.value); close(); if (p.onChange) p.onChange(o.value, o); }
+  function choose(i) { if (!enabled(i)) return; var o = opts[i]; if (i !== selIdx) track("change", { value: o.value }); vs[1](o.value); close(); if (p.onChange) p.onChange(o.value, o); }
   function match(ch) {
     var now = Date.now(), t = typed.current; t.s = (now - t.t > 600 ? "" : t.s) + ch.toLowerCase(); t.t = now;
     var start = open ? active : selIdx;

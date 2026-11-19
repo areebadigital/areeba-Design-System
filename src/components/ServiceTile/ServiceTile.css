@@ -12,3 +12,6 @@
 .ar-tile-label { font-size: 15px; line-height: 22px; font-weight: 600; }
 .ar-tile-desc { font-size: 13px; line-height: 18px; color: var(--ink-muted); }
 .ar-tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: var(--space-3); }
+/* Motion (tokens only; see styles/motion.css) */
+.ar-tile { transition: background-color var(--duration-fast) var(--ease-standard), transform var(--duration-instant) var(--ease-standard); }
+.ar-tile:active:not(:disabled) { transform: scale(0.98); }

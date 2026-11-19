@@ -1,4 +1,3 @@
-import { NumberPad } from '../components/NumberPad/NumberPad.js';
 
 /* Applies a NumberPad key to an amount string: one decimal point, two decimals, no leading zeros, `max` digits. */
 function padInput(value, key, maxDigits) {

@@ -245,8 +245,20 @@ export interface FileUploadProps { label?: React.ReactNode; hint?: React.ReactNo
   files?: UploadFile[]; defaultFiles?: UploadFile[]; onChange?: (files: UploadFile[]) => void; onRemove?: (file: UploadFile, index: number) => void; name?: string; disabled?: boolean; id?: string; className?: string }
 export declare function FileUpload(props: FileUploadProps): React.ReactElement;
 
+/* ---- Analytics (every component) ---- */
+/** Every component accepts these. `analyticsId` names the element in events and sets data-analytics-id; `analyticsData` adds safe context (short strings, numbers, booleans). */
+export interface AnalyticsProps { analyticsId?: string; analyticsData?: Record<string, string | number | boolean> }
+/** The event components send: `asterisk.<component or group>.<action>` plus safe details. Never contains what people typed or see. */
+export interface AsteriskEvent { name: string; component: string; action: string; analyticsId?: string; screen?: string; time: number; [detail: string]: string | number | boolean | undefined }
+/** Connects analytics once at the top of the app. Without it nothing is sent. Nest it to set `screen` per page. */
+export interface AsteriskProviderProps { analytics?: (event: AsteriskEvent) => void; screen?: string; context?: Record<string, string | number | boolean>; children?: React.ReactNode }
+export declare function AsteriskProvider(props: AsteriskProviderProps): React.ReactElement;
+/** The events components send, by `component.action`, with what each contains. */
+export declare const ANALYTICS_EVENTS: Record<string, string>;
+
 declare global { interface Window { Areeba: { Button: typeof Button; TextField: typeof TextField; Switch: typeof Switch; Badge: typeof Badge; Alert: typeof Alert; Tabs: typeof Tabs; ListItem: typeof ListItem; List: typeof List; TabBar: typeof TabBar; Sidebar: typeof Sidebar; DataTable: typeof DataTable; Dialog: typeof Dialog; Toast: typeof Toast; PaymentCard: typeof PaymentCard; EmptyState: typeof EmptyState; Checkbox: typeof Checkbox; Select: typeof Select; Calendar: typeof Calendar; DatePicker: typeof DatePicker; LineChart: typeof LineChart; BarChart: typeof BarChart; ltr: typeof ltr;
   icons: typeof icons; IconButton: typeof IconButton; AppHeader: typeof AppHeader; QuickAction: typeof QuickAction; QuickActions: typeof QuickActions; Balance: typeof Balance; ActionMenu: typeof ActionMenu; SettingsList: typeof SettingsList; SettingsRow: typeof SettingsRow; DetailList: typeof DetailList; FilterChip: typeof FilterChip; SearchField: typeof SearchField; NumberPad: typeof NumberPad; padInput: typeof padInput; AmountInput: typeof AmountInput; MiniCard: typeof MiniCard; CardPicker: typeof CardPicker; ActionBar: typeof ActionBar; PageDots: typeof PageDots; Result: typeof Result;
   Avatar: typeof Avatar; CodeInput: typeof CodeInput; PasscodeDots: typeof PasscodeDots; NotificationItem: typeof NotificationItem; ServiceTile: typeof ServiceTile; StatCard: typeof StatCard; CopyCode: typeof CopyCode;
   TabPanel: typeof TabPanel; Panel: typeof Panel; Pagination: typeof Pagination; Meter: typeof Meter;
-  RadioGroup: typeof RadioGroup; TextArea: typeof TextArea; FileUpload: typeof FileUpload } } }
+  RadioGroup: typeof RadioGroup; TextArea: typeof TextArea; FileUpload: typeof FileUpload;
+  AsteriskProvider: typeof AsteriskProvider; ANALYTICS_EVENTS: typeof ANALYTICS_EVENTS } } }

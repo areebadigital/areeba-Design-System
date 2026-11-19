@@ -1,6 +1,4 @@
 import React from 'react';
-import { Checkbox } from '../components/Checkbox/Checkbox.js';
-import { Switch } from '../components/Switch/Switch.js';
 const h = React.createElement;
 
 /* Shared on/off state for Checkbox and Switch: controlled (`checked`) or uncontrolled (`defaultChecked`). */

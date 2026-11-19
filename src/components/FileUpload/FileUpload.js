@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTrack, useErrorShown } from '../../core/analytics.js';
 import { IconButton } from '../IconButton/IconButton.js';
 import { ui } from '../../core/i18n.js';
 import { icons } from '../../core/icons.js';
@@ -15,15 +16,19 @@ function fileOk(f, accept) {
 function FileUpload(p) {
   var id = useId(p.id), labelId = id + "-label", hintId = id + "-hint", input = React.useRef(null), t = ui();
   var st = React.useState(p.defaultFiles || []), files = p.files !== undefined ? p.files : st[0], ds = React.useState(false), over = ds[0];
+  var track = useTrack("FileUpload", p); useErrorShown("FileUpload", p);
   function set(list) { st[1](list); if (p.onChange) p.onChange(list); }
   function add(list) {
     var items = Array.prototype.slice.call(list || []).map(function (f) {
       var err = !fileOk(f, p.accept) ? t.badType : p.maxSize && f.size > p.maxSize ? t.tooBig(fileSize(p.maxSize, t)) : null;
       return { name: f.name, size: f.size, file: f, status: err ? "error" : "done", error: err || undefined };
     });
+    var ok = items.filter(function (it) { return it.status !== "error"; });
+    if (ok.length) track("file_added", { count: ok.length, types: ok.map(function (it) { return (it.name.split(".").pop() || "").toLowerCase(); }).join(",") });
+    items.forEach(function (it) { if (it.status === "error") track("file_rejected", { reason: it.error === t.badType ? "type" : "size" }); });
     if (items.length) set(p.multiple ? files.concat(items) : items.slice(0, 1));
   }
-  function remove(i) { var next = files.filter(function (_, j) { return j !== i; }); set(next); if (p.onRemove) p.onRemove(files[i], i); }
+  function remove(i) { track("file_removed"); var next = files.filter(function (_, j) { return j !== i; }); set(next); if (p.onRemove) p.onRemove(files[i], i); }
   var many = !!p.multiple;
   return h("div", { className: cx("ar-upload", p.error && "ar-upload-invalid", p.className) },
     p.label && h("span", { className: "ar-field-label", id: labelId }, p.label),

@@ -1,5 +1,4 @@
 import React from 'react';
-import { mirror } from './chart.js';
 import { cx } from './util.js';
 const h = React.createElement;
 

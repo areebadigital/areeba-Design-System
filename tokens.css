@@ -142,9 +142,23 @@
   --bp-md: 768px;
   --bp-lg: 1024px;
   --bp-xl: 1280px;
+  --duration-instant: 100ms;
+  --duration-fast: 150ms;
+  --duration-base: 250ms;
+  --duration-slow: 400ms;
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-enter: cubic-bezier(0, 0, 0, 1);
+  --ease-exit: cubic-bezier(0.3, 0, 1, 1);
+  --motion-distance: 8px;
   --font-sans: "Plus Jakarta Sans", "IBM Plex Sans Arabic", Arial, system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 }
+@media (prefers-reduced-motion: reduce) { :root {
+  --duration-instant: 0ms;
+  --duration-fast: 0ms;
+  --duration-base: 0ms;
+  --duration-slow: 0ms;
+} }
 .display-xl { font-family: var(--font-sans); font-size: 64px; line-height: 72px; font-weight: 400; letter-spacing: -0.03em; }
 .display-lg { font-family: var(--font-sans); font-size: 48px; line-height: 56px; font-weight: 400; letter-spacing: -0.04em; }
 .display { font-family: var(--font-sans); font-size: 36px; line-height: 44px; font-weight: 400; letter-spacing: -0.02em; }

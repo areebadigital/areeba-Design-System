@@ -4,3 +4,5 @@
 .ar-tabbar-item svg { width: 24px; height: 24px; }
 .ar-tabbar-item[aria-current="page"] { color: var(--brand); font-weight: 700; }
 .ar-tabbar-item:focus-visible { outline: 2px solid var(--focus); outline-offset: -4px; border-radius: var(--radius-md); }
+/* Motion (tokens only; see styles/motion.css) */
+.ar-tabbar-item { transition: color var(--duration-fast) var(--ease-standard); }

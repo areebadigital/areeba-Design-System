@@ -1,10 +1,12 @@
 import React from 'react';
+import { useErrorShown } from '../../core/analytics.js';
 import { cx, useId } from '../../core/util.js';
 const h = React.createElement;
 
 /* One-time code entry: one real input (so paste and SMS autofill work), drawn as boxes.
    Digits only, 0–9, always left-to-right. onComplete fires when every box is filled. */
 function CodeInput(p) {
+  useErrorShown("CodeInput", p);
   var n = p.length || 6, id = useId(p.id), hintId = id + "-hint", st = React.useState(p.defaultValue || ""), val = p.value !== undefined ? p.value : st[0];
   var fs = React.useState(false), focused = fs[0];
   function set(v) { v = v.replace(/\D/g, "").slice(0, n); st[1](v); if (p.onChange) p.onChange(v); if (v.length === n && p.onComplete) p.onComplete(v); }

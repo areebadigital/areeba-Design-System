@@ -1,8 +1,10 @@
 import React from 'react';
+import { useErrorShown } from '../../core/analytics.js';
 import { cx, rest, useId } from '../../core/util.js';
 const h = React.createElement;
 
 function TextField(p) {
+  useErrorShown("TextField", p);
   var id = useId(p.id), hintId = id + "-hint";
   return h("div", { className: cx("ar-field", p.error && "ar-field-invalid", p.className) },
     p.label && h("label", { className: "ar-field-label", htmlFor: id }, p.label),

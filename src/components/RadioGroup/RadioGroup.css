@@ -4,7 +4,7 @@
 .ar-radios-list { display: flex; flex-direction: column; gap: var(--space-3); }
 .ar-radios-row .ar-radios-list { flex-direction: row; flex-wrap: wrap; gap: var(--space-5); }
 .ar-radio { display: flex; align-items: flex-start; gap: var(--space-2); cursor: pointer; font-size: 14px; line-height: 20px; font-weight: 500; color: var(--ink); outline: none; }
-.ar-radio-dot { flex: none; width: 16px; height: 16px; margin-top: 2px; box-sizing: border-box; border: 1px solid var(--line-strong); border-radius: var(--radius-full); background: var(--surface-raised); transition: border-width 150ms; }
+.ar-radio-dot { flex: none; width: 16px; height: 16px; margin-top: 2px; box-sizing: border-box; border: 1px solid var(--line-strong); border-radius: var(--radius-full); background: var(--surface-raised); transition: border-width var(--duration-fast) var(--ease-standard), border-color var(--duration-fast) var(--ease-standard); }
 .ar-radio-on .ar-radio-dot { border: 5px solid var(--brand); background: var(--on-brand); }
 .ar-radio:focus-visible .ar-radio-dot { outline: 2px solid var(--focus); outline-offset: 2px; }
 .ar-radio[aria-disabled="true"] { cursor: not-allowed; color: var(--ink-disabled); }
@@ -21,4 +21,3 @@
 .ar-radios-card .ar-radio:focus-visible .ar-radio-dot { outline: none; }
 .ar-radios-card .ar-radio-hint { font-size: 13px; line-height: 18px; }
 .ar-radios-card.ar-radios-row .ar-radio { flex: 1 1 160px; }
-@media (prefers-reduced-motion: reduce) { .ar-radio-dot { transition: none; } }

@@ -17,3 +17,5 @@ a.ar-set-row:hover, button.ar-set-row:hover { background: var(--surface-sunken);
 .ar-set-danger, .ar-set-danger .ar-set-icon { color: var(--danger); }
 .ar-set-disabled { color: var(--ink-disabled); cursor: not-allowed; }
 .ar-set-disabled .ar-set-icon { color: var(--ink-disabled); }
+/* Motion (tokens only; see styles/motion.css) */
+.ar-set-row { transition: background-color var(--duration-fast) var(--ease-standard); }

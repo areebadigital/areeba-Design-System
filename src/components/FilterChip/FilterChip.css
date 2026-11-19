@@ -4,3 +4,5 @@
 .ar-chip:hover { background: var(--surface-sunken); }
 .ar-chip:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
 .ar-chip-on, .ar-chip-on:hover { background: var(--brand); border-color: var(--brand); color: var(--on-brand); }
+/* Motion (tokens only; see styles/motion.css) */
+.ar-chip { transition: background-color var(--duration-fast) var(--ease-standard), border-color var(--duration-fast) var(--ease-standard), color var(--duration-fast) var(--ease-standard); }

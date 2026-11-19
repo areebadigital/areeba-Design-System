@@ -1,5 +1,6 @@
 [
  "styles/base.css",
+ "styles/motion.css",
  "components/Button/Button.css",
  "components/TextField/TextField.css",
  "components/Switch/Switch.css",

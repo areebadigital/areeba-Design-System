@@ -4,3 +4,5 @@
 .ar-tab:hover { color: var(--ink); }
 .ar-tab[aria-selected="true"] { background: var(--surface-raised); color: var(--ink); box-shadow: var(--shadow-1); }
 .ar-tab:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+/* Motion (tokens only; see styles/motion.css) */
+.ar-tab { transition: background-color var(--duration-fast) var(--ease-standard), color var(--duration-fast) var(--ease-standard), box-shadow var(--duration-fast) var(--ease-standard); }

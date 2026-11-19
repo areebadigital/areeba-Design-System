@@ -50,7 +50,14 @@ for (const f of onDisk.filter((f) => /\.(js|css)$/.test(f))) {
   if (n > MAX_LINES) long.push(`${f} (${n} lines)`); else if (n > WARN_LINES) warn.push(`${f} (${n} lines)`);
 }
 
+// Motion comes only from tokens: no raw durations or curves in component CSS (styles/motion.css holds the shared keyframes).
+const rawMotion = [];
+for (const f of onDisk.filter((f) => f.endsWith('.css') && f !== 'styles/motion.css')) {
+  fs.readFileSync(path.join(SRC, f), 'utf8').split('\n').forEach((l, i) => { if (/\b\d+m?s\b|cubic-bezier\(/.test(l)) rawMotion.push(`${f}:${i + 1}`); });
+}
+
 const problems = [];
+if (rawMotion.length) problems.push('Raw motion values (use --duration-* and --ease-* tokens): ' + rawMotion.join(', '));
 if (strayCss.length) problems.push('CSS files missing from src/css-order.json: ' + strayCss.join(', '));
 if (long.length) problems.push(`Source files over ${MAX_LINES} lines (split them into smaller modules): ` + long.join(', '));
 if (warn.length) console.warn(`Note: over ${WARN_LINES} lines, consider splitting: ` + warn.join(', '));

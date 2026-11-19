@@ -1,5 +1,5 @@
 import React from 'react';
-import { NumberPad } from '../NumberPad/NumberPad.js';
+import { useErrorShown } from '../../core/analytics.js';
 import { groupDigits } from '../../core/amount.js';
 import { ui } from '../../core/i18n.js';
 import { cx, useId } from '../../core/util.js';
@@ -7,6 +7,7 @@ const h = React.createElement;
 
 /* The big amount entry. Type it (inputMode decimal) or drive it from a NumberPad (readOnly). Shows fee and limits. */
 function AmountInput(p) {
+  useErrorShown("AmountInput", p);
   var id = useId(p.id), hintId = id + "-hint", st = React.useState(p.defaultValue || ""), val = p.value !== undefined ? p.value : st[0];
   function set(v) { st[1](v); if (p.onChange) p.onChange(v); }
   var invalid = !!p.error;

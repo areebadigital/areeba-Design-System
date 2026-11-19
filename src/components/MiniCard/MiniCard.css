@@ -12,3 +12,6 @@
 .ar-cardpick-bal { font-size: 14px; color: var(--ink-muted); font-variant-numeric: tabular-nums; }
 .ar-cardpick-dot { margin-inline-start: auto; flex: none; width: 20px; height: 20px; box-sizing: border-box; border-radius: var(--radius-full); border: 1.5px solid var(--line-strong); }
 .ar-cardpick-on .ar-cardpick-dot { border: 6px solid var(--brand); }
+/* Motion (tokens only; see styles/motion.css) */
+.ar-cardpick-opt { transition: border-color var(--duration-fast) var(--ease-standard), box-shadow var(--duration-fast) var(--ease-standard), background-color var(--duration-fast) var(--ease-standard); }
+.ar-cardpick-dot { transition: border-width var(--duration-fast) var(--ease-standard), border-color var(--duration-fast) var(--ease-standard); }

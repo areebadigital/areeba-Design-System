@@ -1,6 +1,6 @@
 import React from 'react';
+import { useTrack } from '../../core/analytics.js';
 import { IconButton } from '../IconButton/IconButton.js';
-import { QuickAction } from '../QuickAction/QuickAction.js';
 import { ui } from '../../core/i18n.js';
 import { renderIcon } from '../../core/icons.js';
 import { cx, useId } from '../../core/util.js';
@@ -20,10 +20,11 @@ function ActionMenu(p) {
     if (end !== rtl) { o.right = document.documentElement.clientWidth - r.right; o.left = "auto"; } else { o.left = r.left; o.right = "auto"; }
     ps[1](o);
   }
-  function openAt(i) { place(); os[1](true); as[1](i); }
+  var track = useTrack("ActionMenu", p);
+  function openAt(i) { if (!open) track("open"); place(); os[1](true); as[1](i); }
   function close(refocus) { os[1](false); if (refocus && trig.current) trig.current.focus(); }
   function move(d) { var k = enabled.indexOf(active); as[1](enabled[(k + d + enabled.length) % enabled.length]); }
-  function choose(i) { var it = items[i]; if (!it || it.disabled) return; close(true); if (it.onSelect) it.onSelect(); }
+  function choose(i) { var it = items[i]; if (!it || it.disabled) return; track("select", { position: i + 1, item: it.analyticsId, danger: !!it.danger }); close(true); if (it.onSelect) it.onSelect(); }
   React.useEffect(function () { if (open && refs.current[active]) refs.current[active].focus({ preventScroll: true }); }, [open, active]);
   React.useEffect(function () {
     if (!open) return;

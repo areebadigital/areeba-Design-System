@@ -5,3 +5,6 @@
 .ar-iconbtn:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
 .ar-iconbtn-plain { width: 32px; height: 32px; background: transparent; color: var(--ink-muted); }
 .ar-iconbtn-dot { position: absolute; top: 7px; inset-inline-end: 8px; width: 8px; height: 8px; border-radius: var(--radius-full); background: var(--brand); box-shadow: 0 0 0 2px var(--surface-sunken); }
+/* Motion (tokens only; see styles/motion.css) */
+.ar-iconbtn { transition: background-color var(--duration-fast) var(--ease-standard), color var(--duration-fast) var(--ease-standard), transform var(--duration-instant) var(--ease-standard); }
+.ar-iconbtn:active:not(:disabled) { transform: scale(0.94); }

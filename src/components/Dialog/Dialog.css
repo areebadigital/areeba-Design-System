@@ -10,3 +10,7 @@
 .ar-dialog-sheet { max-width: none; border-radius: var(--radius-xl) var(--radius-xl) 0 0; padding-bottom: calc(var(--space-6) + env(safe-area-inset-bottom)); }
 .ar-dialog-sheet .ar-dialog-actions { flex-direction: column-reverse; }
 .ar-dialog-sheet .ar-dialog-actions .ar-btn { width: 100%; height: var(--size-control-lg); }
+/* Motion (tokens only; see styles/motion.css) */
+.ar-dialog-backdrop { animation: ar-fade-in var(--duration-base) var(--ease-enter); }
+.ar-dialog { animation: ar-scale-in var(--duration-base) var(--ease-enter); }
+.ar-dialog-sheet { animation: ar-sheet-up var(--duration-slow) var(--ease-enter); }

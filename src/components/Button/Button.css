@@ -1,7 +1,7 @@
 /* Button */
 .ar-btn { font: inherit; font-size: 16px; line-height: 24px; font-weight: 600; display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2);
   height: var(--size-control-md); padding: 0 var(--space-5); border-radius: var(--radius-xs); border: 1px solid transparent; cursor: pointer;
-  transition: background-color 150ms, border-color 150ms, color 150ms; white-space: nowrap; }
+  transition: background-color var(--duration-fast) var(--ease-standard), border-color var(--duration-fast) var(--ease-standard), color var(--duration-fast) var(--ease-standard), box-shadow var(--duration-fast) var(--ease-standard), transform var(--duration-instant) var(--ease-standard); white-space: nowrap; }
 .ar-btn:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
 .ar-btn:disabled { cursor: not-allowed; background: var(--surface-sunken); border-color: var(--line); color: var(--ink-disabled); }
 .ar-btn-sm { height: var(--size-control-sm); padding: 0 var(--space-3); font-size: 14px; line-height: 20px; }
@@ -15,3 +15,5 @@
 .ar-btn-ghost:hover:not(:disabled) { background: var(--surface-sunken); }
 .ar-btn-danger { background: var(--danger); color: var(--surface); }
 .ar-btn-danger:hover:not(:disabled) { filter: brightness(0.92); }
+/* Motion (tokens only; see styles/motion.css) */
+.ar-btn:active:not(:disabled) { transform: scale(0.98); }

@@ -16,3 +16,5 @@
 .ar-notif-status-success { background: var(--success-soft); color: var(--success); }
 .ar-notif-status-danger { background: var(--danger-soft); color: var(--danger); }
 .ar-notif-status-warning { background: var(--warning-soft); color: var(--warning); }
+/* Motion (tokens only; see styles/motion.css) */
+.ar-notif { animation: ar-rise-in var(--duration-base) var(--ease-enter); }

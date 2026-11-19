@@ -9,3 +9,5 @@
 .ar-item-trail { flex: none; text-align: end; display: flex; flex-direction: column; align-items: flex-end; gap: 2px; }
 .ar-item-amount { font-size: 15px; line-height: 22px; font-weight: 600; font-variant-numeric: tabular-nums; color: var(--ink); }
 .ar-item-amount-in { color: var(--success); }
+/* Motion (tokens only; see styles/motion.css) */
+.ar-item { transition: background-color var(--duration-instant) var(--ease-standard); }

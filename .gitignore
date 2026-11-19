@@ -6,3 +6,10 @@ storybook-static/
 !tests/visual/__screenshots__/*.png
 test-results/
 playwright-report/
+
+# Kotlin / Gradle
+packages/asterisk-kotlin/.gradle/
+packages/asterisk-kotlin/**/build/
+packages/asterisk-kotlin/.kotlin/
+# local A/B screenshot comparison
+playwright.ab.config.mjs

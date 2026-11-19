@@ -7,3 +7,6 @@
 .ar-menu-item[aria-disabled="true"] { color: var(--ink-disabled); cursor: not-allowed; }
 .ar-menu-icon { width: 18px; height: 18px; flex: none; color: var(--ink-muted); }
 .ar-menu-danger, .ar-menu-danger .ar-menu-icon { color: var(--danger); }
+/* Motion (tokens only; see styles/motion.css) */
+.ar-menu { animation: ar-drop-in var(--duration-base) var(--ease-enter); }
+.ar-menu-item { transition: background-color var(--duration-instant) var(--ease-standard); }

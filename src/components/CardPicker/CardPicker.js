@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTrack } from '../../core/analytics.js';
 import { MiniCard } from '../MiniCard/MiniCard.js';
 import { cx, useId } from '../../core/util.js';
 const h = React.createElement;
@@ -9,7 +10,8 @@ function CardPicker(p) {
   var refs = React.useRef([]), id = useId();
   var focusIdx = Math.max(0, cards.findIndex(function (c) { return c.value === val && !c.disabled; }));
   if (val == null || cards[focusIdx] && cards[focusIdx].disabled) focusIdx = cards.findIndex(function (c) { return !c.disabled; });
-  function choose(i) { var c = cards[i]; if (!c || c.disabled) return; st[1](c.value); if (p.onChange) p.onChange(c.value, c); }
+  var track = useTrack("CardPicker", p);
+  function choose(i) { var c = cards[i]; if (!c || c.disabled) return; if (c.value !== val) track("change", { position: i + 1 }); st[1](c.value); if (p.onChange) p.onChange(c.value, c); }
   function onKey(e, i) {
     var d = (e.key === "ArrowDown" || e.key === "ArrowRight") ? 1 : (e.key === "ArrowUp" || e.key === "ArrowLeft") ? -1 : 0;
     if (e.key === " " || e.key === "Enter") { e.preventDefault(); choose(i); return; }

@@ -1,6 +1,7 @@
 /* areeba design system: every public component and helper. Generated once from the old single-file bundle; edit the modules, not this list. */
 export { padInput } from './core/amount.js';
 export { icons } from './core/icons.js';
+export { AsteriskProvider, ANALYTICS_EVENTS } from './core/analytics.js';
 export { ltr } from './core/util.js';
 export { ActionBar } from './components/ActionBar/ActionBar.js';
 export { ActionMenu } from './components/ActionMenu/ActionMenu.js';

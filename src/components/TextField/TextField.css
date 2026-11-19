@@ -10,3 +10,5 @@
 .ar-field-hint { font-size: 14px; line-height: 20px; color: var(--ink-muted); }
 .ar-field-invalid .ar-field-box { border-color: var(--danger); }
 .ar-field-invalid .ar-field-hint { color: var(--danger); }
+/* Motion (tokens only; see styles/motion.css) */
+.ar-field-box { transition: border-color var(--duration-fast) var(--ease-standard), box-shadow var(--duration-fast) var(--ease-standard); }

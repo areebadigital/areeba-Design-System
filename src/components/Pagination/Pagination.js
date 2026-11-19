@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTrack } from '../../core/analytics.js';
 import { ui } from '../../core/i18n.js';
 import { icons } from '../../core/icons.js';
 import { cx } from '../../core/util.js';
@@ -14,7 +15,8 @@ function pageList(page, count) {
 function Pagination(p) {
   var t = ui(), count = Math.max(1, p.pageCount || Math.ceil((p.total || 0) / (p.pageSize || 25))), page = Math.min(Math.max(1, p.page || 1), count);
   var fmt = function (n) { return Number(n).toLocaleString("en-US"); };
-  function go(n) { if (n >= 1 && n <= count && n !== page && p.onChange) p.onChange(n); }
+  var track = useTrack("Pagination", p);
+  function go(n) { if (n >= 1 && n <= count && n !== page) { track("change", { page: n, pageCount: count }); if (p.onChange) p.onChange(n); } }
   var range = p.total != null && p.pageSize ? t.range(fmt((page - 1) * p.pageSize + 1), fmt(Math.min(page * p.pageSize, p.total)), fmt(p.total)) : null;
   return h("nav", { className: cx("ar-pager", p.className), "aria-label": p.label || t.pages },
     range && h("span", { className: "ar-pager-range" }, h("bdi", null, range)),

@@ -6,3 +6,5 @@
 .ar-alert-success { background: var(--success-soft); } .ar-alert-success .ar-alert-icon { color: var(--success); }
 .ar-alert-warning { background: var(--warning-soft); } .ar-alert-warning .ar-alert-icon { color: var(--warning); }
 .ar-alert-danger { background: var(--danger-soft); } .ar-alert-danger .ar-alert-icon { color: var(--danger); }
+/* Motion (tokens only; see styles/motion.css) */
+.ar-alert { animation: ar-fade-in var(--duration-base) var(--ease-enter); }

@@ -11,3 +11,5 @@
 .ar-meter-hint { font-size: 13px; line-height: 18px; color: var(--ink-muted); }
 .ar-panel-foot > .ar-pager { flex: 1 1 auto; }
 .ar-app-narrow > .ar-tabs { align-self: flex-start; }
+/* Motion (tokens only; see styles/motion.css) */
+.ar-meter-fill { transition: width var(--duration-slow) var(--ease-standard), background-color var(--duration-fast) var(--ease-standard); }

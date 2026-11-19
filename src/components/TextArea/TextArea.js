@@ -1,10 +1,12 @@
 import React from 'react';
+import { useErrorShown } from '../../core/analytics.js';
 import { ui } from '../../core/i18n.js';
 import { cx, rest, useId } from '../../core/util.js';
 const h = React.createElement;
 
 /* Several lines of text: a note, a reason, an address. A real textarea (text entry is the one native control we keep). `maxLength` adds a counter. */
 function TextArea(p) {
+  useErrorShown("TextArea", p);
   var id = useId(p.id), hintId = id + "-hint", countId = id + "-count", t = ui();
   var st = React.useState(p.defaultValue || ""), val = p.value !== undefined ? p.value : st[0];
   var desc = [(p.error || p.hint) && hintId, p.maxLength && countId].filter(Boolean).join(" ") || undefined;

@@ -75,7 +75,19 @@ The official marks are in `assets/Logos`, exported from Figma: the Signal Red wo
 
 ## Motion
 
-Fast and functional: 150ms for hover and press, 250ms ease-out for sheets and page transitions, respect `prefers-reduced-motion`. Success confirmations may use one 400ms check animation; nothing loops.
+Fast and functional, and only from tokens: `--duration-instant` (100ms), `--duration-fast` (150ms, hover and press), `--duration-base` (250ms, sheets, menus, things that enter), `--duration-slow` (400ms, the one success check), with `--ease-standard`, `--ease-enter` and `--ease-exit`. Components animate what enters, never what leaves, and move only opacity, transform, colours and borders. Under `prefers-reduced-motion` every duration becomes 0ms, so no component needs its own rule. Shared keyframes live in `src/styles/motion.css`; `npm run check` fails on a raw `ms` or `cubic-bezier()` in component CSS. Nothing loops. See Storybook: Foundations / Motion.
+
+## Analytics
+
+Every interactive component sends a standard event when wrapped in `AsteriskProvider`:
+
+```jsx
+<AsteriskProvider analytics={(e) => segment.track(e.name, e)} screen="topup">
+  <Button analyticsId="topup.continue">Continue</Button>
+</AsteriskProvider>
+```
+
+Events are named `asterisk.<component>.<action>` (for example `asterisk.button.press`, `asterisk.field.error_shown`) and carry the component, `analyticsId`, screen and safe details such as the chosen option value. They never carry what people type or see: amounts, IBANs, card numbers, names, codes, messages or file names. `analyticsId` also becomes `data-analytics-id` for tag managers. The full list is `ANALYTICS_EVENTS` and Storybook: Guides / Analytics.
 
 ## Components
 
