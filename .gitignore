@@ -13,3 +13,11 @@ packages/asterisk-kotlin/**/build/
 packages/asterisk-kotlin/.kotlin/
 # local A/B screenshot comparison
 playwright.ab.config.mjs
+# package build output (npm run build:packages; published, not committed)
+packages/asterisk-react/dist/
+packages/asterisk-react/llms.txt
+packages/asterisk-react/AGENTS.md
+packages/asterisk-tokens/fonts/
+packages/asterisk-tokens/AGENTS.md
+packages/asterisk-cli/blocks/
+packages/asterisk-native/demo/dist/

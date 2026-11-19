@@ -1,0 +1,11 @@
+{
+  "name": "@areebadigital/asterisk-cli",
+  "version": "4.0.0",
+  "description": "areeba Asterisk 4 CLI: copy whole screens (blocks) into your app, like shadcn.",
+  "type": "module",
+  "bin": { "asterisk": "./bin/asterisk.js" },
+  "files": ["bin", "blocks", "README.md"],
+  "license": "UNLICENSED",
+  "repository": { "type": "git", "url": "https://github.com/areebadigital/areeba-Design-System.git", "directory": "packages/asterisk-cli" },
+  "publishConfig": { "registry": "https://npm.pkg.github.com" }
+}

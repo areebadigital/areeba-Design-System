@@ -89,6 +89,27 @@ Every interactive component sends a standard event when wrapped in `AsteriskProv
 
 Events are named `asterisk.<component>.<action>` (for example `asterisk.button.press`, `asterisk.field.error_shown`) and carry the component, `analyticsId`, screen and safe details such as the chosen option value. They never carry what people type or see: amounts, IBANs, card numbers, names, codes, messages or file names. `analyticsId` also becomes `data-analytics-id` for tag managers. The full list is `ANALYTICS_EVENTS` and Storybook: Guides / Analytics.
 
+## Packages
+
+areeba Asterisk 4 ships as packages on GitHub Packages (scope `@areebadigital`, private to the organisation):
+
+| Package | For |
+| --- | --- |
+| `@areebadigital/asterisk-tokens` | Tokens as CSS variables, JavaScript, React Native themes and JSON; Kotlin `com.areeba.asterisk:asterisk-tokens` |
+| `@areebadigital/asterisk-react` | Web and SaaS components (this repo's `src/`) |
+| `@areebadigital/asterisk-native` | React Native components (`packages/asterisk-native`) |
+| `@areebadigital/asterisk-cli` | `npx @areebadigital/asterisk-cli add <block>` copies a screen into your app |
+| `@areebadigital/asterisk-lint` | Stylelint and ESLint presets |
+
+To install, point the scope at GitHub Packages in `.npmrc` with a token that can read packages:
+
+```
+@areebadigital:registry=https://npm.pkg.github.com
+//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}
+```
+
+Releases use [Changesets](.changeset/README.md): run `npm run changeset`, describe the change, and merge; the Release workflow versions all packages together and publishes them. `npm run build:packages` builds them locally. Coding agents start from [`llms.txt`](llms.txt) and [`docs/agents/AGENTS.md`](docs/agents/AGENTS.md).
+
 ## Components
 
 | Component | Use it for |

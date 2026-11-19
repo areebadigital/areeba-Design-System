@@ -1,0 +1,53 @@
+# Release: on main, Changesets opens a "Version packages" pull request from the changesets in .changeset/.
+# Merging it (or any push to main with versions not yet on the registry) publishes the Asterisk packages to
+# GitHub Packages: npm (@areebadigital/asterisk-*) and Maven (com.areeba.asterisk:asterisk-tokens).
+name: Release
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+concurrency: release
+permissions:
+  contents: write
+  pull-requests: write
+  packages: write
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          registry-url: https://npm.pkg.github.com
+          scope: '@areebadigital'
+      - run: npm ci
+      - name: Check generated files are up to date
+        run: |
+          npm run check
+          node scripts/build-platform-tokens.mjs --check
+      - name: Build the packages
+        run: npm run build:packages
+      - name: Version pull request, or publish to GitHub Packages (npm)
+        id: changesets
+        uses: changesets/action@v1
+        with:
+          publish: npx changeset publish
+          title: 'Release: version packages'
+          commit: 'Release: version packages'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/setup-java@v4
+        if: steps.changesets.outputs.published == 'true'
+        with:
+          distribution: temurin
+          java-version: 21
+      - name: Publish Kotlin tokens to GitHub Packages (Maven)
+        if: steps.changesets.outputs.published == 'true'
+        working-directory: packages/asterisk-kotlin
+        run: ./gradlew :tokens:publish -PasteriskVersion=$(node -p "require('../asterisk-tokens/package.json').version")
+        env:
+          GITHUB_ACTOR: ${{ github.actor }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

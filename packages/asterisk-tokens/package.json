@@ -1,0 +1,19 @@
+{
+  "name": "@areebadigital/asterisk-tokens",
+  "version": "4.0.0",
+  "description": "areeba Asterisk 4 design tokens: CSS variables, a typed JS object and a React Native theme, generated from tokens.json.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": { "types": "./dist/index.d.ts", "import": "./dist/index.js" },
+    "./native": { "types": "./dist/native.d.ts", "import": "./dist/native.js" },
+    "./tokens.css": "./dist/tokens.css",
+    "./tokens.json": "./dist/tokens.json"
+  },
+  "files": ["dist", "fonts", "README.md", "AGENTS.md"],
+  "sideEffects": ["*.css"],
+  "license": "UNLICENSED",
+  "repository": { "type": "git", "url": "https://github.com/areebadigital/areeba-Design-System.git", "directory": "packages/asterisk-tokens" },
+  "publishConfig": { "registry": "https://npm.pkg.github.com" }
+}

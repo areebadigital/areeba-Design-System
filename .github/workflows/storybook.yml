@@ -29,8 +29,11 @@ jobs:
         run: |
           python3 scripts/build-tokens.py
           git diff --exit-code tokens.css
-      - name: Check the component bundle is built from src/ and no source file is over 1000 lines
-        run: npm run check
+      - name: Check generated files (bundle, platform tokens, native icons) and the 1000-line limit
+        run: |
+          npm run check
+          node scripts/build-platform-tokens.mjs --check
+          node scripts/build-native-icons.mjs --check
       - run: npm run build-storybook
       - uses: actions/upload-pages-artifact@v3
         with:

@@ -1,0 +1,13 @@
+{
+  "name": "@areebadigital/asterisk-lint",
+  "version": "4.0.0",
+  "description": "areeba Asterisk 4 lint presets: Stylelint (tokens only, logical CSS, motion tokens) and ESLint (no native controls, no raw colours).",
+  "type": "module",
+  "exports": { "./stylelint": "./stylelint.js", "./eslint": "./eslint.js" },
+  "files": ["stylelint.js", "eslint.js", "README.md"],
+  "peerDependencies": { "stylelint": ">=16", "eslint": ">=9" },
+  "peerDependenciesMeta": { "stylelint": { "optional": true }, "eslint": { "optional": true } },
+  "license": "UNLICENSED",
+  "repository": { "type": "git", "url": "https://github.com/areebadigital/areeba-Design-System.git", "directory": "packages/asterisk-lint" },
+  "publishConfig": { "registry": "https://npm.pkg.github.com" }
+}
