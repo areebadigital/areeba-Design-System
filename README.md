@@ -88,7 +88,7 @@ The official marks are in `assets/Logos`, exported from Figma: the Signal Red wo
 
 ## Motion
 
-Fast and functional, and only from tokens: `--duration-instant` (100ms), `--duration-fast` (150ms, hover and press), `--duration-base` (250ms, sheets, menus, things that enter), `--duration-slow` (400ms, the one success check), with `--ease-standard`, `--ease-enter` and `--ease-exit`. Components animate what enters, never what leaves, and move only opacity, transform, colours and borders. Under `prefers-reduced-motion` every duration becomes 0ms, so no component needs its own rule. Shared keyframes live in `src/styles/motion.css`; `npm run check` fails on a raw `ms` or `cubic-bezier()` in component CSS. Nothing loops. See Storybook: Foundations / Motion.
+Fast and functional, and only from tokens: `--duration-instant` (100ms: hover, press, a checkbox tick), `--duration-fast` (150ms: switches, chips, focus, colour changes), `--duration-base` (250ms: menus, popovers, toasts, tab panels), `--duration-slow` (400ms: sheets, dialogs, the success check), with `--ease-standard`, `--ease-enter` and `--ease-exit`. Components animate what enters, never what leaves, and move only opacity, transform, colours and borders. Under `prefers-reduced-motion` every duration becomes 0ms, so no component needs its own rule. Shared keyframes live in `src/styles/motion.css`; `npm run check` fails on a raw `ms` or `cubic-bezier()` in component CSS. Nothing loops. See Storybook: Foundations / Motion.
 
 ## Analytics
 
