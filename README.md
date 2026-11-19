@@ -1,8 +1,12 @@
-# areeba
+<img src="assets/Logos/asterisk-mark.svg" width="56" height="56" alt="">
 
-One design language for every areeba product: consumer and merchant **mobile apps**, **SaaS dashboards** for banks and merchants, and the marketing surfaces around them. It is built for money: calm, legible, precise, with the areeba red reserved for the moments that matter.
+# areeba Asterisk 4
 
-> Status: v2. Aligned with the official brand guidelines and page designs in Figma (Areeba x magier client file, Nov 2026): palette, type scale, logos, Checkbox, Input field and Button. Dark theme values are derived; Figma defines light only.
+areeba's design system, fourth generation. One design language for every areeba product: consumer and merchant **mobile apps** (web and React Native), **SaaS dashboards** for banks and merchants, **card machines** (Kotlin Compose, including the customer display), and the marketing surfaces around them. It is built for money: calm, legible, precise, with the areeba red reserved for the moments that matter.
+
+The name comes from the asterisk: the small mark that says "there is more to know". The system is the detail behind every areeba screen.
+
+> Status: 4.0. Aligned with the official brand guidelines and page designs in Figma (Areeba x magier client file, Nov 2026): palette, type scale, logos, Checkbox, Input field and Button. Dark theme values are derived; Figma defines light only.
 
 **Where it lives:** [Figma library: areeba Design System 4.0](https://www.figma.com/design/HUoG7rGPlAR8cQAaV4fswZ) · [Storybook](https://areebadigital.github.io/areeba-Design-System/) · `tokens.json` in this repo (the source of truth for both).
 
@@ -70,6 +74,15 @@ Charts use their own four-colour series palette, `chart-1` to `chart-4` (Crimson
 Outline icons on a 24px grid, 20px live area, 1.75px stroke, round caps and joins, `currentColor`. Filled variants only for the active tab-bar item. Recommended set until a custom one exists: Lucide (outline style matches). Icons never stand alone for destructive actions; pair them with a label.
 
 ## Logo
+
+The areeba wordmark is the brand's logo (`assets/Logos/`, never redrawn). **Asterisk** is the design system's own mark: six rounded petals around an open centre, one of them in Signal Red. Use it only for the design system itself (Storybook, the Figma library, package pages, internal tools), never in place of the areeba logo in a product.
+
+| File | Use |
+| --- | --- |
+| `asterisk-mark.svg` | Light backgrounds |
+| `asterisk-mark-chalk.svg` | Dark backgrounds |
+| `asterisk-mark-mono.svg` | One colour (Crimson Deep), small sizes and print |
+| `asterisk-icon.svg` | App and favicon tile |
 
 The official marks are in `assets/Logos`, exported from Figma: the Signal Red wordmark for light backgrounds, the Chalk wordmark for dark or saturated ones, the contained version next to other brands, and the "a" logomark for tight spaces. Clear space equals the logo's height on every side. Never redraw, recolour or approximate the logo. There is no favicon yet (the Figma frames are empty placeholders).
 

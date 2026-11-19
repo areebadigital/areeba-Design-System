@@ -2,7 +2,7 @@
   "name": "areeba-design-system",
   "private": true,
   "version": "2.0.0",
-  "description": "areeba design system: tokens, React components and Storybook documentation.",
+  "description": "areeba Asterisk 4: areeba's design system. Tokens, web, React Native and Kotlin components, Storybook documentation.",
   "type": "module",
   "scripts": {
     "build": "node scripts/build.mjs",

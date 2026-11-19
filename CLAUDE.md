@@ -1,6 +1,6 @@
-# areeba design system
+# areeba Asterisk 4
 
-Source of truth for areeba's design language (mobile apps + SaaS). Published live at https://claude.ai/artifact/XvWoiWjkXwRi4FxLZeE15T (Design System artifact).
+areeba's design system, fourth generation: the source of truth for areeba's design language (web and React Native apps, SaaS, Kotlin card machines). Logo for the system itself: `assets/Logos/asterisk-*.svg`; product screens keep the areeba wordmark. Published live at https://claude.ai/artifact/XvWoiWjkXwRi4FxLZeE15T (Design System artifact).
 
 - `tokens.json` is the only place values live. After changing it run `python3 scripts/build-tokens.py` to regenerate `tokens.css`.
 - Component code lives in `src/`: one folder per component (`src/components/<Name>/<Name>.js` and `<Name>.css`), shared helpers and hooks in `src/core/`, page-level CSS in `src/styles/`, public exports in `src/index.js`, CSS order in `src/css-order.json`. Plain JS with `React.createElement` (no JSX), CSS that reads only CSS variables.

@@ -1,4 +1,4 @@
-/* areeba design system: every public component and helper. Generated once from the old single-file bundle; edit the modules, not this list. */
+/* areeba Asterisk 4: every public component and helper. Generated once from the old single-file bundle; edit the modules, not this list. */
 export { padInput } from './core/amount.js';
 export { icons } from './core/icons.js';
 export { AsteriskProvider, ANALYTICS_EVENTS } from './core/analytics.js';
