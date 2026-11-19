@@ -1,0 +1,6 @@
+/* FilterChip */
+.ar-chip { font: inherit; display: inline-flex; align-items: center; gap: var(--space-2); height: 36px; padding: 0 14px; border-radius: var(--radius-full); border: 1px solid var(--line-strong); background: var(--surface-raised); color: var(--ink); font-size: 14px; line-height: 20px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+.ar-chip svg { width: 16px; height: 16px; flex: none; }
+.ar-chip:hover { background: var(--surface-sunken); }
+.ar-chip:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.ar-chip-on, .ar-chip-on:hover { background: var(--brand); border-color: var(--brand); color: var(--on-brand); }

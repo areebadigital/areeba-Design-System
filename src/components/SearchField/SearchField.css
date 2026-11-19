@@ -1,0 +1,10 @@
+/* SearchField */
+.ar-search { position: relative; display: flex; align-items: center; }
+.ar-search-icon { position: absolute; inset-inline-start: 14px; width: 18px; height: 18px; color: var(--ink-muted); pointer-events: none; }
+.ar-search-input { font: inherit; width: 100%; height: var(--size-control-md); box-sizing: border-box; padding: 0 44px; border: 1px solid var(--line-strong); border-radius: var(--radius-xs); background: var(--surface-field); color: var(--ink); font-size: 16px; line-height: 24px; }
+.ar-search-input::placeholder { color: var(--ink-muted); opacity: 1; }
+.ar-search-input:focus { outline: 2px solid var(--focus); outline-offset: -1px; }
+.ar-search-input::-webkit-search-cancel-button { display: none; }
+.ar-search-clear { position: absolute; inset-inline-end: 6px; display: grid; place-items: center; width: 32px; height: 32px; padding: 0; border: 0; border-radius: var(--radius-full); background: transparent; color: var(--ink-muted); cursor: pointer; }
+.ar-search-clear svg { width: 16px; height: 16px; }
+.ar-search-clear:focus-visible { outline: 2px solid var(--focus); }

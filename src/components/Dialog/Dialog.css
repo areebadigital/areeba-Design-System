@@ -1,0 +1,12 @@
+/* Dialog */
+.ar-dialog-backdrop { position: fixed; inset: 0; display: grid; place-items: center; padding: var(--space-4); background: rgba(19, 18, 16, 0.56); z-index: 50; }
+.ar-dialog { width: 100%; max-width: 440px; box-sizing: border-box; padding: var(--space-6); background: var(--surface-raised); color: var(--ink); border-radius: var(--radius-xl); box-shadow: var(--shadow-3); border: 1px solid var(--line); }
+.ar-dialog:focus { outline: none; }
+.ar-dialog-title { margin: 0 0 var(--space-2); font-size: 18px; line-height: 26px; font-weight: 600; }
+.ar-dialog-body { font-size: 15px; line-height: 22px; color: var(--ink-muted); }
+.ar-dialog-body p { margin: 0; }
+.ar-dialog-actions { display: flex; justify-content: flex-end; gap: var(--space-3); margin-top: var(--space-6); }
+.ar-dialog-backdrop:has(.ar-dialog-sheet) { place-items: end center; padding: 0; }
+.ar-dialog-sheet { max-width: none; border-radius: var(--radius-xl) var(--radius-xl) 0 0; padding-bottom: calc(var(--space-6) + env(safe-area-inset-bottom)); }
+.ar-dialog-sheet .ar-dialog-actions { flex-direction: column-reverse; }
+.ar-dialog-sheet .ar-dialog-actions .ar-btn { width: 100%; height: var(--size-control-lg); }

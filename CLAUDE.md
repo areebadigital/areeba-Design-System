@@ -3,7 +3,8 @@
 Source of truth for areeba's design language (mobile apps + SaaS). Published live at https://claude.ai/artifact/XvWoiWjkXwRi4FxLZeE15T (Design System artifact).
 
 - `tokens.json` is the only place values live. After changing it run `python3 scripts/build-tokens.py` to regenerate `tokens.css`.
-- `components/bundle.js` (React 18, plain JS, `window.Areeba`), `components/bundle.css` (reads only CSS variables), `components/index.d.ts` (types).
+- Component code lives in `src/`: one folder per component (`src/components/<Name>/<Name>.js` and `<Name>.css`), shared helpers and hooks in `src/core/`, page-level CSS in `src/styles/`, public exports in `src/index.js`, CSS order in `src/css-order.json`. Plain JS with `React.createElement` (no JSX), CSS that reads only CSS variables.
+- `npm run build` (esbuild) generates `components/bundle.js` (React 18 global script, `window.Areeba`) and `components/bundle.css`; never edit those by hand. `npm run check` (run in CI) fails if they are out of date or any source file is over 1000 lines; keep components under 300 lines by moving shared logic into `src/core/`. `components/index.d.ts` holds the types.
 - Each component has `components/<Name>/README.md` (guidelines) and `preview.html` (line 1 is a `@dsCard` marker the artifact reads).
 - `components/Cover/preview.html` is the artifact's cover, not a component.
 - Every change here should also be published to the artifact above so both stay in sync.

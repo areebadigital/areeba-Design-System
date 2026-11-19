@@ -1,0 +1,18 @@
+/* NotificationItem */
+.ar-notif { display: flex; flex-direction: column; gap: var(--space-3); padding: var(--space-4); background: var(--surface-raised); border: 1px solid var(--line); border-radius: var(--radius-lg); }
+.ar-notif-row { display: flex; align-items: flex-start; gap: var(--space-3); }
+.ar-notif-icon { flex: none; display: grid; place-items: center; width: 40px; height: 40px; border-radius: var(--radius-full); background: var(--surface-sunken); color: var(--ink); }
+.ar-notif-icon svg { width: 20px; height: 20px; }
+.ar-notif-main { flex: 1; min-width: 0; }
+.ar-notif-title { margin: 0; font-size: 15px; line-height: 22px; font-weight: 600; color: var(--ink); }
+.ar-notif-body { font-size: 14px; line-height: 20px; color: var(--ink-muted); }
+.ar-notif-meta { flex: none; display: flex; align-items: center; gap: var(--space-2); }
+.ar-notif-time { font-size: 12px; line-height: 16px; color: var(--ink-muted); font-variant-numeric: tabular-nums; }
+.ar-notif-dot { width: 8px; height: 8px; border-radius: var(--radius-full); background: var(--brand); }
+.ar-notif-actions { display: flex; gap: var(--space-2); }
+.ar-notif-actions > .ar-btn { flex: 1; }
+.ar-notif-status { display: flex; align-items: center; justify-content: center; gap: var(--space-2); min-height: 36px; border-radius: var(--radius-sm); font-size: 14px; line-height: 20px; font-weight: 600; background: var(--surface-sunken); color: var(--ink-muted); }
+.ar-notif-status-icon { width: 16px; height: 16px; }
+.ar-notif-status-success { background: var(--success-soft); color: var(--success); }
+.ar-notif-status-danger { background: var(--danger-soft); color: var(--danger); }
+.ar-notif-status-warning { background: var(--warning-soft); color: var(--warning); }

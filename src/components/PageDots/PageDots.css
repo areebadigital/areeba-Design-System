@@ -1,0 +1,4 @@
+/* PageDots */
+.ar-dots { display: flex; justify-content: center; gap: 6px; }
+.ar-dot { width: 6px; height: 6px; border-radius: var(--radius-full); background: var(--line-strong); }
+.ar-dot-on { background: var(--ink); width: 16px; }

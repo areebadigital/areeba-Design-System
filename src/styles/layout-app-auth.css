@@ -1,0 +1,12 @@
+/* Sign-in page: a Night brand panel beside the form; the panel hides on small screens. */
+.ar-app-auth { display: grid; grid-template-columns: minmax(0, 1fr); min-height: 100%; flex: 1 1 auto; background: var(--surface); color: var(--ink); }
+.ar-app-auth-brand { display: none; flex-direction: column; justify-content: space-between; gap: var(--space-8); padding: var(--space-10); background: var(--night); color: var(--on-night); }
+.ar-app-auth-logo { font-size: 26px; line-height: 32px; font-weight: 700; letter-spacing: -0.02em; }
+.ar-app-auth-headline { margin: 0; max-width: 440px; font-size: 40px; line-height: 48px; font-weight: 400; letter-spacing: -0.02em; }
+.ar-app-auth-headline em { font-style: normal; color: var(--accent); }
+:lang(ar) .ar-app-auth-logo, :lang(ar) .ar-app-auth-headline { letter-spacing: 0; }
+.ar-app-auth-note { font-size: 14px; line-height: 20px; opacity: 0.78; }
+.ar-app-auth-main { display: flex; align-items: center; justify-content: center; padding: var(--space-10) var(--space-6); }
+.ar-app-auth-form { width: 100%; max-width: 400px; display: flex; flex-direction: column; gap: var(--space-4); }
+.ar-app-auth-row { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); flex-wrap: wrap; }
+@media (min-width: 960px) { .ar-app-auth { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); } .ar-app-auth-brand { display: flex; } }

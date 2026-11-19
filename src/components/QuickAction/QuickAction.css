@@ -1,0 +1,11 @@
+/* QuickAction */
+.ar-qas { display: flex; justify-content: space-around; gap: var(--space-3); }
+.ar-qa { font: inherit; display: inline-flex; flex-direction: column; align-items: center; gap: var(--space-2); padding: 0; border: 0; background: transparent; color: var(--ink); cursor: pointer; min-width: 64px; }
+.ar-qa-circle { display: grid; place-items: center; width: 48px; height: 48px; border-radius: var(--radius-full); background: var(--brand); color: var(--on-brand); transition: background-color 150ms; }
+.ar-qa-circle svg { width: 22px; height: 22px; }
+.ar-qa:hover .ar-qa-circle { background: var(--brand-hover); }
+.ar-qa:focus-visible { outline: none; }
+.ar-qa:focus-visible .ar-qa-circle { outline: 2px solid var(--focus); outline-offset: 2px; }
+.ar-qa:disabled { cursor: not-allowed; color: var(--ink-disabled); }
+.ar-qa:disabled .ar-qa-circle { background: var(--surface-sunken); color: var(--ink-disabled); }
+.ar-qa-label { font-size: 14px; line-height: 20px; font-weight: 500; }

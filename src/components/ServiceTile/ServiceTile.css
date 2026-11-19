@@ -1,0 +1,14 @@
+/* ServiceTile */
+.ar-tile { font: inherit; display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-2); padding: var(--space-4); border: 1px solid var(--line); border-radius: var(--radius-lg); background: var(--surface-raised); color: var(--ink); text-align: start; text-decoration: none; cursor: pointer; }
+.ar-tile:hover { background: var(--surface-sunken); }
+.ar-tile:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.ar-tile:disabled { cursor: not-allowed; color: var(--ink-disabled); }
+.ar-tile-mark { display: grid; place-items: center; width: 44px; height: 44px; border-radius: var(--radius-md); background: var(--surface-sunken); color: var(--ink); font-size: 15px; font-weight: 700; }
+.ar-tile-mark svg { width: 22px; height: 22px; }
+.ar-tile-brand { background: var(--brand-soft); color: var(--brand); }
+.ar-tile-info { background: var(--info-soft); color: var(--info); }
+.ar-tile-success { background: var(--success-soft); color: var(--success); }
+.ar-tile-warning { background: var(--warning-soft); color: var(--warning); }
+.ar-tile-label { font-size: 15px; line-height: 22px; font-weight: 600; }
+.ar-tile-desc { font-size: 13px; line-height: 18px; color: var(--ink-muted); }
+.ar-tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: var(--space-3); }

@@ -1,0 +1,56 @@
+import React from 'react';
+import { mirror } from './chart.js';
+import { cx } from './util.js';
+const h = React.createElement;
+
+function Icon(path, flip) {
+  return function (props) {
+    return h("svg", Object.assign({ viewBox: "0 0 24 24", className: flip ? "ar-icon-flip" : undefined, fill: "none", stroke: "currentColor", strokeWidth: 1.75, strokeLinecap: "round", strokeLinejoin: "round", "aria-hidden": "true" }, props, { className: cx(flip && "ar-icon-flip", props && props.className) || undefined }), path.map(function (d, i) { return h("path", { key: i, d: d }); }));
+  };
+}
+var icons = {
+  home: Icon(["M3 10.5 12 3l9 7.5", "M5 9.5V20h5v-6h4v6h5V9.5"]),
+  card: Icon(["M3 6.5A1.5 1.5 0 0 1 4.5 5h15A1.5 1.5 0 0 1 21 6.5v11a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 17.5z", "M3 10h18", "M7 15h3"]),
+  send: Icon(["M12 19V5", "M6 11l6-6 6 6"]),
+  chart: Icon(["M4 20V10", "M10 20V4", "M16 20v-7", "M22 20H2"]),
+  user: Icon(["M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8z", "M4 21a8 8 0 0 1 16 0"]),
+  list: Icon(["M8 6h13", "M8 12h13", "M8 18h13", "M3 6h.01", "M3 12h.01", "M3 18h.01"]),
+  store: Icon(["M4 9l1.5-5h13L20 9", "M4 9v11h16V9", "M4 9h16", "M10 20v-6h4v6"]),
+  settings: Icon(["M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z", "M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"]),
+  info: Icon(["M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z", "M12 11v5", "M12 8h.01"]),
+  check: Icon(["M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z", "M8 12l3 3 5-6"]),
+  alert: Icon(["M12 3 2 20h20z", "M12 10v4", "M12 17h.01"]),
+  /* added for the app blocks; flip=true for arrows that mean back/forward, so they mirror in RTL */
+  bell: Icon(["M6 9a6 6 0 1 1 12 0c0 7 3 8 3 8H3s3-1 3-8", "M10 21h4"]),
+  eye: Icon(["M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z", "M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"]),
+  eyeOff: Icon(["M3 3l18 18", "M10.6 5.1A10 10 0 0 1 12 5c6.5 0 10 7 10 7a17 17 0 0 1-3.2 4.1", "M6.6 6.6C3.8 8.4 2 12 2 12s3.5 7 10 7a9.8 9.8 0 0 0 5.4-1.6", "M9.9 9.9a3 3 0 0 0 4.2 4.2"]),
+  plus: Icon(["M12 5v14", "M5 12h14"]),
+  arrowUpRight: Icon(["M7 17 17 7", "M8 7h9v9"]),
+  more: Icon(["M11 5a1 1 0 1 0 2 0a1 1 0 1 0-2 0", "M11 12a1 1 0 1 0 2 0a1 1 0 1 0-2 0", "M11 19a1 1 0 1 0 2 0a1 1 0 1 0-2 0"]),
+  lock: Icon(["M6 11h12v10H6z", "M8 11V7a4 4 0 0 1 8 0v4"]),
+  pin: Icon(["M3 7h18v10H3z", "M7 12h.01", "M11 12h.01", "M15 12h2"]),
+  star: Icon(["M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"]),
+  close: Icon(["M6 6l12 12", "M18 6 6 18"]),
+  back: Icon(["M19 12H5", "M11 6l-6 6 6 6"], true),
+  forward: Icon(["M5 12h14", "M13 6l6 6-6 6"], true),
+  chevronLeft: Icon(["M15 6l-6 6 6 6"], true),
+  chevronRight: Icon(["M9 6l6 6-6 6"], true),
+  chevronDown: Icon(["M6 9l6 6 6-6"]),
+  search: Icon(["M11 18a7 7 0 1 0 0-14 7 7 0 0 0 0 14z", "M20 20l-4-4"]),
+  download: Icon(["M12 4v11", "M7 10l5 5 5-5", "M5 20h14"]),
+  share: Icon(["M12 15V4", "M8 8l4-4 4 4", "M5 12v8h14v-8"]),
+  doc: Icon(["M7 3h7l5 5v13H7z", "M14 3v5h5", "M10 13h6", "M10 17h6"]),
+  upload: Icon(["M12 15V4", "M7 9l5-5 5 5", "M4 15v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4"]),
+  backspace: Icon(["M9 5h11v14H9l-6-7z", "M12 9l5 6", "M17 9l-5 6"], true),
+  phone: Icon(["M8 3h8v18H8z", "M11 18h2"]),
+  mail: Icon(["M3 6h18v12H3z", "M3 7l9 6 9-6"]),
+  logout: Icon(["M10 4H5v16h5", "M15 8l4 4-4 4", "M19 12H9"], true),
+  faceId: Icon(["M4 8V5h3", "M17 5h3v3", "M20 16v3h-3", "M7 19H4v-3", "M9 10v1", "M15 10v1", "M12 10v3h-1", "M9.5 16a4 4 0 0 0 5 0"]),
+  help: Icon(["M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z", "M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7", "M12 17h.01"]),
+  globe: Icon(["M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z", "M3 12h18", "M12 3a14 14 0 0 1 0 18", "M12 3a14 14 0 0 0 0 18"]),
+  transfer: Icon(["M4 8h14", "M14 4l4 4-4 4", "M20 16H6", "M10 12l-4 4 4 4"])
+};
+function iconOf(i) { return typeof i === "string" ? icons[i] : i; }
+function renderIcon(i, props) { var I = iconOf(i); return I ? h(I, props || null) : null; }
+
+export { Icon, icons, iconOf, renderIcon };

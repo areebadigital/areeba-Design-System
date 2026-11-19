@@ -1,0 +1,11 @@
+/* AppHeader */
+.ar-apphead { padding: var(--space-3) var(--space-4); background: transparent; }
+.ar-apphead-transparent { background: transparent; }
+.ar-apphead-modal { padding-top: var(--space-2); background: var(--surface-raised); border-bottom: 1px solid var(--line); }
+.ar-apphead-handle { display: block; width: 36px; height: 4px; margin: 0 auto var(--space-2); border-radius: var(--radius-full); background: var(--line-strong); }
+.ar-apphead-row { display: grid; grid-template-columns: minmax(40px, auto) 1fr minmax(40px, auto); align-items: center; gap: var(--space-3); min-height: 44px; }
+.ar-apphead-start { display: flex; justify-content: flex-start; }
+.ar-apphead-end { display: flex; justify-content: flex-end; gap: var(--space-2); }
+.ar-apphead-mid { text-align: center; min-width: 0; }
+.ar-apphead-title { margin: 0; font-size: 18px; line-height: 26px; font-weight: 600; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ar-apphead-sub { font-size: 13px; line-height: 18px; color: var(--ink-muted); }

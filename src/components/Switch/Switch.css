@@ -1,0 +1,12 @@
+/* Switch (button role="switch", no native input) */
+.ar-switch { font: inherit; display: inline-flex; align-items: center; gap: var(--space-3); padding: 0; border: 0; background: transparent; cursor: pointer; font-size: 16px; line-height: 24px; color: var(--ink); text-align: start; }
+.ar-switch-track { position: relative; width: 48px; height: 28px; border-radius: var(--radius-full); background: var(--line-strong); transition: background-color 150ms; flex: none; }
+.ar-switch-track::after { content: ""; position: absolute; top: 3px; inset-inline-start: 3px; width: 22px; height: 22px; border-radius: var(--radius-full); background: var(--surface-raised); box-shadow: var(--shadow-1); transition: transform 150ms; }
+.ar-switch[aria-checked="true"] .ar-switch-track { background: var(--brand); }
+.ar-switch[aria-checked="true"] .ar-switch-track::after { transform: translateX(20px); }
+.ar-switch[aria-checked="true"]:dir(rtl) .ar-switch-track::after { transform: translateX(-20px); }
+.ar-switch:focus-visible { outline: none; }
+.ar-switch:focus-visible .ar-switch-track { outline: 2px solid var(--focus); outline-offset: 2px; }
+.ar-switch:disabled { cursor: not-allowed; color: var(--ink-disabled); }
+.ar-switch:disabled .ar-switch-track { opacity: .5; }
+@media (prefers-reduced-motion: reduce) { .ar-switch-track, .ar-switch-track::after { transition: none; } }

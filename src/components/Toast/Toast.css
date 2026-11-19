@@ -1,0 +1,8 @@
+/* Toast */
+.ar-toast { display: inline-flex; align-items: center; gap: var(--space-3); min-height: 48px; box-sizing: border-box; padding: var(--space-3) var(--space-4); max-width: 420px; background: var(--night); color: var(--on-night); border-radius: var(--radius-md); box-shadow: var(--shadow-2); font-size: 15px; line-height: 22px; }
+.ar-toast-icon { width: 20px; height: 20px; flex: none; }
+.ar-toast-success .ar-toast-icon { color: var(--success); }
+.ar-toast-danger .ar-toast-icon { color: var(--danger); }
+.ar-toast-msg { flex: 1; }
+.ar-toast-action { font: inherit; font-weight: 700; font-size: 14px; background: transparent; border: 0; color: var(--on-night); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; padding: var(--space-1); border-radius: var(--radius-xs); }
+.ar-toast-action:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }

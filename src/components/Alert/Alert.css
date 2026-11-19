@@ -1,0 +1,8 @@
+/* Alert */
+.ar-alert { display: flex; gap: var(--space-3); padding: var(--space-4); border-radius: var(--radius-md); background: var(--info-soft); color: var(--ink); font-size: 15px; line-height: 22px; }
+.ar-alert-icon { flex: none; width: 20px; height: 20px; margin-top: 1px; color: var(--info); }
+.ar-alert-title { font-weight: 700; margin: 0 0 2px; }
+.ar-alert-body { margin: 0; color: var(--ink); }
+.ar-alert-success { background: var(--success-soft); } .ar-alert-success .ar-alert-icon { color: var(--success); }
+.ar-alert-warning { background: var(--warning-soft); } .ar-alert-warning .ar-alert-icon { color: var(--warning); }
+.ar-alert-danger { background: var(--danger-soft); } .ar-alert-danger .ar-alert-icon { color: var(--danger); }

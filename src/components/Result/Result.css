@@ -1,0 +1,8 @@
+/* Result */
+.ar-result { display: flex; flex-direction: column; align-items: center; text-align: center; gap: var(--space-3); padding: var(--space-8) var(--space-4); }
+.ar-result-icon { display: grid; place-items: center; width: 72px; height: 72px; border-radius: var(--radius-full); background: var(--success-soft); color: var(--success); }
+.ar-result-icon svg { width: 36px; height: 36px; }
+.ar-result-danger .ar-result-icon { background: var(--danger-soft); color: var(--danger); }
+.ar-result-title { margin: 0; font-size: 22px; line-height: 30px; font-weight: 600; color: var(--ink); }
+.ar-result-body { font-size: 15px; line-height: 22px; color: var(--ink-muted); max-width: 320px; }
+.ar-result-action { margin-top: var(--space-2); }

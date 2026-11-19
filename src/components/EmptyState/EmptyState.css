@@ -1,0 +1,9 @@
+/* EmptyState */
+.ar-empty { display: flex; flex-direction: column; align-items: center; text-align: center; padding: var(--space-10) var(--space-6); max-width: 400px; margin: 0 auto; }
+.ar-empty-art { width: 96px; height: 64px; margin-bottom: var(--space-4); }
+.ar-empty-a { fill: var(--mint); }
+.ar-empty-b { fill: var(--brand-soft); stroke: var(--brand); stroke-width: 1.5; }
+.ar-empty-c { fill: var(--brand); }
+.ar-empty-title { margin: 0 0 var(--space-2); font-size: 18px; line-height: 26px; font-weight: 600; color: var(--ink); }
+.ar-empty-body { margin: 0; font-size: 15px; line-height: 22px; color: var(--ink-muted); }
+.ar-empty-action { margin-top: var(--space-6); }

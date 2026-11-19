@@ -5,9 +5,11 @@
   "description": "areeba design system: tokens, React components and Storybook documentation.",
   "type": "module",
   "scripts": {
+    "build": "node scripts/build.mjs",
+    "check": "node scripts/build.mjs --check",
     "tokens": "python3 scripts/build-tokens.py",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build -o storybook-static",
+    "storybook": "npm run build && storybook dev -p 6006",
+    "build-storybook": "npm run build && storybook build -o storybook-static",
     "test:visual": "playwright test",
     "test:visual:update": "playwright test --update-snapshots=all"
   },
@@ -17,6 +19,7 @@
     "@storybook/addon-docs": "10.6.5",
     "@storybook/react-vite": "10.6.5",
     "axe-core": "4.14.1",
+    "esbuild": "0.28.2",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "storybook": "10.6.5",

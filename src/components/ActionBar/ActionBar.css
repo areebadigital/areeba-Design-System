@@ -1,0 +1,5 @@
+/* ActionBar */
+.ar-actionbar { position: sticky; bottom: 0; display: flex; gap: var(--space-3); padding: var(--space-4) var(--space-4) calc(var(--space-4) + env(safe-area-inset-bottom)); background: inherit; }
+.ar-actionbar > .ar-btn { flex: 1; height: var(--size-control-lg); }
+.ar-actionbar-stacked { flex-direction: column; }
+.ar-actionbar-stacked > .ar-btn { flex: none; width: 100%; }

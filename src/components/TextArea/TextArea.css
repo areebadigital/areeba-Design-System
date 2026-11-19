@@ -1,0 +1,8 @@
+/* TextArea */
+.ar-textarea textarea { font: inherit; font-size: 16px; line-height: 24px; color: var(--ink); box-sizing: border-box; width: 100%; min-height: 96px; padding: 10px 14px; resize: vertical; background: var(--surface-field); border: 1px solid var(--line-strong); border-radius: var(--radius-xs); }
+.ar-textarea textarea::placeholder { color: var(--ink-muted); }
+.ar-textarea textarea:focus { outline: none; border-color: var(--focus); box-shadow: 0 0 0 1px var(--focus); }
+.ar-field-invalid textarea { border-color: var(--danger); }
+.ar-textarea-foot { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--space-3); }
+.ar-textarea-count { flex: none; font-size: 13px; line-height: 20px; color: var(--ink-muted); font-variant-numeric: tabular-nums; }
+.ar-textarea-full { color: var(--danger); font-weight: 500; }

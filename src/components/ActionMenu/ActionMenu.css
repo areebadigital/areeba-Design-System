@@ -1,0 +1,9 @@
+/* ActionMenu (menu button) */
+.ar-menu-wrap { position: relative; display: inline-flex; }
+.ar-menu { position: absolute; top: calc(100% + var(--space-1)); inset-inline-end: 0; z-index: 40; min-width: 232px; margin: 0; padding: var(--space-1); list-style: none; background: var(--surface-raised); border: 1px solid var(--line); border-radius: var(--radius-sm); box-shadow: var(--shadow-2); }
+.ar-menu-start { inset-inline-end: auto; inset-inline-start: 0; }
+.ar-menu-item { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); min-height: 44px; padding: 0 var(--space-3); border-radius: var(--radius-xs); font-size: 15px; line-height: 22px; color: var(--ink); cursor: pointer; outline: none; }
+.ar-menu-item:focus { background: var(--surface-sunken); }
+.ar-menu-item[aria-disabled="true"] { color: var(--ink-disabled); cursor: not-allowed; }
+.ar-menu-icon { width: 18px; height: 18px; flex: none; color: var(--ink-muted); }
+.ar-menu-danger, .ar-menu-danger .ar-menu-icon { color: var(--danger); }
